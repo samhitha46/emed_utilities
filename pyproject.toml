@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emed_utilities"
+version = "0.1.0"
+description = "Shared utility library for eMed"
+requires-python = ">=3.11"
+dependencies = [
+    "SQLAlchemy>=2.0",
+    "PyMySQL>=1.1",
+    "cryptography>=42",          # PyMySQL SSL support
+    "pydantic-settings>=2.0",
+    "python-dotenv>=1.0",
+    "structlog>=24.0",
+    "google-analytics-data>=0.18",
+    "requests>=2.32",
+    "beautifulsoup4>=4.12",
+    "playwright>=1.44",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "mypy>=1.10",
+    "ruff>=0.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["emed_utilities*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=emed_utilities --cov-report=term-missing -q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
