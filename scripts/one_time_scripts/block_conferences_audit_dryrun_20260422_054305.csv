@@ -1,0 +1,611 @@
+conference_id,title,status_before,status_after,modified_by_before,modified_by_after,modified_date_before,modified_date_after,action
+45202,28th International Conference on Clinical and Experimental Cardiology (ICCEC) - Roma,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45203,28th International Conference on Clinical and Experimental Cardiology (ICCEC) - Istanbul,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45250,29th International Conference on Dentistry (ICD) - Roma,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45255,28th International Conference on Dentistry (ICD) - Roma,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45274,28th International Conference on Neurology and Therapeutics (ICNT) - Rome,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45277,28th International Conference on Neurology and Therapeutics (ICNT) - Istanbul,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45284,29th International Conference on Neurology and Therapeutics (ICNT) - Rome,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45286,29th International Conference on Neurology and Therapeutics (ICNT) - Istanbul,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45441,"30th International Conference on Pharmaceutics, Biopharmaceutics and Pharmaceutical Technology (ICPBPT)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45468,"29th International Conference on Pharmaceutics, Biopharmaceutics and Pharmaceutical Technology (ICPBPT)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45470,"31st International Conference on Pharmaceutics, Biopharmaceutics and Pharmaceutical Technology (ICPBPT)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45472,"31st International Conference on Pharmaceutics, Biopharmaceutics and Pharmaceutical Technology (ICPBPT)",1,2,,64529,2017-09-09 04:17:11,2026-04-22,DRY_RUN
+45491,"30th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45497,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45507,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,,64529,2017-09-09 04:17:11,2026-04-22,DRY_RUN
+45588,"28th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45594,"29th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45597,"30th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Dubai",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45604,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,,64529,2017-09-09 04:17:11,2026-04-22,DRY_RUN
+45660,28th International Conference on Pharmaceuticals and Technologies (ICPT),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45662,29th International Conference on Pharmaceuticals and Technologies (ICPT),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45664,30th International Conference on Pharmaceuticals and Technologies (ICPT),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45668,31st International Conference on Pharmaceuticals and Technologies (ICPT),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45675,"29th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,,64529,2017-09-09 04:17:11,2026-04-22,DRY_RUN
+45699,"30th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Kuala Lumpur",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45702,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Kuala Lumpur",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45731,"28th International Conference on Pharmacology, Medicinal and Pharmaceutical Sciences (ICPMPS) - Rome",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45732,"29th International Conference on Pharmacology, Medicinal and Pharmaceutical Sciences (ICPMPS) - Rome",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45734,"30th International Conference on Pharmacology, Medicinal and Pharmaceutical Sciences (ICPMPS) - Rome",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45736,"31st International Conference on Pharmacology, Medicinal and Pharmaceutical Sciences (ICPMPS) - Rome",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45743,"28th International Conference on Pharmacology, Medicinal and Pharmaceutical Sciences (ICPMPS) - Singapore",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45747,"29th International Conference on Pharmacology, Medicinal and Pharmaceutical Sciences (ICPMPS) - Singapore",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45753,"30th International Conference on Pharmacology, Medicinal and Pharmaceutical Sciences (ICPMPS) - Singapore",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45756,"31st International Conference on Pharmacology, Medicinal and Pharmaceutical Sciences (ICPMPS) - Singapore",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45764,"29th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,,64529,2017-09-09 04:17:11,2026-04-22,DRY_RUN
+45767,"30th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Boston",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45796,28th International Conference on Sport Medicine and Exercise Science (ICSMES) - Venice,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45798,29th International Conference on Sport Medicine and Exercise Science (ICSMES) - Venice,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45802,30th International Conference on Sport Medicine and Exercise Science (ICSMES) - Venice,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45804,31st International Conference on Sport Medicine and Exercise Science (ICSMES) - Venice,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45829,29th International Conference on Sport Medicine and Exercise Science (ICSMES) - Lisboa,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45831,30th International Conference on Sport Medicine and Exercise Science (ICSMES) - Lisboa,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45833,31st International Conference on Sport Medicine and Exercise Science (ICSMES) - Lisboa,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45856,"28th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,,64529,2017-09-09 04:17:11,2026-04-22,DRY_RUN
+45862,"29th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,,64529,2017-09-09 04:17:11,2026-04-22,DRY_RUN
+45867,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS)",1,2,,64529,2017-09-09 04:17:11,2026-04-22,DRY_RUN
+45869,29th International Conference on Medicine and Pharmacological Sciences (ICMPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45872,31st International Conference on Medicine and Pharmacological Sciences (ICMPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45901,25th International Conference on Pharmaceutical Science Technology and Engineering (ICPSTE) - Singapore,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45911,29th International Conference on Pharmaceutical Science Technology and Engineering (ICPSTE) - Singapore,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45913,30th International Conference on Pharmaceutical Science Technology and Engineering (ICPSTE) - Singapore,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45916,31st International Conference on Pharmaceutical Science Technology and Engineering (ICPSTE) - Singapore,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45923,30th International Conference on Pharmaceutical Science Technology and Engineering (ICPSTE) - Venice,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45926,31st International Conference on Pharmaceutical Science Technology and Engineering (ICPSTE) - Venice,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45927,"30th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Paris",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45930,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Paris",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45946,"30th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Venice",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45949,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Venice",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45957,"30th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - May",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45959,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - May",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45967,"30th International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Sep",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45976,"31st International Conference on Medical, Biological and Pharmaceutical Sciences (ICMBPS) - Sep",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46017,29th International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - Kuala Lumpur,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46019,31st International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - Kuala Lumpur,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46028,30th International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46030,31st International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46041,30th International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - Venice,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46045,31st International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - Venice,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46109,28th International Conference on Pharmacy and Chemical Engineering (ICPCE) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46111,29th International Conference on Pharmacy and Chemical Engineering (ICPCE) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46114,30th International Conference on Pharmacy and Chemical Engineering (ICPCE) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46117,31st International Conference on Pharmacy and Chemical Engineering (ICPCE) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46132,30th International Conference on Radiology and Medical Imaging (ICRMI),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46166,29th International Conference on Pharmacy and Chemical Engineering (ICPCE) - Kuala Lumpur,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46169,30th International Conference on Pharmacy and Chemical Engineering (ICPCE) - Kuala Lumpur,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46171,31st International Conference on Pharmacy and Chemical Engineering (ICPCE) - Kuala Lumpur,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46198,28th International Conference on Pharmacy and Chemical Engineering (ICPCE) - Vancouver,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46201,29th International Conference on Pharmacy and Chemical Engineering (ICPCE) - Vancouver,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46202,31st International Conference on Pharmacy and Chemical Engineering (ICPCE) - Vancouver,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46212,28th International Conference on Adolescent Psychiatry and Psychology (ICAPP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46217,29th International Conference on Adolescent Psychiatry and Psychology (ICAPP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46221,30th International Conference on Adolescent Psychiatry and Psychology (ICAPP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46224,31st International Conference on Adolescent Psychiatry and Psychology (ICAPP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46341,28th International Conference on Pharmacology and Pharmaceutical Technology (ICPPT) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46343,29th International Conference on Pharmacology and Pharmaceutical Technology (ICPPT) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46344,31st International Conference on Pharmacology and Pharmaceutical Technology (ICPPT) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46367,28th International Conference on Pharmacology and Pharmaceutical Technology (ICPPT) - Singapore,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46371,29th International Conference on Pharmacology and Pharmaceutical Technology (ICPPT) - Singapore,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46373,30th International Conference on Pharmacology and Pharmaceutical Technology (ICPPT) - Singapore,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46376,31st International Conference on Pharmacology and Pharmaceutical Technology (ICPPT) - Singapore,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46407,29th International Conference on Medicinal Chemistry and Molecular Pharmacology (ICMCMP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46412,"29th International Conference on Radiology (ICR) (Sep, 2027)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46413,"29th International Conference on Radiology (Feb, 2027)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46417,"28th International Conference on Radiology (ICR) (Sep, 2026)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46419,30th International Conference on Medicinal Chemistry and Molecular Pharmacology (ICMCMP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46421,31st International Conference on Medicinal Chemistry and Molecular Pharmacology (ICMCMP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46488,29th International Conference on Pediatrics and Child Health (ICPCH),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46490,28th International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46494,29th International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46499,30th International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46503,31st International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - Dubai,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46506,31st International Conference on Pharmacology and Pharmaceutical Medicine (ICPPM) - San Diego,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46522,28th International Conference on Radiopharmacy and Radiopharmaceuticals (ICRR) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46524,29th International Conference on Radiopharmacy and Radiopharmaceuticals (ICRR) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46527,30th International Conference on Radiopharmacy and Radiopharmaceuticals (ICRR) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46528,31st International Conference on Radiopharmacy and Radiopharmaceuticals (ICRR) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46538,31st International Conference on Pharmacology and Biochemistry (ICPB),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46556,28th International Conference on Biomedical and Pharmaceutical Sciences (ICBPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46557,29th International Conference on Biomedical and Pharmaceutical Sciences (ICBPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46559,31st International Conference on Biomedical and Pharmaceutical Sciences (ICBPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46560,31st International Conference on Cardiovascular Biomechanics and Health Monitoring Devices (ICCBHMD) - Kowloon,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46589,29th International Conference on Biopharmaceuticals (ICBP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46593,31st International Conference on Biopharmaceuticals (ICBP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46610,"28th International Conference on Food Science, Nutrition and Health (ICFSNH)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46611,"29th International Conference on Food Science, Nutrition and Health (ICFSNH)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46613,"30th International Conference on Food Science, Nutrition and Health (ICFSNH)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46631,"29th International Conference on Pharmacodynamics, Biomarkers and Personalised Therapy (ICPBPT)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46638,"31st International Conference on Pharmacodynamics, Biomarkers and Personalised Therapy (ICPBPT)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46639,28th International Conference on Food Science and Health (ICFSH) - Naarden,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46641,29th International Conference on Food Science and Health (ICFSH) - Naarden,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46644,30th International Conference on Food Science and Health (ICFSH) - Naarden,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46645,31st International Conference on Food Science and Health (ICFSH) - Naarden,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46656,28th International Conference on Applied Psychology (ICAP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46658,29th International Conference on Applied Psychology (ICAP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46663,30th International Conference on Applied Psychology (ICAP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46664,31st International Conference on Applied Psychology (ICAP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46697,28th International Conference on Food Science and Health (ICFSH) - Los Angeles,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46699,29th International Conference on Food Science and Health (ICFSH) - Los Angeles,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46702,29th International Conference on Addiction Treatment and Therapy (ICATT),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46703,30th International Conference on Food Science and Health (ICFSH) - Los Angeles,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46706,31st International Conference on Food Science and Health (ICFSH) - Los Angeles,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46711,31st International Conference on Addiction Treatment and Therapy (ICATT),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46724,28th International Conference on Applied Psychology and Behavioral Sciences (ICAPBS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46733,29th International Conference on Applied Psychology and Behavioral Sciences (ICAPBS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46737,30th International Conference on Applied Psychology and Behavioral Sciences (ICAPBS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46739,31st International Conference on Applied Psychology and Behavioral Sciences (ICAPBS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46742,28th International Conference on Radiology (ICR) - Bangkok,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46743,28th International Conference on Food and Nutrition Technology (ICFNT) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46745,29th International Conference on Food and Nutrition Technology (ICFNT) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46747,30th International Conference on Food and Nutrition Technology (ICFNT) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46749,31st International Conference on Food and Nutrition Technology (ICFNT) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46751,29th International Conference on Radiology (ICR) - Bangkok,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46777,28th International Conference on Behavioral and Cognitive Sciences (ICBCS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46781,29th International Conference on Behavioral and Cognitive Sciences (ICBCS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46784,30th International Conference on Behavioral and Cognitive Sciences (ICBCS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46785,31st International Conference on Behavioral and Cognitive Sciences (ICBCS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46798,29th International Conference on Gastroenterology and Urology (ICGU),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46800,30th International Conference on Gastroenterology and Urology (ICGU),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46801,31st International Conference on Gastroenterology and Urology (ICGU),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46808,28th International Conference on Food and Nutrition Technology (ICFNT) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46810,29th International Conference on Food and Nutrition Technology (ICFNT) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46812,30th International Conference on Food and Nutrition Technology (ICFNT) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46815,31st International Conference on Food and Nutrition Technology (ICFNT) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46847,28th International Conference on Behavioral and Educational Psychology (ICBEP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46848,"28th International Conference on Radiology, Diagnostics and Therapeutics (ICRDT)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46851,"29th International Conference on Radiology, Diagnostics and Therapeutics (ICRDT)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46853,29th International Conference on Behavioral and Educational Psychology (ICBEP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46856,30th International Conference on Behavioral and Educational Psychology (ICBEP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46858,31st International Conference on Behavioral and Educational Psychology (ICBEP),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46862,28th International Conference on Food Engineering and Management (ICFEM) - Vienna,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46863,29th International Conference on Food Engineering and Management (ICFEM) - Vienna,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46867,30th International Conference on Food Engineering and Management (ICFEM) - Vienna,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46869,31st International Conference on Food Engineering and Management (ICFEM) - Vienna,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46893,"29th International Conference on Radiology and Medical Imaging (ICRMI) (Dec, 2027)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46896,"29th International Conference on Radiology and Medical Imaging (ICRMI) (Sep, 2027)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46901,"28th International Conference on Radiology and Medical Imaging (ICRMI) (Dec, 2026)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46904,"28th International Conference on Radiology and Medical Imaging (ICRMI) (Sep, 2026)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46928,29th International Conference on Cardiology and Cardiovascular Medicine (ICCCM),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46937,30th International Conference on Cardiology and Cardiovascular Medicine (ICCCM),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46947,31st International Conference on Cardiology and Cardiovascular Medicine (ICCCM),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46950,28th International Conference on Behavioral and Psychological Sciences (ICBPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46954,29th International Conference on Behavioral and Psychological Sciences (ICBPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46956,30th International Conference on Behavioral and Psychological Sciences (ICBPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46957,28th International Conference on Food Engineering and Management (ICFEM) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46960,29th International Conference on Food Engineering and Management (ICFEM) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46961,31st International Conference on Behavioral and Psychological Sciences (ICBPS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46964,30th International Conference on Food Engineering and Management (ICFEM) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46966,31st International Conference on Food Engineering and Management (ICFEM) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46979,29th International Conference on Pulmonary and Respiratory Medicine (ICPRM),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46993,28th International Conference on Food Engineering and Management (ICFEM) - Chicago,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46995,29th International Conference on Food Engineering and Management (ICFEM) - Chicago,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+46996,31st International Conference on Food Engineering and Management (ICFEM) - Chicago,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47000,30th International Conference on Food Engineering and Management (ICFEM) - Athens,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47045,"28th International Conference on Behavioral, Cognitive and Neurological Sciences (ICBCNS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47046,28th International Conference on Food Processing and Technology (ICFPT) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47048,"29th International Conference on Behavioral, Cognitive and Neurological Sciences (ICBCNS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47049,28th International Conference on Pulmonary and Respiratory Medicine (ICPRM),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47056,28th International Conference on Radiology and Imaging (ICRI) - Istanbul,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47058,29th International Conference on Food Processing and Technology (ICFPT) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47060,29th International Conference on Radiology and Imaging (ICRI) - Istanbul,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47061,30th International Conference on Food Processing and Technology (ICFPT) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47062,31st International Conference on Food Processing and Technology (ICFPT) - Paris,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47063,"30th International Conference on Behavioral, Cognitive and Neurological Sciences (ICBCNS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47066,"31st International Conference on Behavioral, Cognitive and Neurological Sciences (ICBCNS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47084,28th International Conference on Food Processing and Technology (ICFPT) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47085,29th International Conference on Food Processing and Technology (ICFPT) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47086,30th International Conference on Food Processing and Technology (ICFPT) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47092,31st International Conference on Food Processing and Technology (ICFPT) - London,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47110,"28th International Conference on Behavioral, Psychological and Cognitive Sciences (ICBPCS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47112,"29th International Conference on Behavioral, Psychological and Cognitive Sciences (ICBPCS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47113,"30th International Conference on Behavioral, Psychological and Cognitive Sciences (ICBPCS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47116,"31st International Conference on Behavioral, Psychological and Cognitive Sciences (ICBPCS)",1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47127,29th International Conference on Cellular and Molecular Bioengineering (ICCMB),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47128,30th International Conference on Cellular and Molecular Bioengineering (ICCMB),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47129,31st International Conference on Cellular and Molecular Bioengineering (ICCMB),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47177,28th International Conference on Anaesthesiology (ICA),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47182,29th International Conference on Anaesthesiology (ICA),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47230,28th International Conference on Genetics and Genomics (ICGG),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47233,29th International Conference on Genetics and Genomics (ICGG),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47399,28th International Conference on Lung Cancer (ICLC),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+47401,29th International Conference on Lung Cancer (ICLC),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+53672,28th International Conference on Glaucoma Surgery (ICGS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+53677,29th International Conference on Glaucoma Surgery (ICGS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+53679,30th International Conference on Glaucoma Surgery (ICGS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+53699,31st International Conference on Glaucoma Surgery (ICGS),1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+142920,Lateral Elbow Tendinopathy,1,2,0,64529,2020-11-11 11:01:16,2026-04-22,DRY_RUN
+142924,The Neuroscientific Basis of Pain: Clinical Implications to Upper Extremity Practice,1,2,0,64529,2020-11-13 18:46:37,2026-04-22,DRY_RUN
+142935,Motion and Measurement: Optimizing Outcomes After Flexor Tendon Repair,1,2,0,64529,2020-11-11 11:01:16,2026-04-22,DRY_RUN
+142940,Therapist Management of Replantation,1,2,0,64529,2020-11-13 02:57:13,2026-04-22,DRY_RUN
+143407,Blueprint for Career Transition Success (19 Keys to a Successful Practice Transition),1,2,0,64529,2020-11-13 02:59:13,2026-04-22,DRY_RUN
+143408,Management of Odontogenic Infections and Soft Tissue Biopsy Techniques,1,2,0,64529,2020-11-12 17:41:10,2026-04-22,DRY_RUN
+143423,Explosive Growth in Challenging Times (Increased Production 30-50% in the Next 3 Years),1,2,0,64529,2020-11-13 02:59:20,2026-04-22,DRY_RUN
+143427,Implant Complications from a Restorative Perspective - ACP Collaboration,1,2,0,64529,2020-11-15 16:22:25,2026-04-22,DRY_RUN
+143428,Maximize the First 5 Years of Your Career,1,2,835585,64529,2021-05-06 07:27:58,2026-04-22,DRY_RUN
+143429,"HPV, The Underestimated Cause of Oral Cancer",1,2,659217,64529,2021-10-18 10:02:25,2026-04-22,DRY_RUN
+143455,Smart Rehabilitation Through Virtual Reality and Gamification Conference,1,2,0,64529,2020-11-15 14:07:36,2026-04-22,DRY_RUN
+143458,Hand Therapy Perspective on Scapholunate Ligament Injuries Course,1,2,0,64529,2020-11-14 13:31:08,2026-04-22,DRY_RUN
+143463,2019 Medicare Updates for Hand Therapists Course,1,2,0,64529,2020-11-14 13:30:47,2026-04-22,DRY_RUN
+143466,Update on Hand Surgery and Therapy for Scleroderma Course,1,2,0,64529,2020-11-15 14:04:01,2026-04-22,DRY_RUN
+143470,"Manual Therapy of the Wrist and Hand: Mechanisms of Action, Techniques and Dosage Course",1,2,0,64529,2020-11-15 14:01:57,2026-04-22,DRY_RUN
+143473,The Hand Therapist’s Role in Maximizing Occupational Performance Utilizing Neuralplasticity Treatment Approaches Course,1,2,0,64529,2020-11-14 13:29:31,2026-04-22,DRY_RUN
+143474,From Compliance to Adherence in Hand Therapy: A Behavioral Perspective Course,1,2,0,64529,2020-11-15 14:03:35,2026-04-22,DRY_RUN
+143481,Upper Extremity Complication in the Cancer Patient Course,1,2,0,64529,2020-11-12 17:03:35,2026-04-22,DRY_RUN
+143483,MCP & PIP Implant Resection Arthroplasty Update Course,1,2,0,64529,2020-11-15 15:36:40,2026-04-22,DRY_RUN
+143484,How to Publish in the Journal of Hand Therapy Course,1,2,0,64529,2020-11-15 14:06:48,2026-04-22,DRY_RUN
+143485,Complications of Mangled Extremities: The Role of Hand Therapy Course,1,2,0,64529,2020-11-15 14:04:30,2026-04-22,DRY_RUN
+143487,Scapulothoracic and Scapulohumeral Exercises: A Narrative Review of Electromyographic and Clinical Studies Course,1,2,0,64529,2020-11-12 12:25:13,2026-04-22,DRY_RUN
+143490,Swimmer's Shoulder: Sport-Specific Rehab Progression Course,1,2,0,64529,2020-11-12 12:26:18,2026-04-22,DRY_RUN
+143491,Establishing and Updating Treatment Plans for Adult Patients after Brachial Plexus Reconstruction Course,1,2,0,64529,2020-11-14 01:20:04,2026-04-22,DRY_RUN
+143495,Hand Therapy for the Pediatric Population Course,1,2,0,64529,2020-11-15 14:05:33,2026-04-22,DRY_RUN
+143523,"Management of Hand Burns, Including Tips and Tricks for the Hand Therapist Treating Wounds, Flaps and Grafts Course",1,2,0,64529,2020-11-15 14:04:55,2026-04-22,DRY_RUN
+143524,Wide Awake Flexor Tendon Repair and True Active Movement Rehabilitation: The Saint John Protocol Course,1,2,0,64529,2020-11-14 13:47:52,2026-04-22,DRY_RUN
+143527,The Sensorimotor System and its Relationship to Hand Therapy: Current Evidence and Clinical Application Course,1,2,0,64529,2020-11-15 14:04:56,2026-04-22,DRY_RUN
+143528,"Static Progressive Orthoses: Current Evidence Emphasizing Principles, Pearls and Design Options Course",1,2,0,64529,2020-11-15 15:34:23,2026-04-22,DRY_RUN
+143531,The Dreaded Droop: Extensor Attenuation or Adherence Course,1,2,0,64529,2020-11-15 14:05:57,2026-04-22,DRY_RUN
+143533,Developing a Plan to Start a Private Hand Therapy Practice Course,1,2,0,64529,2020-11-15 14:04:56,2026-04-22,DRY_RUN
+143538,Anatomy Package B: Brachial Plexus Innervation of the Upper Extremity and Shoulder and Elbow Course,1,2,0,64529,2020-11-13 02:44:43,2026-04-22,DRY_RUN
+143569,Athletic Wrist Injuries: Back in the Game Course,1,2,0,64529,2020-11-14 01:19:56,2026-04-22,DRY_RUN
+143574,Wound Care for the Hand Therapist Course,1,2,0,64529,2020-11-15 14:04:00,2026-04-22,DRY_RUN
+143575,Complex Regional Pain Syndrome Course,1,2,0,64529,2020-11-11 11:00:18,2026-04-22,DRY_RUN
+143576,Neuroplasticity as the Foundation for Treatment of Focal Hand Dystonia Course,1,2,0,64529,2020-11-11 11:00:51,2026-04-22,DRY_RUN
+143579,Hand Stiffness: An Evidence-Based Approach to Achieving Clinical Success Course,1,2,0,64529,2020-11-11 11:00:50,2026-04-22,DRY_RUN
+143585,Evaluation and Treatment of Thoracic Outlet Syndrome Course,1,2,0,64529,2020-11-14 01:00:59,2026-04-22,DRY_RUN
+143593,Accessing A Painful System: Scrub and Carry Made Modern Course,1,2,0,64529,2020-11-12 08:55:23,2026-04-22,DRY_RUN
+144732,"Counseling Psychology and Substance Use: Implications for Training, Practice and Research Outcomes",1,2,120118,64529,2019-06-18 07:02:44,2026-04-22,DRY_RUN
+155579,Practical Reviews in Anesthesiology,1,2,0,64529,2020-11-14 00:55:02,2026-04-22,DRY_RUN
+155584,Practical Reviews in Cancer Management,1,2,0,64529,2020-11-13 15:26:58,2026-04-22,DRY_RUN
+155587,Practical Reviews in Cardiology,1,2,0,64529,2020-11-13 15:27:01,2026-04-22,DRY_RUN
+155589,Practical Reviews in Critical Care Medicine,1,2,835585,64529,2021-05-05 09:51:07,2026-04-22,DRY_RUN
+155592,Practical Reviews in Dermatology,1,2,0,64529,2020-11-13 15:27:00,2026-04-22,DRY_RUN
+155595,Practical Reviews in Emergency Medicine,1,2,0,64529,2020-11-13 15:27:24,2026-04-22,DRY_RUN
+155598,Practical Reviews in Family Medicine,1,2,0,64529,2020-11-13 15:27:26,2026-04-22,DRY_RUN
+155601,Practical Reviews in Gastroenterology,1,2,0,64529,2020-11-13 09:09:17,2026-04-22,DRY_RUN
+155602,Practical Reviews in Hospital Medicine,1,2,835585,64529,2021-05-06 12:31:09,2026-04-22,DRY_RUN
+155604,Practical Reviews in Internal Medicine,1,2,0,64529,2020-11-13 09:10:13,2026-04-22,DRY_RUN
+155605,Practical Reviews in Neurology,1,2,0,64529,2020-11-15 09:12:17,2026-04-22,DRY_RUN
+155611,Practical Reviews in Neurosurgery,1,2,0,64529,2020-11-15 09:09:28,2026-04-22,DRY_RUN
+155614,Practical Reviews in Ophthalmology,1,2,0,64529,2020-11-13 09:10:48,2026-04-22,DRY_RUN
+155616,Practical Reviews in Oral and Maxillofacial Surgery,1,2,0,64529,2020-11-15 09:10:31,2026-04-22,DRY_RUN
+155618,Practical Reviews in Orthodontics,1,2,0,64529,2020-11-15 09:10:32,2026-04-22,DRY_RUN
+155621,Practical Reviews in Otolaryngology - Head and Neck Surgery,1,2,0,64529,2020-11-15 09:10:58,2026-04-22,DRY_RUN
+155623,Practical Reviews in Pathology,1,2,0,64529,2020-11-13 15:27:25,2026-04-22,DRY_RUN
+155627,Practical Reviews in Pediatric Dentistry,1,2,0,64529,2020-11-13 16:42:11,2026-04-22,DRY_RUN
+155628,Practical Reviews in Pediatrics,1,2,0,64529,2020-11-12 14:53:33,2026-04-22,DRY_RUN
+155673,Dental Decks Part I,1,2,0,64529,2020-11-15 09:09:55,2026-04-22,DRY_RUN
+155675,Dental Decks Part II,1,2,0,64529,2020-11-13 09:10:14,2026-04-22,DRY_RUN
+155699,Practical Reviews in Psychiatry,1,2,0,64529,2020-11-15 09:09:56,2026-04-22,DRY_RUN
+155704,Practical Reviews in Radiology,1,2,0,64529,2020-11-15 09:09:56,2026-04-22,DRY_RUN
+155707,Practical Reviews in Urology,1,2,0,64529,2020-11-14 12:36:28,2026-04-22,DRY_RUN
+155726,Practical Reviews in General Surgery,1,2,0,64529,2020-11-15 09:10:32,2026-04-22,DRY_RUN
+178928,Fertility Module #1: Fertility Care Considerations: Introduction to Infertility for the Specialty Health Care Pharmacist,1,2,0,64529,2020-11-12 15:24:35,2026-04-22,DRY_RUN
+179105,Multidisciplinary Management of Heart Failure: Expert Views on Treatment Paradigms,1,2,0,64529,2020-11-12 17:06:08,2026-04-22,DRY_RUN
+180328,Diagnostic Imaging in Chiropractic Practice,1,2,835585,64529,2021-05-05 10:19:46,2026-04-22,DRY_RUN
+180344,Fractal Biology: the Philosophy of Vitalism,1,2,835585,64529,2021-05-04 10:37:34,2026-04-22,DRY_RUN
+180347,Stroke: Cervical Spine Adjusting and Cervical Artery Issues,1,2,0,64529,2020-11-15 16:52:18,2026-04-22,DRY_RUN
+180364,"Stroke, Cva, and the Facts for Chiropractors",1,2,835585,64529,2021-05-05 10:15:39,2026-04-22,DRY_RUN
+180368,"Pharmaceuticals, Heart Rate Variability & the Nervous System",1,2,0,64529,2020-11-11 08:29:41,2026-04-22,DRY_RUN
+180938,The Essential Role of Primary Care in SLE,1,2,1480059,64529,2024-06-08 05:14:28,2026-04-22,DRY_RUN
+180947,"PILOTforPulmonary 2019: Data, Insights & Practice",1,2,1480059,64529,2024-06-08 05:18:31,2026-04-22,DRY_RUN
+181037,Gene Therapy for Treatment of Hemophilia: An Introduction to AAV Vector Gene Transfer,1,2,1480059,64529,2024-06-08 05:42:21,2026-04-22,DRY_RUN
+181041,Palliative Interventional Oncology Podcast Series,1,2,1480059,64529,2024-06-08 05:47:54,2026-04-22,DRY_RUN
+182518,Anti-inflammatory Diets: a Guide for Dietitians,1,2,1519581,64529,2024-07-09 08:56:29,2026-04-22,DRY_RUN
+182581,Basics of Pica: When Clients Eat Nonfood Substances,1,2,1519581,64529,2024-07-09 08:45:01,2026-04-22,DRY_RUN
+183244,Addiction in the Brain,1,2,659217,64529,2022-06-10 11:11:35,2026-04-22,DRY_RUN
+183245,Alexithymia and Eating Disorders,1,2,659217,64529,2022-06-10 11:13:46,2026-04-22,DRY_RUN
+183246,Assessment of Anorexia,1,2,659217,64529,2022-06-10 11:34:23,2026-04-22,DRY_RUN
+183247,Behavioral Health Services for Homeless Populations,1,2,659217,64529,2022-06-10 11:37:12,2026-04-22,DRY_RUN
+183248,Brain-Based Trauma Treatment,1,2,659217,64529,2022-06-11 05:19:25,2026-04-22,DRY_RUN
+183249,Child Sexual Abuse - Outcomes and Prevention,1,2,659217,64529,2022-06-11 05:49:09,2026-04-22,DRY_RUN
+183250,EMDR Skills for Trauma Treatment,1,2,659217,64529,2022-06-11 05:56:11,2026-04-22,DRY_RUN
+183251,Designer Drugs - Assessment and Management,1,2,659217,64529,2022-06-11 06:05:53,2026-04-22,DRY_RUN
+183253,Ethics of Neuromodulation in Anorexia,1,2,659217,64529,2022-06-11 06:10:32,2026-04-22,DRY_RUN
+183254,Harnessing Neuroplasticity,1,2,659217,64529,2022-06-11 06:47:00,2026-04-22,DRY_RUN
+183256,Juvenile Sex Offenders - Etiologies and Typologies,1,2,659217,64529,2022-06-11 06:56:46,2026-04-22,DRY_RUN
+183257,Honest Lies - Diagnosing Eating Disorders for Mental Health Professionals,1,2,659217,64529,2022-06-11 08:25:24,2026-04-22,DRY_RUN
+183258,Medical Complications in Bulimia,1,2,659217,64529,2022-06-11 08:35:45,2026-04-22,DRY_RUN
+183259,Medical Complications in Anorexia,1,2,659217,64529,2022-06-11 08:47:57,2026-04-22,DRY_RUN
+183261,Microaggressions In and Out of Therapy,1,2,659217,64529,2022-06-11 11:17:32,2026-04-22,DRY_RUN
+183262,Narrative and MI Approaches to Eating Disorders,1,2,659217,64529,2022-06-11 11:17:11,2026-04-22,DRY_RUN
+183263,Neural Mechanisms in Depressed Minors on Antidepressants,1,2,659217,64529,2022-06-13 05:33:30,2026-04-22,DRY_RUN
+183264,Neuropsychotherapy for Clinicians,1,2,659217,64529,2022-06-13 05:45:26,2026-04-22,DRY_RUN
+183265,Neuroscience of Addiction,1,2,659217,64529,2022-06-13 06:06:18,2026-04-22,DRY_RUN
+183266,Neuroscience of Complex Trauma - Treatment Tools,1,2,659217,64529,2022-06-13 07:19:40,2026-04-22,DRY_RUN
+183267,Neuroscience of God and Faith: It’s Not Just in Your Head,1,2,659217,64529,2022-06-13 08:17:15,2026-04-22,DRY_RUN
+183268,Neuroscience of Grounding Techniques,1,2,659217,64529,2022-06-13 08:21:18,2026-04-22,DRY_RUN
+183269,Opioid Treatment for Pain in Clients with Substance Use,1,2,659217,64529,2022-06-13 08:25:28,2026-04-22,DRY_RUN
+183270,Psychosocial Interventions for Anxiety in Kids with Autism,1,2,659217,64529,2022-06-13 08:28:24,2026-04-22,DRY_RUN
+183271,Substance Use Treatment - Group Therapy,1,2,659217,64529,2022-06-13 08:39:21,2026-04-22,DRY_RUN
+183272,Stepped Care Interventions for Alcohol Use Disorders,1,2,659217,64529,2022-06-13 08:46:32,2026-04-22,DRY_RUN
+183273,Suicide Prevention: Safety Planning as Treatment Planning,1,2,659217,64529,2022-06-13 09:31:40,2026-04-22,DRY_RUN
+183274,Technology-Based Therapeutic Tools,1,2,659217,64529,2022-06-13 09:41:43,2026-04-22,DRY_RUN
+183275,Treating Sexual Trauma in Veterans in Group Psychotherapy,1,2,659217,64529,2022-06-13 09:59:56,2026-04-22,DRY_RUN
+183276,Teen Dating Violence,1,2,659217,64529,2022-06-13 10:10:30,2026-04-22,DRY_RUN
+183277,Working for Workplace Wellness,1,2,659217,64529,2022-06-13 10:53:28,2026-04-22,DRY_RUN
+183278,Treatment of Depression in Older Adults,1,2,659217,64529,2022-06-13 10:57:24,2026-04-22,DRY_RUN
+200656,Abdominal & Pelvic Pain in Women: Beyond the Quadrants,1,2,1153785,64529,2021-08-28 04:03:54,2026-04-22,DRY_RUN
+200662,Can't Miss Urgent Diagnoses Conference On-Demand,1,2,835585,64529,2021-12-24 05:58:39,2026-04-22,DRY_RUN
+200664,Medical Nutrition Therapy for Women,1,2,1392878,64529,2021-11-11 06:14:55,2026-04-22,DRY_RUN
+200665,Pregnancy Complaints for the Non-OB,1,2,1392878,64529,2021-11-11 06:15:25,2026-04-22,DRY_RUN
+200669,Telemedicine On-Demand Course,1,2,1392878,64529,2021-11-11 06:24:12,2026-04-22,DRY_RUN
+200671,STI's in Women,1,2,1223724,64529,2021-08-28 04:24:56,2026-04-22,DRY_RUN
+200672,Urgent Care Women's Health Conference On-Demand,1,2,1392878,64529,2021-11-11 06:32:31,2026-04-22,DRY_RUN
+200673,Mental Health in Women,1,2,1223724,64529,2021-08-28 04:12:41,2026-04-22,DRY_RUN
+200676,Can't Miss EKG Findings,1,2,1392878,64529,2021-11-11 06:09:14,2026-04-22,DRY_RUN
+200677,Approach to Antibiotics & Antibiotic Stewardship,1,2,1392878,64529,2021-11-11 06:09:35,2026-04-22,DRY_RUN
+200679,Travel Medicine in the Urgent Care,1,2,1392878,64529,2021-11-11 06:31:51,2026-04-22,DRY_RUN
+200683,Conference On-Demand: Urgent Care Medical Summit,1,2,835585,64529,2021-12-24 05:47:24,2026-04-22,DRY_RUN
+200685,Mastery Workshop: Laceration Repair,1,2,1392878,64529,2021-11-11 06:13:34,2026-04-22,DRY_RUN
+200687,Clinician Burnout Lecture & Podcast Bundle Course,1,2,835585,64529,2021-12-15 06:38:51,2026-04-22,DRY_RUN
+200688,Urgent Care Triple CME Bundle,1,2,835585,64529,2021-12-23 05:36:24,2026-04-22,DRY_RUN
+200694,The Ultimate Master Clinicians CME Conference Bundle,1,2,1153785,64529,2021-09-27 10:33:50,2026-04-22,DRY_RUN
+200697,MC CME Podcast: Can't Miss EKG Part 3,1,2,835585,64529,2021-12-14 10:16:29,2026-04-22,DRY_RUN
+200700,Study Package: Urgent Care Triple CME Conference Bundle,1,2,1392878,64529,2021-11-11 06:23:57,2026-04-22,DRY_RUN
+200702,Study Package: Ultimate MC CME Conference Package,1,2,835585,64529,2021-12-27 12:15:43,2026-04-22,DRY_RUN
+200704,CME Podcast: Can't Miss Urgent Care X-Rays Part 1 (Chest X-Rays),1,2,835585,64529,2021-12-14 09:12:44,2026-04-22,DRY_RUN
+200706,Study Package: Urgent Care Medical Summit,1,2,659217,64529,2021-12-02 11:17:35,2026-04-22,DRY_RUN
+200708,CME Podcast: Can't Miss Urgent Care X-Rays Part 2 (Extremity X-Rays),1,2,835585,64529,2021-12-14 07:28:24,2026-04-22,DRY_RUN
+200710,Study Package: Urgent Care & Telemedicine Bundle,1,2,835585,64529,2021-12-21 06:00:45,2026-04-22,DRY_RUN
+200712,CME Podcast: Burnout Parts 1 & 2,1,2,835585,64529,2021-12-21 07:39:00,2026-04-22,DRY_RUN
+200718,CME Podcast: Can't Miss EKG Part 1,1,2,835585,64529,2021-12-16 10:55:40,2026-04-22,DRY_RUN
+200721,CME Podcast: Can't Miss EKG Part 2,1,2,835585,64529,2021-12-15 06:15:13,2026-04-22,DRY_RUN
+200725,CME Podcast: Can't Miss Dermatology Part 1,1,2,835585,64529,2021-12-15 06:18:12,2026-04-22,DRY_RUN
+200729,CME Podcast: Can't Miss Dermatology Part 2,1,2,835585,64529,2021-12-15 05:43:57,2026-04-22,DRY_RUN
+221021,Point of Care Ultrasound (POCUS),1,2,151291,64529,2021-10-21 06:26:56,2026-04-22,DRY_RUN
+221024,Urgent Care Essentials,1,2,151291,64529,2021-10-21 06:10:54,2026-04-22,DRY_RUN
+221029,Urgent Care Fundamentals for the NP,1,2,151291,64529,2021-10-21 05:47:03,2026-04-22,DRY_RUN
+221032,Urgent Care Mastery Skills Bundle,1,2,151291,64529,2021-10-21 05:39:18,2026-04-22,DRY_RUN
+223749,4 Essential Communication Strategies that Promote Patient Safety,1,2,659217,64529,2022-08-19 05:17:17,2026-04-22,DRY_RUN
+223753,A Holistic Approach to Gut Health,1,2,659217,64529,2022-08-19 05:21:43,2026-04-22,DRY_RUN
+223755,Addressing the Spiritual and Cultural Needs of Clients,1,2,659217,64529,2022-08-19 05:33:43,2026-04-22,DRY_RUN
+223761,Advanced Bladder Management,1,2,659217,64529,2022-08-19 05:36:12,2026-04-22,DRY_RUN
+223764,Advanced Stroke Management Course,1,2,659217,64529,2022-08-19 05:49:40,2026-04-22,DRY_RUN
+223765,Allergic Rhinitis,1,2,659217,64529,2022-08-19 05:53:30,2026-04-22,DRY_RUN
+223766,Allergic Rhinitis for the School Nurse,1,2,659217,64529,2022-08-19 06:04:23,2026-04-22,DRY_RUN
+223787,Alzheimer’s Disease and Falling: What’s the Connection,1,2,659217,64529,2022-08-19 06:57:26,2026-04-22,DRY_RUN
+223798,Antipsychotic Medications in Dementia Care,1,2,659217,64529,2022-08-19 07:18:51,2026-04-22,DRY_RUN
+223808,Basic Pharmacology 1,1,2,659217,64529,2022-08-19 08:28:31,2026-04-22,DRY_RUN
+223813,Becoming an Independent Nurse Consultant,1,2,659217,64529,2022-08-19 08:41:58,2026-04-22,DRY_RUN
+223819,Bioterrorism Events,1,2,659217,64529,2022-08-19 08:43:50,2026-04-22,DRY_RUN
+223829,"Broken Heart Syndrome: Clinical Manifestations, Diagnosis, and Treatment",1,2,659217,64529,2022-08-19 08:50:22,2026-04-22,DRY_RUN
+223841,Cardiomyopathy,1,2,659217,64529,2022-08-19 09:08:00,2026-04-22,DRY_RUN
+223848,Cardiovascular Assessment in the Elderly,1,2,659217,64529,2022-08-19 09:22:36,2026-04-22,DRY_RUN
+223864,Care of Adult Clients with Enterostomy Feeding Tubes,1,2,659217,64529,2022-08-19 10:17:42,2026-04-22,DRY_RUN
+223875,Caring for People with Fall Risks,1,2,659217,64529,2022-08-19 10:20:24,2026-04-22,DRY_RUN
+223879,CBD 101: An Introductory Course,1,2,659217,64529,2022-08-19 10:24:19,2026-04-22,DRY_RUN
+223882,Chronic Disease: A Global Issue on the Rise,1,2,659217,64529,2022-08-19 10:25:57,2026-04-22,DRY_RUN
+223889,Communications in Healthcare course,1,2,659217,64529,2022-08-16 05:40:07,2026-04-22,DRY_RUN
+223900,Correctional Healthcare Processes,1,2,659217,64529,2022-08-19 10:31:59,2026-04-22,DRY_RUN
+223909,COVID-19: A Healthcare Pandemic,1,2,659217,64529,2022-08-19 10:54:53,2026-04-22,DRY_RUN
+223918,COVID-19: A Healthcare Pandemic for Post Acute Care,1,2,659217,64529,2022-08-19 11:04:44,2026-04-22,DRY_RUN
+223925,CPR for the Healthcare Professional,1,2,659217,64529,2022-08-19 11:11:01,2026-04-22,DRY_RUN
+223932,Critical Thinking in Cardiac Assessment,1,2,659217,64529,2022-08-19 11:20:30,2026-04-22,DRY_RUN
+223942,Critical Thinking in Medication Administration,1,2,659217,64529,2022-08-22 04:53:25,2026-04-22,DRY_RUN
+223945,Current Concepts in Chemotherapy,1,2,659217,64529,2022-08-22 04:56:01,2026-04-22,DRY_RUN
+223949,Current Concepts in Pain Management,1,2,659217,64529,2022-08-22 04:59:05,2026-04-22,DRY_RUN
+223951,Date Rape and Drug Facilitated Rape: Clinical Implications,1,2,659217,64529,2022-08-22 05:05:52,2026-04-22,DRY_RUN
+223953,Decoding Body Language: What Every Nurse Needs to Know,1,2,659217,64529,2022-08-22 05:10:58,2026-04-22,DRY_RUN
+223970,Dementia Diagnosis and Treatment: An Overview,1,2,659217,64529,2022-08-22 05:30:04,2026-04-22,DRY_RUN
+223986,Diabetes Medications,1,2,659217,64529,2022-08-22 05:38:53,2026-04-22,DRY_RUN
+224000,Diabetes Medications: Part 2,1,2,659217,64529,2022-08-19 04:52:31,2026-04-22,DRY_RUN
+224002,"Diabetes Overview: Type 1, Type 2, and Gestational Diabetes",1,2,659217,64529,2022-08-19 04:56:07,2026-04-22,DRY_RUN
+224036,Diabetes Related Conditions and Complications,1,2,659217,64529,2022-08-19 06:32:33,2026-04-22,DRY_RUN
+224040,Diabetes: An Introduction Course,1,2,659217,64529,2022-08-19 06:43:34,2026-04-22,DRY_RUN
+224042,Diabetes: Metabolic Syndrome and Prediabetes,1,2,659217,64529,2022-08-19 06:55:43,2026-04-22,DRY_RUN
+224049,Diagnosing Dementia,1,2,659217,64529,2022-08-19 07:09:16,2026-04-22,DRY_RUN
+224055,"Drug Misuse, Abuse and Diversion for New Mexico Healthcare Professionals",1,2,659217,64529,2022-08-19 07:26:22,2026-04-22,DRY_RUN
+224059,"Drug Misuse, Abuse and Diversion for West Virginia Healthcare Professionals",1,2,659217,64529,2022-08-19 08:26:13,2026-04-22,DRY_RUN
+224064,ECG Interpretation: Basic Rhythms,1,2,659217,64529,2022-08-19 08:37:20,2026-04-22,DRY_RUN
+224075,EKG Recognition Course,1,2,659217,64529,2022-08-19 08:45:24,2026-04-22,DRY_RUN
+224083,Elder Abuse Prevention and Reporting,1,2,659217,64529,2022-08-19 08:48:27,2026-04-22,DRY_RUN
+224086,Elimination and Toileting,1,2,659217,64529,2022-08-19 08:53:38,2026-04-22,DRY_RUN
+224091,Emergency Department Management of Elderly Patients,1,2,659217,64529,2022-08-19 08:56:19,2026-04-22,DRY_RUN
+224097,Emergency Department Nursing Considerations for Oncology Patients,1,2,659217,64529,2022-08-19 09:10:37,2026-04-22,DRY_RUN
+224111,Enterostomy Feeding Tubes for the School Nurse,1,2,659217,64529,2022-08-19 09:40:30,2026-04-22,DRY_RUN
+224119,Essential Oils for Health,1,2,659217,64529,2022-08-19 09:46:57,2026-04-22,DRY_RUN
+224132,Iowa Dental Reviews: Current Topics in Dentistry Course,1,2,1155013,64529,2021-09-25 09:34:53,2026-04-22,DRY_RUN
+224145,Facts About Falls,1,2,659217,64529,2022-08-19 10:27:10,2026-04-22,DRY_RUN
+224155,Fall Management Technology,1,2,659217,64529,2022-08-19 10:29:56,2026-04-22,DRY_RUN
+224165,Fall Prevention: A Best Practice Approach,1,2,659217,64529,2022-08-19 10:59:00,2026-04-22,DRY_RUN
+224170,Fall Prevention: Bed Safety,1,2,659217,64529,2022-08-19 11:01:19,2026-04-22,DRY_RUN
+224182,"Fall Prevention: Bed, Bedroom, and Bathroom Safety",1,2,659217,64529,2022-08-19 11:14:05,2026-04-22,DRY_RUN
+224231,Fall Prevention: Communication and Teamwork,1,2,659217,64529,2022-08-22 05:34:15,2026-04-22,DRY_RUN
+224237,Fall Prevention: Fall Risk Monitoring Strategies,1,2,659217,64529,2022-08-22 05:36:29,2026-04-22,DRY_RUN
+224259,Fall Prevention: Guidance on Change of Condition,1,2,659217,64529,2022-08-19 05:11:58,2026-04-22,DRY_RUN
+224265,Fall Prevention: Guidance on Nursing Home Falls and Legal Liability,1,2,659217,64529,2022-08-19 05:25:16,2026-04-22,DRY_RUN
+224273,Fall Prevention: Guidance on Utilization of Low Beds and Floor Mats,1,2,659217,64529,2022-08-19 05:41:20,2026-04-22,DRY_RUN
+224281,Fall Prevention: Guidance on Utilizing Fall Alarms,1,2,659217,64529,2022-08-19 06:06:31,2026-04-22,DRY_RUN
+224285,Fall Prevention: Introduction to Root Cause Analysis,1,2,659217,64529,2022-08-19 06:10:57,2026-04-22,DRY_RUN
+224291,First Aid Course,1,2,659217,64529,2022-08-19 06:13:38,2026-04-22,DRY_RUN
+224297,Gout: A Lesser Known Type of Arthritis,1,2,659217,64529,2022-08-19 06:52:43,2026-04-22,DRY_RUN
+224301,Guidance on Avoidable Falls and Position Change Alarms,1,2,659217,64529,2022-08-19 07:04:35,2026-04-22,DRY_RUN
+224307,Guidance on Urinary Symptoms and Fall Risks,1,2,659217,64529,2022-08-19 07:13:48,2026-04-22,DRY_RUN
+224323,Hashimoto's Thyroiditis From a Western Medicine and Holistic Perspective,1,2,659217,64529,2022-08-19 08:39:25,2026-04-22,DRY_RUN
+224347,Healing the Healer Course,1,2,659217,64529,2022-08-19 09:00:56,2026-04-22,DRY_RUN
+224352,Health Disparities Among Prenatal Patients,1,2,659217,64529,2022-08-19 09:03:42,2026-04-22,DRY_RUN
+224357,Health Disparities of People Living in Appalachia,1,2,659217,64529,2022-08-19 09:18:41,2026-04-22,DRY_RUN
+224362,Healthcare Ethics and the Workplace,1,2,659217,64529,2022-08-19 09:32:06,2026-04-22,DRY_RUN
+224376,Healthcare Law,1,2,659217,64529,2022-08-19 10:19:09,2026-04-22,DRY_RUN
+224381,Horticultural Therapy in Healthcare - A Therapeutic Treatment Modality,1,2,659217,64529,2022-08-18 07:09:23,2026-04-22,DRY_RUN
+224385,Human Trafficking Education for Florida Healthcare Professionals,1,2,659217,64529,2022-08-18 07:19:39,2026-04-22,DRY_RUN
+224387,Human Trafficking Education for Healthcare Professionals,1,2,659217,64529,2022-08-18 07:22:01,2026-04-22,DRY_RUN
+224392,Human Trafficking Education for Michigan Healthcare Professionals,1,2,659217,64529,2022-08-18 08:24:28,2026-04-22,DRY_RUN
+224425,Human Trafficking Education for Texas Healthcare Professionals,1,2,659217,64529,2022-08-18 08:49:12,2026-04-22,DRY_RUN
+224444,"ICU Delirium: Prevention, Assessment, and Management",1,2,659217,64529,2022-08-18 09:31:30,2026-04-22,DRY_RUN
+224453,ICU Pharmacology: Commonly Used Medications,1,2,659217,64529,2022-08-18 09:35:16,2026-04-22,DRY_RUN
+224462,Implicit Bias in Healthcare,1,2,659217,64529,2022-08-18 10:35:29,2026-04-22,DRY_RUN
+224470,Improving Mental and Behavioral Health Care with Digital Technology,1,2,659217,64529,2022-08-18 11:09:12,2026-04-22,DRY_RUN
+224481,Intro to Writing Continuing Education Courses for Nurses,1,2,659217,64529,2022-08-18 11:29:42,2026-04-22,DRY_RUN
+224501,Introduction to Dementia,1,2,659217,64529,2022-08-18 11:44:20,2026-04-22,DRY_RUN
+224509,Introduction to Stroke Management,1,2,659217,64529,2022-08-19 04:42:57,2026-04-22,DRY_RUN
+224512,Legal Aspects of Nursing,1,2,659217,64529,2022-08-17 10:22:48,2026-04-22,DRY_RUN
+224521,"Managing Falls in the Nursing Home: Who, Why and What Next",1,2,659217,64529,2022-08-17 10:33:39,2026-04-22,DRY_RUN
+224529,Massage and Compassionate Touch® in Dementia Care,1,2,659217,64529,2022-08-17 11:08:56,2026-04-22,DRY_RUN
+224536,Medication Administration in the Correctional Setting,1,2,659217,64529,2022-08-17 11:13:42,2026-04-22,DRY_RUN
+224542,"Mindfulness in Nursing: Decreasing Burnout, Improving Outcomes",1,2,659217,64529,2022-08-17 11:37:07,2026-04-22,DRY_RUN
+224548,Mistakes Happen: Creating A Culture Of Safety In The ICU,1,2,659217,64529,2022-08-18 05:50:32,2026-04-22,DRY_RUN
+224552,Navigation of the Medication Reconciliation Process,1,2,659217,64529,2022-08-18 05:55:16,2026-04-22,DRY_RUN
+224554,Nursing of the Geriatric Patient,1,2,659217,64529,2022-08-18 06:01:01,2026-04-22,DRY_RUN
+224556,Nutrition and Hydration,1,2,659217,64529,2022-08-18 06:02:53,2026-04-22,DRY_RUN
+224562,Oregon Pain Management Course,1,2,659217,64529,2022-08-18 06:07:51,2026-04-22,DRY_RUN
+224578,Organ Trafficking and Transplant Tourism Awareness for the Healthcare Professional,1,2,659217,64529,2022-08-16 05:44:25,2026-04-22,DRY_RUN
+224591,Organizing and Implementing a Fall Prevention Program,1,2,659217,64529,2022-08-18 06:29:30,2026-04-22,DRY_RUN
+224602,OSHA Hazard Communication,1,2,659217,64529,2022-08-22 05:41:45,2026-04-22,DRY_RUN
+224611,Pain Management in the Era of Epidemic Drug Abuse,1,2,659217,64529,2022-08-18 06:55:28,2026-04-22,DRY_RUN
+224612,Physical and Psychological Trauma in Victims of Incest,1,2,659217,64529,2022-08-18 07:06:51,2026-04-22,DRY_RUN
+224654,Positive Fire and Life Safety Practices,1,2,659217,64529,2022-08-18 08:31:56,2026-04-22,DRY_RUN
+224681,Post-Cardiac Arrest Care in the ICU,1,2,659217,64529,2022-08-18 08:51:46,2026-04-22,DRY_RUN
+224683,Post-Fall Management,1,2,659217,64529,2022-08-18 08:54:30,2026-04-22,DRY_RUN
+224692,Postpartum Hemorrhage Management for the Emergency RN,1,2,659217,64529,2022-08-18 09:01:07,2026-04-22,DRY_RUN
+224695,Pregnancy and Diabetes,1,2,659217,64529,2022-08-18 09:11:28,2026-04-22,DRY_RUN
+224698,Preventing Falls,1,2,659217,64529,2022-08-19 11:16:40,2026-04-22,DRY_RUN
+224714,Prevention and Management of Medical Errors,1,2,659217,64529,2022-08-18 10:25:36,2026-04-22,DRY_RUN
+224720,Prevention of CAUTI: Combating Catheter-Associated Infections,1,2,659217,64529,2022-08-18 10:40:20,2026-04-22,DRY_RUN
+224731,Probiotics,1,2,659217,64529,2022-08-18 11:23:28,2026-04-22,DRY_RUN
+224735,Problem Solving Strategies in Dementia Care,1,2,659217,64529,2022-08-18 11:26:53,2026-04-22,DRY_RUN
+224741,Providing Culturally Competent Care for LGBTQ+ Patients & Residents,1,2,659217,64529,2022-08-22 05:44:17,2026-04-22,DRY_RUN
+224749,Raising the Bar for Interprofessional Collaboration,1,2,659217,64529,2022-08-18 11:35:11,2026-04-22,DRY_RUN
+224757,Reducing Medication Errors: A Focus on the Med Pass,1,2,659217,64529,2022-08-16 05:57:39,2026-04-22,DRY_RUN
+224762,Resident’s Rights and HIPAA - Considerations for Nurses,1,2,659217,64529,2022-08-18 12:12:21,2026-04-22,DRY_RUN
+224764,Responsibilities for Managing HIPAA Compliance,1,2,659217,64529,2022-08-19 04:39:32,2026-04-22,DRY_RUN
+224766,"Safe Patient Handling - Proper Body Mechanics, Positioning, Lifts and Transfers",1,2,659217,64529,2022-08-19 04:46:16,2026-04-22,DRY_RUN
+224767,Safety in the Correctional Setting,1,2,659217,64529,2022-08-19 04:49:19,2026-04-22,DRY_RUN
+224769,Self-Care for Nurses,1,2,659217,64529,2022-08-17 10:27:51,2026-04-22,DRY_RUN
+224779,Sex Trafficking Awareness for the Healthcare Professional,1,2,659217,64529,2022-08-17 10:56:00,2026-04-22,DRY_RUN
+224786,Sexual Assault Evidence Collection (SANE) Education for Texas Nurses,1,2,659217,64529,2022-08-16 06:41:31,2026-04-22,DRY_RUN
+224825,Sexual Assault Victims: Role of the Nurse,1,2,659217,64529,2022-08-18 06:16:30,2026-04-22,DRY_RUN
+224830,Sexual Violence on College Campuses: Prevention Instead of Treatment,1,2,659217,64529,2022-08-18 06:21:30,2026-04-22,DRY_RUN
+224851,Skin Care for the Elderly,1,2,659217,64529,2022-08-18 06:32:46,2026-04-22,DRY_RUN
+224852,Social Media Rules for Nurses and Healthcare Providers,1,2,659217,64529,2022-08-18 06:48:53,2026-04-22,DRY_RUN
+224908,Special Care Considerations of the Post-Anesthesia Patient in the ICU,1,2,659217,64529,2022-08-18 08:26:52,2026-04-22,DRY_RUN
+224913,Staffing: An Ongoing Barrier to Increased Staff and Patient Satisfaction,1,2,659217,64529,2022-08-18 08:35:38,2026-04-22,DRY_RUN
+224919,Strategic Planning for the Next Generation NCLEX (NGN),1,2,659217,64529,2022-08-18 08:40:30,2026-04-22,DRY_RUN
+224929,Stress 101 Course,1,2,659217,64529,2022-08-18 08:43:15,2026-04-22,DRY_RUN
+224936,Advanced Stroke Management,1,2,659217,64529,2022-08-18 08:46:47,2026-04-22,DRY_RUN
+224941,Suicide in the Hospitalized Patient,1,2,659217,64529,2022-08-18 08:56:45,2026-04-22,DRY_RUN
+224949,Texas Jurisprudence and Ethics,1,2,659217,64529,2022-08-18 09:09:11,2026-04-22,DRY_RUN
+224952,The Correctional Healthcare Patient and Environment,1,2,659217,64529,2022-08-18 09:18:41,2026-04-22,DRY_RUN
+224956,The Fall Prevention Care Process,1,2,659217,64529,2022-08-16 06:54:31,2026-04-22,DRY_RUN
+224967,The Missing Piece - The Role of Gut Health in Sleep,1,2,659217,64529,2022-08-16 07:22:12,2026-04-22,DRY_RUN
+224976,The Role of the Hospice Caregiver,1,2,659217,64529,2022-08-16 08:18:23,2026-04-22,DRY_RUN
+224988,The Spiritual and Religious Makeup of the Hospice Caregiver,1,2,659217,64529,2022-08-16 08:39:38,2026-04-22,DRY_RUN
+224992,The Standards of Care in a Nurse's Self-Care,1,2,659217,64529,2022-08-16 08:46:09,2026-04-22,DRY_RUN
+224996,Super Bowl and Sex Trafficking: A Case Study,1,2,659217,64529,2022-08-16 08:56:17,2026-04-22,DRY_RUN
+224997,Therapeutic Diets: An Introduction,1,2,659217,64529,2022-08-16 09:02:07,2026-04-22,DRY_RUN
+224998,Thyroid Gland Overview,1,2,659217,64529,2022-08-16 09:13:11,2026-04-22,DRY_RUN
+224999,Tick-Borne Diseases,1,2,659217,64529,2022-08-16 09:26:19,2026-04-22,DRY_RUN
+225001,Traumatic Brain Injury (TBI): Interventions for Maximizing Quality of Life,1,2,659217,64529,2022-08-16 09:41:57,2026-04-22,DRY_RUN
+225003,Treatment of Dementia,1,2,659217,64529,2022-08-16 10:20:44,2026-04-22,DRY_RUN
+225030,Treatment Options for Rheumatoid Arthritis,1,2,659217,64529,2022-08-16 10:24:56,2026-04-22,DRY_RUN
+225046,Understanding Addiction,1,2,659217,64529,2022-08-16 10:40:00,2026-04-22,DRY_RUN
+225051,Understanding Dystonia,1,2,659217,64529,2022-08-16 10:58:13,2026-04-22,DRY_RUN
+225091,Violence Against Nurses: The New Epidemic,1,2,659217,64529,2022-08-16 11:10:21,2026-04-22,DRY_RUN
+225097,Violence in the Emergency Department,1,2,659217,64529,2022-08-16 11:21:05,2026-04-22,DRY_RUN
+225127,Women and Heart Disease Course,1,2,659217,64529,2022-08-16 11:35:52,2026-04-22,DRY_RUN
+225132,Workplace Harassment Course,1,2,659217,64529,2022-08-16 11:51:46,2026-04-22,DRY_RUN
+225137,Workplace Violence Prevention for Health Care Professionals,1,2,659217,64529,2022-08-16 11:45:15,2026-04-22,DRY_RUN
+236085,South Carolina Legalities of Infusion Therapy,1,2,659217,64529,2022-08-17 05:36:45,2026-04-22,DRY_RUN
+236087,Current Practices in the Management of Central Lines,1,2,659217,64529,2022-08-17 05:44:21,2026-04-22,DRY_RUN
+236090,South Carolina IV Therapy Education,1,2,659217,64529,2022-08-17 05:59:51,2026-04-22,DRY_RUN
+236092,South Dakota IV Therapy Education,1,2,659217,64529,2022-08-17 05:58:15,2026-04-22,DRY_RUN
+236094,Georgia Legalities of Infusion Therapy,1,2,659217,64529,2022-08-17 06:06:24,2026-04-22,DRY_RUN
+236096,Arizona Legalities of Infusion Therapy,1,2,659217,64529,2022-08-17 06:10:43,2026-04-22,DRY_RUN
+236097,Texas Legalities of Infusion Therapy,1,2,659217,64529,2022-08-17 06:22:48,2026-04-22,DRY_RUN
+236099,New Mexico Legalities of Infusion Therapy,1,2,659217,64529,2022-08-17 06:49:31,2026-04-22,DRY_RUN
+236100,Georgia IV Therapy Education,1,2,659217,64529,2022-08-17 07:05:43,2026-04-22,DRY_RUN
+236102,West Virginia IV Therapy Education,1,2,659217,64529,2022-08-17 07:15:54,2026-04-22,DRY_RUN
+236103,Basics of Peripheral IV Therapy; Current Standards of Practice,1,2,659217,64529,2022-08-17 08:19:58,2026-04-22,DRY_RUN
+236104,Handwashing Responsibilities in Healthcare,1,2,659217,64529,2022-08-17 08:25:30,2026-04-22,DRY_RUN
+236105,West Virginia Legalities of Infusion Therapy,1,2,659217,64529,2022-08-17 08:32:13,2026-04-22,DRY_RUN
+236106,New Mexico IV Therapy Education,1,2,659217,64529,2022-08-17 08:37:48,2026-04-22,DRY_RUN
+236110,Care and Maintenance of Peripheral and Midline Catheters,1,2,659217,64529,2022-08-17 08:41:53,2026-04-22,DRY_RUN
+236112,Oklahoma Legalities of Infusion Therapy,1,2,659217,64529,2022-08-17 08:47:57,2026-04-22,DRY_RUN
+236117,Peripheral and Central Venous Access Device Review,1,2,659217,64529,2022-08-17 08:54:31,2026-04-22,DRY_RUN
+236129,It's All About PICCs,1,2,659217,64529,2022-08-17 09:07:07,2026-04-22,DRY_RUN
+238147,Ethics in an Ever-Changing World of Nutrition,1,2,1480055,64529,2024-08-07 07:00:18,2026-04-22,DRY_RUN
+238171,Ethics 101 for the Nutrition and Dietetics Practitioner,1,2,1480055,64529,2024-08-07 07:12:44,2026-04-22,DRY_RUN
+238487,Gestational Diabetes: Carbs or Keto for Optimal Mother and Baby Health,1,2,1519581,64529,2024-07-09 07:30:20,2026-04-22,DRY_RUN
+238538,Family-Based Nutrition Counseling and Disordered Eating Treatment,1,2,1519581,64529,2024-07-09 07:20:50,2026-04-22,DRY_RUN
+238679,Latest Guidelines for Gestational Diabetes Mellitus,1,2,1519581,64529,2024-07-09 07:05:46,2026-04-22,DRY_RUN
+238759,Nutrition at End of Life: What Every Dietitian Needs to Know,1,2,1480055,64529,2024-08-07 04:29:53,2026-04-22,DRY_RUN
+239025,Pelvic Pain & Yeast MasterClass,1,2,1223720,64529,2022-02-26 04:27:59,2026-04-22,DRY_RUN
+239030,Endometriosis and the Gut-Immune Link MasterClass,1,2,1223720,64529,2022-02-26 04:03:58,2026-04-22,DRY_RUN
+239035,Chronic Pelvic Pain Professional Training Program,1,2,1223720,64529,2022-02-26 04:12:37,2026-04-22,DRY_RUN
+239038,"Endometriosis, Personalized Nutrition and HRV MasterClass",1,2,1223720,64529,2022-02-26 05:52:50,2026-04-22,DRY_RUN
+239039,Endometriosis and Pelvic Pain Certificate Program,1,2,1223720,64529,2022-02-26 06:44:43,2026-04-22,DRY_RUN
+239041,Functional Nutrition for Women's Health Certificate Program,1,2,1223720,64529,2022-02-26 06:48:51,2026-04-22,DRY_RUN
+239047,Immune Bundle for Women,1,2,1223720,64529,2022-02-26 04:50:47,2026-04-22,DRY_RUN
+239048,Women’s Hormone Health Certificate Program,1,2,1223720,64529,2022-02-26 04:56:04,2026-04-22,DRY_RUN
+239051,Perimenopause & Menopause Certificate Program,1,2,1223720,64529,2022-02-26 05:01:42,2026-04-22,DRY_RUN
+239053,Functional Nutrition for Women's Health Professional Training Program,1,2,1223720,64529,2022-02-25 04:50:44,2026-04-22,DRY_RUN
+239056,Women's Fertility Certificate Program,1,2,1409592,64529,2022-10-10 11:46:57,2026-04-22,DRY_RUN
+239057,Birth Control MasterClass,1,2,1223720,64529,2022-02-25 05:43:51,2026-04-22,DRY_RUN
+239060,Hormones 101 Course,1,2,1223720,64529,2022-02-26 05:12:37,2026-04-22,DRY_RUN
+239064,Functional Lab Testing Course,1,2,1223720,64529,2022-02-26 05:21:20,2026-04-22,DRY_RUN
+239479,Arizona LPN IV Certification Package,1,2,659217,64529,2022-08-17 09:15:37,2026-04-22,DRY_RUN
+241705,medtigo Pediatric Advanced Life Support (PALS) Certification Course,1,2,1223720,64529,2022-04-08 11:10:11,2026-04-22,DRY_RUN
+253057,Federation of European Societies for Surgery of the Hand (FESSH) 2026 Congress,1,2,1409589,64529,2022-09-16 06:17:14,2026-04-22,DRY_RUN
+253967,Introductory Emergency Ultrasound Course Online,1,2,1480055,64529,2023-11-27 04:53:34,2026-04-22,DRY_RUN
+253969,The Advanced Ultrasound Course Online,1,2,1480055,64529,2023-11-27 04:49:23,2026-04-22,DRY_RUN
+253973,The Critical Care Ultrasound Course Online,1,2,1480055,64529,2023-11-27 04:45:36,2026-04-22,DRY_RUN
+253975,The Trauma Ultrasound Course Online,1,2,1480055,64529,2023-11-27 04:40:57,2026-04-22,DRY_RUN
+253976,The Vascular Access Course Online,1,2,1480055,64529,2023-11-27 04:35:44,2026-04-22,DRY_RUN
+275522,MTOP Ultrasound Course – Online,1,2,1480056,64529,2023-06-24 04:17:07,2026-04-22,DRY_RUN
+281140,Intuitive Eating Top Common Myths and How to Work With Clients Who Still Want Weight Loss,1,2,1480055,64529,2024-08-07 04:04:29,2026-04-22,DRY_RUN
+281201,Regulating a Dysregulated Nervous System to Positively Impact Dysfunctional Eating Patterns,1,2,1480055,64529,2024-08-07 04:19:09,2026-04-22,DRY_RUN
+281313,Polycystic Ovarian Syndrome (PCOS) Nutrition: Improve Metabolic and Reproductive Health via Lifestyle and Dietary Supplements,1,2,1480055,64529,2024-08-07 04:37:55,2026-04-22,DRY_RUN
+287138,American College of Neuropsychopharmacology (ACNP) Annual Meeting 2027,1,2,659217,64529,2023-11-03 09:10:17,2026-04-22,DRY_RUN
+300622,Teaching Cultural Sensitivity in the Patient-Clinician Relationship,1,2,1409591,64529,2024-05-16 10:20:56,2026-04-22,DRY_RUN
+300633,Podcast Series: SEE HEAR FEEL - Transforming Medical Culture,1,2,1409591,64529,2024-05-16 10:07:07,2026-04-22,DRY_RUN
+300641,NEATC Podcast Series: Getting2U,1,2,1409591,64529,2024-05-16 10:03:55,2026-04-22,DRY_RUN
+301815,Society of Critical Care Medicine (SCCM) 2027 Critical Care Congress,1,2,1409591,64529,2024-06-01 07:10:01,2026-04-22,DRY_RUN
+301819,Society of Critical Care Medicine (SCCM) 2028 Critical Care Congress,1,2,1409591,64529,2024-06-01 07:03:25,2026-04-22,DRY_RUN
+301821,Society of Critical Care Medicine (SCCM) 2029 Critical Care Congress,1,2,1409591,64529,2024-06-01 07:01:26,2026-04-22,DRY_RUN
+302466,Improving the Management of Patients with DMD: Emerging Evidence and Treatment Strategies,1,2,1480054,64529,2024-06-08 06:36:19,2026-04-22,DRY_RUN
+302468,Evolutions in the Management of DMD: Treatment Implications for the Present and Future,1,2,1480054,64529,2024-06-08 06:40:37,2026-04-22,DRY_RUN
+302469,Module 3: Creating Patient-centric Treatment Plans,1,2,1480054,64529,2024-06-12 05:53:02,2026-04-22,DRY_RUN
+302472,Module 2: Enhancing NVAF Recognition - Whiteboard Animation,1,2,1480054,64529,2024-06-12 05:52:25,2026-04-22,DRY_RUN
+302475,Module 1: Insights Into Advances in NVAF - Animated Case,1,2,1480054,64529,2024-06-12 05:51:40,2026-04-22,DRY_RUN
+302476,Coordinating Care for Patients With Progressive Pulmonary Fibrosis - Rapid Recap,1,2,1480054,64529,2024-06-12 05:36:10,2026-04-22,DRY_RUN
+302477,Coordinating Care for Patients With Progressive Pulmonary Fibrosis - Slide Deck,1,2,1480054,64529,2024-06-12 05:36:56,2026-04-22,DRY_RUN
+302478,Hemophilia Gene Therapy: Shared Decision Making - Clinical Companion Guide,1,2,1480054,64529,2024-06-12 05:50:35,2026-04-22,DRY_RUN
+302480,The Delicate Balance of Brain Cholesterol - Online Module,1,2,1480054,64529,2024-06-12 05:48:18,2026-04-22,DRY_RUN
+302481,The Delicate Balance of Brain Cholesterol - Clinical Companion Guide,1,2,1480054,64529,2024-06-12 05:48:48,2026-04-22,DRY_RUN
+302484,The Delicate Balance of Brain Cholesterol - Slide Deck,1,2,1480054,64529,2024-06-12 05:23:43,2026-04-22,DRY_RUN
+302486,The Delicate Balance of Brain Cholesterol - Rapid Recap,1,2,1480054,64529,2024-06-12 05:47:53,2026-04-22,DRY_RUN
+302488,Understanding PNH and Other Complement-mediated Hematologic Disorders,1,2,1480054,64529,2024-06-12 05:47:04,2026-04-22,DRY_RUN
+302490,Understanding Myelofibrosis,1,2,1480054,64529,2024-06-12 05:47:00,2026-04-22,DRY_RUN
+302491,Risk Stratification in Myelofibrosis Management,1,2,1480054,64529,2024-06-12 05:46:15,2026-04-22,DRY_RUN
+302492,Coordinating Care for Patients With Progressive Pulmonary Fibrosis,1,2,1480054,64529,2024-06-12 05:37:44,2026-04-22,DRY_RUN
+302496,Providing a Medical Home for Kids with Rare Lung Disease - Slide Deck,1,2,1480054,64529,2024-06-12 05:35:09,2026-04-22,DRY_RUN
+302498,A Hematologic Emergency: Would You Miss iTTP? - Rapid Recap,1,2,1480054,64529,2024-06-12 05:33:36,2026-04-22,DRY_RUN
+302500,A Hematologic Emergency: Would You Miss iTTP?,1,2,1480054,64529,2024-06-12 05:34:16,2026-04-22,DRY_RUN
+302502,The Burden of Bronchiectasis - Rapid Recap,1,2,1480054,64529,2024-06-12 05:29:05,2026-04-22,DRY_RUN
+302504,The Burden of Bronchiectasis - Slide Deck,1,2,1480054,64529,2024-06-12 05:28:14,2026-04-22,DRY_RUN
+302507,The Burden of Bronchiectasis: A Focus on NCFBE Pathophysiology,1,2,1480054,64529,2024-06-12 05:27:25,2026-04-22,DRY_RUN
+302509,Considerations for Special Populations With Aplastic Anemia,1,2,1480054,64529,2024-06-12 05:26:20,2026-04-22,DRY_RUN
+302513,Thyroid Assessment: Updates for Primary Care,1,2,1480054,64529,2024-06-12 05:25:18,2026-04-22,DRY_RUN
+302515,Managing Side Effects of Newer Therapies for Acute Lymphoblastic Leukemia (ALL),1,2,1480054,64529,2024-06-12 05:24:38,2026-04-22,DRY_RUN
+303921,The Anti-Inflammatory Lifestyle Prescription: Calm Chronic Inflammation and Improve Your Health,1,2,1519581,64529,2024-08-14 04:57:09,2026-04-22,DRY_RUN
+303924,Lymphedema: Condition Dietitians Can Help But Were Never Taught,1,2,1519581,64529,2024-07-09 05:33:26,2026-04-22,DRY_RUN
+303932,The Rediscovery of the DASH Diet as a Weight Loss Plan,1,2,1519581,64529,2024-07-09 05:15:59,2026-04-22,DRY_RUN
+303943,Nutrition and Kidney Disease Through Stages 1 to 5: How To Slow The Progression,1,2,1519581,64529,2024-07-09 04:35:29,2026-04-22,DRY_RUN
+303947,"Navigating Weight Loss Medications: Pros, Cons, and Strategies for Greater Client Success",1,2,1519581,64529,2024-07-08 10:34:25,2026-04-22,DRY_RUN
+303958,Is it Cellulite or Is It Lipedema?,1,2,1519581,64529,2024-07-08 09:35:38,2026-04-22,DRY_RUN
+303989,2024 Summary of Updates to the ADA Standards of Care in Diabetes,1,2,1519581,64529,2024-07-08 09:25:54,2026-04-22,DRY_RUN
+303998,Newest 2024 Reimbursement Rules and Waivers for the Medicare Diabetes Prevention Program Expanded Model,1,2,1519581,64529,2024-07-08 09:08:35,2026-04-22,DRY_RUN
+304036,Nutrition Needs for Kidney Replacement Therapies,1,2,1519581,64529,2024-07-08 08:47:51,2026-04-22,DRY_RUN
+308520,Nutrition and Gut Health in Postpartum Depression,1,2,1519581,64529,2024-08-14 04:24:49,2026-04-22,DRY_RUN
+308522,"Where Medical Nutrition Therapy, Intuitive Eating, and Weight Neutrality Collide",1,2,1519581,64529,2024-08-13 12:42:54,2026-04-22,DRY_RUN
+308526,Nutritional Deficiencies in Chronic Alcoholism,1,2,1519581,64529,2024-08-13 12:08:01,2026-04-22,DRY_RUN
+332999,Mini-Residency in Dental Sleep Medicine (2025 - 2026),1,2,1531790,64529,2025-06-11 11:52:26,2026-04-22,DRY_RUN
+340830,Advances in the Treatment of Hematologic Malignancies and Cellular Therapeutics,1,2,1223720,64529,2025-09-25 09:07:25,2026-04-22,DRY_RUN
+343506,The 12th Annual Health Meets Food: The Culinary Medicine Conference,1,2,1569462,64529,2026-03-11 05:49:57,2026-04-22,DRY_RUN
+347089,"Corso Annuale 2026 Tecnica Straight Wire: Teorico-pratico “Doing the Right Thing, at the Right Time, in the Right Way“",1,2,1531788,64529,2025-12-29 07:30:52,2026-04-22,DRY_RUN
+347113,Masterclass Modern Digital Orthodontics,1,2,1556748,64529,2025-11-12 08:51:18,2026-04-22,DRY_RUN
+347115,"Digital Diagnostics in Orthodontics: More Precise, Faster, More Efficient",1,2,1556748,64529,2025-11-24 04:50:54,2026-04-22,DRY_RUN
+347122,Self-Ligating Devices and Mini-Anchoring Implants: Optimization and New Objectives - Case Studies,1,2,1480054,64529,2025-11-29 08:41:17,2026-04-22,DRY_RUN
+347126,Developing a New Treatment Philosophy With Skeletal Anchoring: No One Can Go Far Without Anchoring. Case Studies,1,2,1556748,64529,2025-12-29 08:54:25,2026-04-22,DRY_RUN
+347128,Level I: Administrative & Clinical Optimization of an Orthodontic Private Practice,1,2,1556748,64529,2025-12-29 08:46:34,2026-04-22,DRY_RUN
+347131,Asymmetric Class II Malocclusions: The Search for Clinical Excellence,1,2,1556748,64529,2025-12-29 08:38:29,2026-04-22,DRY_RUN

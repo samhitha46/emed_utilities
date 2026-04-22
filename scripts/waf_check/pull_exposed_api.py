@@ -68,7 +68,7 @@ def main() -> None:
 
     with open(out_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow(["title", "organization_name", "startdate", "detailpage_url"])
+        writer.writerow(["title", "organization_name", "startdate", "detailpage_url", "email"])
 
         for pageno in range(args.pages):
             try:
@@ -93,6 +93,7 @@ def main() -> None:
                     c.get("organization_name", ""),
                     c.get("startdate", ""),
                     f"{SITE_URL}/{c.get('detailpage_url', '')}",
+                    c.get("email", ""),
                 ])
             total += len(conferences)
             print(green(f"  Page {pageno + 1}: HTTP {status} — {len(conferences)} conferences pulled  (running total: {total})"))

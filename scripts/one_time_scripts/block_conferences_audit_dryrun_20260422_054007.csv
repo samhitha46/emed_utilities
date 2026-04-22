@@ -1,0 +1,3 @@
+conference_id,title,status_before,status_after,modified_by_before,modified_by_after,modified_date_before,modified_date_after,action
+45091,29th International Conference on Clinical and Experimental Cardiology (ICCEC) - Istanbul,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
+45117,29th International Conference on Clinical and Experimental Cardiology (ICCEC) - Roma,1,2,5829,64529,2017-09-09 02:21:48,2026-04-22,DRY_RUN
