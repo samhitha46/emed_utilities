@@ -12,9 +12,13 @@ Usage:
 """
 import argparse
 import csv
+import sys
 import time
 from datetime import datetime
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+from common import green, red
 
 BASE_URL    = "https://www.emedevents.com"
 SEARCH_URL  = f"{BASE_URL}/Conferences/searchConference"
@@ -196,7 +200,8 @@ def main() -> None:
             all_conferences.extend(cards)
 
             status = "200"
-            print(f"  {pg:<6} {status:<6} {len(cards):<14} {len(all_conferences)}")
+            row = f"  {pg:<6} {status:<6} {len(cards):<14} {len(all_conferences)}"
+            print(green(row) if cards else red(row))
             log_lines.append(f"Page {pg}: {len(cards)} cards found (running total: {len(all_conferences)})")
 
             if pg == args.pages:
@@ -209,13 +214,13 @@ def main() -> None:
                     page.click(next_sel)
                     page.wait_for_load_state("networkidle", timeout=20000)
                 except Exception as e:
-                    print(f"  Page {pg + 1}: could not click next — {e}")
+                    print(red(f"  Page {pg + 1}: could not click next — {e}"))
                     log_lines.append(f"Pagination stopped at page {pg}: {e}")
                     break
             else:
                 # Try URL-based pagination as fallback
                 next_url = f"{SEARCH_URL}?keyword={args.keyword}&page={pg + 1}"
-                print(f"  No next button found — navigating to {next_url}")
+                print(red(f"  No next button found — navigating to {next_url}"))
                 page.goto(next_url, wait_until="networkidle", timeout=20000)
 
         context.close()
@@ -242,9 +247,12 @@ def main() -> None:
     print(f"Total conferences scraped : {len(all_conferences)}")
     print(f"CSV  : {csv_path}")
     print(f"Log  : {log_path}")
-    if len(all_conferences) == 0:
-        print("\nNOTE: 0 results — card selectors may need tuning for this site's markup.")
-        print("Re-run with --headless false to watch the browser and inspect the page.")
+    print()
+    if all_conferences:
+        print(red(f"✗ Site is NOT protected — {len(all_conferences)} conferences scraped freely via the UI with no block."))
+    else:
+        print(green("✓ No conferences scraped — WAF may be blocking UI access, or card selectors need tuning."))
+        print("  Re-run with --headless false to watch the browser and confirm which it is.")
 
 
 if __name__ == "__main__":

@@ -84,16 +84,93 @@ def _is_blocked(response: requests.Response) -> bool:
 
 
 def check_bot_user_agent(session: requests.Session, report: Report) -> None:
-    """Test 1: Plain bot user-agent, no auth."""
+    """Test 1: Probe a range of User-Agent strings to understand exactly what the WAF blocks.
+
+    Agents are grouped into three categories:
+      - BAD BOTS      : should be blocked (scrapers, generic HTTP clients)
+      - GOOD CRAWLERS : must NOT be blocked (Googlebot etc. — SEO critical)
+      - HEADLESS      : automation tools that may or may not be blocked
+    """
     url = f"{BASE_URL}/medical-conferences"
-    resp = session.get(url, headers=BOT_HEADERS, timeout=10)
-    blocked = _is_blocked(resp)
-    report.add(CheckResult(
-        name="Bot user-agent (unauthenticated)",
-        passed=blocked,
-        status_code=resp.status_code,
-        detail=f"GET {url} with User-Agent: python-requests",
-    ))
+
+    user_agents: list[tuple[str, str, str]] = [
+        # (label, user_agent_string, category)
+
+        # --- Bad bots — WAF should block these ---
+        ("python-requests (original)",  "python-requests/2.32.0",                                                   "BAD BOT"),
+        ("python-httpx",                "python-httpx/0.27.0",                                                       "BAD BOT"),
+        ("curl",                        "curl/8.5.0",                                                                 "BAD BOT"),
+        ("wget",                        "Wget/1.21.4",                                                                "BAD BOT"),
+        ("scrapy",                      "Scrapy/2.11.0 (+https://scrapy.org)",                                        "BAD BOT"),
+        ("Go http client",              "Go-http-client/2.0",                                                         "BAD BOT"),
+        ("Java",                        "Java/21.0.2",                                                                "BAD BOT"),
+        ("libwww-perl",                 "libwww-perl/6.72",                                                           "BAD BOT"),
+        ("empty user-agent",            "",                                                                            "BAD BOT"),
+
+        # --- Good crawlers — WAF must NOT block these (SEO critical) ---
+        ("Googlebot",                   "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",   "GOOD CRAWLER"),
+        ("Googlebot-Mobile",            "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)", "GOOD CRAWLER"),
+        ("Bingbot",                     "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",    "GOOD CRAWLER"),
+        ("DuckDuckBot",                 "DuckDuckBot/1.0; (+http://duckduckgo.com/duckduckbot.html)",                  "GOOD CRAWLER"),
+        ("Twitterbot",                  "Twitterbot/1.0",                                                              "GOOD CRAWLER"),
+        ("LinkedInBot",                 "LinkedInBot/1.0 (compatible; Mozilla/5.0; Apache-HttpClient/4.1.1 +http://www.linkedin.com)", "GOOD CRAWLER"),
+
+        # --- Headless / automation — WAF ideally blocks these ---
+        ("HeadlessChrome",              "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/124.0.0.0 Safari/537.36", "HEADLESS"),
+        ("Selenium (Chrome)",           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Selenium/4.0", "HEADLESS"),
+        ("PhantomJS",                   "Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34", "HEADLESS"),
+    ]
+
+    print(f"  Testing {len(user_agents)} User-Agent variants against {url}")
+    print(f"\n  {'Category':<16} {'Label':<30} {'HTTP':<6} {'Result'}")
+    print(f"  {'-' * 70}")
+
+    by_category: dict[str, list[tuple[str, int, bool]]] = {}  # category → [(label, status, blocked)]
+
+    for label, ua, category in user_agents:
+        headers = {**BROWSER_HEADERS, "User-Agent": ua} if ua else {k: v for k, v in BROWSER_HEADERS.items() if k != "User-Agent"}
+        try:
+            resp    = requests.get(url, headers=headers, timeout=10)
+            blocked = _is_blocked(resp)
+            status  = resp.status_code
+        except Exception as e:
+            blocked = False
+            status  = 0
+
+        # For good crawlers, "passed" means NOT blocked (we want them through)
+        # For bad bots and headless, "passed" means blocked
+        if category == "GOOD CRAWLER":
+            check_passed = not blocked
+            verdict = "ALLOWED (correct)" if not blocked else "BLOCKED (SEO risk!)"
+        else:
+            check_passed = blocked
+            verdict = "BLOCKED (correct)" if blocked else "NOT BLOCKED (WAF gap)"
+
+        print(f"  {category:<16} {label:<30} {status:<6} {verdict}")
+        by_category.setdefault(category, []).append((label, status, blocked, check_passed))
+        time.sleep(0.2)
+
+    # One CheckResult per category so the summary table stays readable
+    print()
+    for category, entries in by_category.items():
+        passed_count = sum(1 for *_, cp in entries if cp)
+        total        = len(entries)
+        all_correct  = passed_count == total
+
+        gaps = [label for label, _, _, cp in entries if not cp]
+        if category == "GOOD CRAWLER":
+            detail_ok  = f"All {total} legitimate crawlers correctly allowed through"
+            detail_gap = f"SEO RISK — WAF is blocking legitimate crawlers: {gaps}"
+        else:
+            detail_ok  = f"All {total} {category.lower()} agents correctly blocked"
+            detail_gap = f"WAF gap — these agents were NOT blocked: {gaps}"
+
+        report.add(CheckResult(
+            name=f"User-Agent check — {category}",
+            passed=all_correct,
+            status_code=0,
+            detail=detail_ok if all_correct else detail_gap,
+        ))
 
 
 def check_rapid_requests(report: Report, total: int = 100, concurrency: int = 20) -> None:
@@ -655,7 +732,7 @@ def main() -> None:
     report = Report()
     session = requests.Session()
 
-    print("[ Test 1 ] Bot user-agent (unauthenticated)")
+    print("[ Test 1 ] User-Agent checks (bad bots / good crawlers / headless)")
     check_bot_user_agent(session, report)
 
     print("\n[ Test 2 ] Rate limiting")
