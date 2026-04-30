@@ -34,7 +34,12 @@ sys.path.insert(0, str(Path(__file__).parent))
 from common import BASE_URL, BROWSER_HEADERS, green, red, yellow
 
 _NEWSLETTER_PAGE = f"{BASE_URL}/newsletter"
-_SAFE_TEST_EMAIL = "probe-test-do-not-use@example.invalid"   # RFC 2606 — never real
+
+# RFC 2606 — .invalid TLD can never deliver mail to a real person.
+# Timestamps make each run use a fresh email so Step 0 always succeeds as a new subscriber.
+_RUN_TS          = datetime.now().strftime("%Y%m%d%H%M%S")
+_EMAIL_A         = f"probe-enum-a-{_RUN_TS}@example.invalid"   # used in Step 0 → will be IN the DB after subscribe
+_EMAIL_B         = f"probe-enum-b-{_RUN_TS}@example.invalid"   # never submitted  → will NOT be in the DB
 
 
 def _has_form_data(body: dict) -> bool:
@@ -115,7 +120,7 @@ def capture_real_submission() -> dict | None:
                 pass
         for sel in ["input[type='email']", "input[placeholder*='Email']", "input[name*='email']"]:
             try:
-                page.fill(sel, _SAFE_TEST_EMAIL, timeout=2000); break
+                page.fill(sel, _EMAIL_A, timeout=2000); break
             except Exception:
                 pass
 
@@ -211,20 +216,41 @@ def test_recaptcha_bypass(session: requests.Session, capture: dict) -> bool:
 
 def test_email_enumeration(session: requests.Session, capture: dict) -> bool:
     """
-    Submit the captured payload twice with the same email and compare responses.
-    Returns True if responses differ (enumeration confirmed).
+    Submit two different emails and compare the server's responses:
+
+      Attempt 1 — Email A (submitted during Step 0, now IN the DB)
+                  Expected: "already exists" or similar rejection
+
+      Attempt 2 — Email B (never submitted, NOT in the DB)
+                  Expected: "success" or similar acceptance
+
+    If the responses differ the server is leaking whether an email exists,
+    which lets an attacker enumerate the HCP database silently.
     """
-    url     = capture["url"]
-    hdrs    = {k: v for k, v in capture["headers"].items() if k.lower() != "content-length"}
-    payload = dict(capture["body"])
+    url  = capture["url"]
+    hdrs = {k: v for k, v in capture["headers"].items() if k.lower() != "content-length"}
+
+    attempts = [
+        (_EMAIL_A, "email A — IN the DB (subscribed in Step 0)"),
+        (_EMAIL_B, "email B — NOT in the DB (never submitted)"),
+    ]
 
     print(f"  Endpoint : {url}")
-    print(f"  Email    : {payload.get('email', _SAFE_TEST_EMAIL)}")
+    print(f"  Email A  : {_EMAIL_A}  ← should already be in DB")
+    print(f"  Email B  : {_EMAIL_B}  ← brand new, not in DB")
     print()
 
     responses: list[str] = []
-    for attempt in range(1, 3):
-        label = "1st submit (new email)" if attempt == 1 else "2nd submit (same email)"
+    for email, label in attempts:
+        payload = dict(capture["body"])
+        payload["email"] = email
+        # first_name / last_name keys vary by site — update whichever key is present
+        for k in ("first_name", "firstname"):
+            if k in payload:
+                payload[k] = "Probe"
+        for k in ("last_name", "lastname"):
+            if k in payload:
+                payload[k] = "Test"
         try:
             resp = session.post(url, json=payload, headers=hdrs, timeout=15)
             try:
@@ -237,26 +263,29 @@ def test_email_enumeration(session: requests.Session, capture: dict) -> bool:
                 msg = resp.text[:200].strip().lower()
 
             responses.append(msg)
-            color = green if "success" in msg else yellow
-            print(color(f"  Attempt {attempt} ({label}): '{msg}'"))
+            color = green if body.get("success") is True else yellow
+            print(color(f"  {label}"))
+            print(color(f"    → '{msg}'"))
         except Exception as e:
-            print(red(f"  Attempt {attempt}: request failed — {e}"))
+            print(red(f"  {label} — request failed: {e}"))
             responses.append("ERROR")
         time.sleep(1.5)
 
     if len(responses) < 2 or "ERROR" in responses:
-        print(yellow("\n  Enumeration test inconclusive — could not complete both submissions"))
+        print(yellow("\n  Enumeration test inconclusive — one or both requests failed"))
         return False
 
+    print()
     if responses[0] != responses[1]:
-        print(red(f"\n  [!!] RESPONSES DIFFER — email enumeration confirmed"))
-        print(red(f"       1st : '{responses[0]}'"))
-        print(red(f"       2nd : '{responses[1]}'"))
-        print(red("       An attacker can verify HCP email existence by double-submitting"))
+        print(red("  [!!] RESPONSES DIFFER — email enumeration confirmed"))
+        print(red(f"       Known email    : '{responses[0]}'"))
+        print(red(f"       Unknown email  : '{responses[1]}'"))
+        print(red("       An attacker can POST any HCP email to this endpoint with no reCAPTCHA"))
+        print(red("       and determine whether it exists in the database from the response."))
         return True
     else:
-        print(green(f"\n  Both responses identical: '{responses[0]}'"))
-        print(green("  No enumeration signal — server does not reveal whether email is known"))
+        print(green(f"  Both responses identical: '{responses[0]}'"))
+        print(green("  No enumeration signal — server returns the same message regardless of whether email is known"))
         return False
 
 
@@ -299,6 +328,8 @@ def main() -> None:
     print("NEWSLETTER PROBE — SUMMARY")
     print("=" * 60)
     print(f"  Captured endpoint : {capture['url']}")
+    print(f"  Email A (in DB)   : {_EMAIL_A}")
+    print(f"  Email B (not DB)  : {_EMAIL_B}")
     print(f"  reCAPTCHA bypass  : {red('VULNERABLE') if bypassed   else green('Protected')}")
     print(f"  Email enumeration : {red('VULNERABLE') if enumerable else green('Protected')}")
     print("=" * 60)
