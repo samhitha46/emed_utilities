@@ -30,6 +30,10 @@ class Settings(BaseSettings):
     ga4_property_id: str = ""
     ga4_credentials_file: str = ""
 
+    # Email — SendGrid
+    sendgrid_api_key: str = ""
+    sendgrid_from: str = ""   # must be a verified sender in your SendGrid account
+
     @property
     def db_url(self) -> str:
         return (

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)file:///C:/Users/RajeshBaskaran/Downloads/eMedEvents_Organizer_Architecture_v1_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eMedEvents — Organizer Workflow Architecture v1.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./eMedEvents — Organizer Workflow Architecture v1.1_files/css2" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#ffffff;--bg2:#f8f7f4;--bg3:#f1efe8;
+  --text:#1C1C1A;--text2:#5F5E5A;--text3:#888780;
+  --border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);
+  --teal-50:#E1F5EE;--teal-100:#9FE1CB;--teal-400:#1D9E75;--teal-600:#0F6E56;--teal-800:#085041;
+  --purple-50:#EEEDFE;--purple-100:#CECBF6;--purple-600:#534AB7;--purple-800:#3C3489;
+  --coral-50:#FAECE7;--coral-100:#F5C4B3;--coral-600:#993C1D;--coral-800:#712B13;
+  --amber-50:#FAEEDA;--amber-100:#FAC775;--amber-600:#854F0B;--amber-800:#633806;
+  --radius:8px;--radius-lg:12px;
+  --font:'Sora',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html,body{min-height:100%;font-family:var(--font);background:#e8e6e0;color:var(--text);}
+.page{max-width:900px;margin:0 auto;padding:32px 20px 60px;}
+
+/* HEADER */
+.header{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:24px;}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.logo-row{display:flex;align-items:center;gap:10px;}
+.logo-mark{width:28px;height:28px;border-radius:6px;background:var(--teal-600);display:flex;align-items:center;justify-content:center;}
+.logo-mark svg{width:14px;height:14px;}
+.logo-name{font-size:16px;font-weight:600;color:var(--text);}
+.doc-meta{display:flex;gap:7px;flex-wrap:wrap;}
+.meta-pill{font-size:10px;font-family:var(--mono);padding:3px 9px;border-radius:20px;background:var(--bg2);border:0.5px solid var(--border2);color:var(--text2);}
+.header h1{font-size:22px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.header-sub{font-size:13.5px;color:var(--text2);line-height:1.6;max-width:680px;}
+.scope-note{margin-top:14px;font-size:12px;color:var(--amber-600);background:var(--amber-50);border:0.5px solid var(--amber-100);border-radius:var(--radius);padding:8px 12px;line-height:1.5;}
+
+/* SECTION */
+.section{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 26px;margin-bottom:18px;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.section-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;font-family:var(--mono);flex-shrink:0;}
+.section-num.teal{background:var(--teal-50);color:var(--teal-600);border:0.5px solid var(--teal-100);}
+.section-num.purple{background:var(--purple-50);color:var(--purple-600);border:0.5px solid var(--purple-100);}
+.section-num.coral{background:var(--coral-50);color:var(--coral-600);border:0.5px solid var(--coral-100);}
+.section-num.amber{background:var(--amber-50);color:var(--amber-600);border:0.5px solid var(--amber-100);}
+.section-num.gray{background:var(--bg2);color:var(--text2);border:0.5px solid var(--border2);}
+.section-title{font-size:15px;font-weight:600;color:var(--text);}
+.section-sub{font-size:12px;color:var(--text3);font-family:var(--mono);margin-top:1px;}
+
+/* CARD GRID */
+.card-row{display:grid;gap:12px;margin-bottom:14px;}
+.card-row.cols-2{grid-template-columns:1fr 1fr;}
+.card-row.cols-3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:640px){.card-row.cols-2,.card-row.cols-3{grid-template-columns:1fr;}}
+.card{border-radius:var(--radius);padding:13px 15px;border:0.5px solid;}
+.card.teal{background:var(--teal-50);border-color:var(--teal-100);}
+.card.purple{background:var(--purple-50);border-color:var(--purple-100);}
+.card.coral{background:var(--coral-50);border-color:var(--coral-100);}
+.card.amber{background:var(--amber-50);border-color:var(--amber-100);}
+.card.gray{background:var(--bg2);border-color:var(--border2);}
+.card-title{font-size:12.5px;font-weight:600;margin-bottom:5px;}
+.card.teal .card-title{color:var(--teal-800);}
+.card.purple .card-title{color:var(--purple-800);}
+.card.coral .card-title{color:var(--coral-800);}
+.card.amber .card-title{color:var(--amber-800);}
+.card.gray .card-title{color:var(--text);}
+.card-body{font-size:12px;line-height:1.6;}
+.card.teal .card-body{color:var(--teal-600);}
+.card.purple .card-body{color:var(--purple-600);}
+.card.coral .card-body{color:var(--coral-600);}
+.card.amber .card-body{color:var(--amber-600);}
+.card.gray .card-body{color:var(--text2);}
+
+/* FLOW STEPS */
+.flow{display:flex;flex-direction:column;}
+.step{display:flex;gap:14px;padding:13px 0;border-bottom:0.5px solid var(--border);}
+.step:last-child{border-bottom:none;}
+.step-left{display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0;}
+.step-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;font-family:var(--mono);flex-shrink:0;}
+.step-num.teal{background:var(--teal-50);color:var(--teal-600);border:0.5px solid var(--teal-100);}
+.step-num.purple{background:var(--purple-50);color:var(--purple-600);border:0.5px solid var(--purple-100);}
+.step-num.coral{background:var(--coral-50);color:var(--coral-600);border:0.5px solid var(--coral-100);}
+.step-num.amber{background:var(--amber-50);color:var(--amber-600);border:0.5px solid var(--amber-100);}
+.step-connector{width:1px;flex:1;background:var(--border);margin:4px 0;}
+.step:last-child .step-connector{display:none;}
+.step-body{flex:1;padding-bottom:4px;}
+.step-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.step-detail{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:6px;}
+.tech-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;}
+.tech{font-size:10px;font-family:var(--mono);padding:2px 8px;border-radius:20px;background:var(--bg2);border:0.5px solid var(--border2);color:var(--text2);}
+.tech.teal{background:var(--teal-50);border-color:var(--teal-100);color:var(--teal-600);}
+.tech.purple{background:var(--purple-50);border-color:var(--purple-100);color:var(--purple-600);}
+.tech.coral{background:var(--coral-50);border-color:var(--coral-100);color:var(--coral-600);}
+.tech.amber{background:var(--amber-50);border-color:var(--amber-100);color:var(--amber-600);}
+
+/* NOTE BOX */
+.note{font-size:12px;color:var(--text2);background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--radius);padding:10px 13px;line-height:1.6;margin-top:12px;}
+.note strong{color:var(--text);font-weight:500;}
+.note.teal{background:var(--teal-50);border-color:var(--teal-100);color:var(--teal-600);}
+.note.coral{background:var(--coral-50);border-color:var(--coral-100);color:var(--coral-600);}
+
+/* DATA MODEL TABLE */
+.field-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:4px;}
+.field-table th{text-align:left;font-size:10px;font-family:var(--mono);font-weight:500;color:var(--text3);padding:6px 10px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:.05em;}
+.field-table td{padding:7px 10px;border-bottom:0.5px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.45;}
+.field-table tr:last-child td{border-bottom:none;}
+.field-table .fname{color:var(--text);font-family:var(--mono);font-size:11px;font-weight:500;}
+.field-table .ftype{color:var(--purple-600);font-family:var(--mono);font-size:10px;}
+.badge{font-size:9.5px;padding:1px 6px;border-radius:10px;font-family:var(--mono);}
+.badge.req{background:var(--teal-50);color:var(--teal-600);border:0.5px solid var(--teal-100);}
+.badge.opt{background:var(--bg2);color:var(--text3);border:0.5px solid var(--border2);}
+
+/* STATUS FLOW */
+.status-flow{display:flex;align-items:center;gap:0;margin-top:12px;flex-wrap:wrap;}
+.status-bubble{font-size:11px;font-family:var(--mono);padding:5px 12px;border-radius:20px;border:0.5px solid;white-space:nowrap;}
+.status-bubble.draft{background:var(--bg2);border-color:var(--border2);color:var(--text2);}
+.status-bubble.pending{background:var(--amber-50);border-color:var(--amber-100);color:var(--amber-600);}
+.status-bubble.active{background:var(--teal-50);border-color:var(--teal-100);color:var(--teal-600);}
+.status-bubble.flagged{background:var(--coral-50);border-color:var(--coral-100);color:var(--coral-600);}
+.status-arrow{font-size:13px;color:var(--text3);padding:0 6px;}
+
+/* BUILD VS BUY */
+.bbrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:4px;}
+@media(max-width:640px){.bbrow{grid-template-columns:1fr;}}
+.bbcard{border-radius:var(--radius);padding:13px 15px;border:0.5px solid var(--border2);}
+.bbcard-label{font-size:9.5px;font-family:var(--mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.bbcard ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.bbcard ul li{font-size:12px;color:var(--text2);line-height:1.4;display:flex;align-items:flex-start;gap:6px;}
+.bbcard ul li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.bbcard.build ul li::before{background:var(--purple-600);}
+.bbcard.configure ul li::before{background:var(--text3);}
+.bbcard.call ul li::before{background:var(--coral-600);}
+
+/* OPEN QUESTIONS */
+.oq-list{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+.oq{display:flex;gap:10px;align-items:flex-start;padding:10px 13px;border-radius:var(--radius);background:var(--bg2);border:0.5px solid var(--border);}
+.oq-num{font-size:10px;font-family:var(--mono);font-weight:600;color:var(--amber-600);background:var(--amber-50);border:0.5px solid var(--amber-100);border-radius:10px;padding:2px 7px;flex-shrink:0;margin-top:1px;}
+.oq-text{font-size:12px;color:var(--text2);line-height:1.5;}
+.oq-text strong{color:var(--text);font-weight:500;}
+
+/* FOOTER */
+.footer{text-align:center;font-size:11px;font-family:var(--mono);color:var(--text3);margin-top:32px;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="logo-row">
+        <div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 5.5V10.5L8 14L2 10.5V5.5L8 2Z" stroke="white" stroke-width="1.3" fill="none"></path><path d="M8 5V11M5 6.5L11 9.5" stroke="white" stroke-width="1.3" stroke-linecap="round"></path></svg></div>
+        <span class="logo-name">eMedEvents</span>
+      </div>
+      <div class="doc-meta">
+        <span class="meta-pill">Architecture v1.3</span>
+        <span class="meta-pill">April 2026</span>
+        <span class="meta-pill">Draft — for discussion</span>
+      </div>
+    </div>
+    <h1>Organizer / Provider Workflow Architecture</h1>
+    <p class="header-sub">Technical architecture for the conversational activity listing flow — from type detection through URL scraping, category confirmation, and submission to the verification queue. Scoped to the organizer workflow only.</p>
+    <div class="scope-note"><strong>Scope:</strong> This document covers only the provider/organizer listing flow as designed in the prototype. It does not cover HCP search and discovery, CDOI scoring, CMS/scraper pipelines, marketing services, or any other eMedEvents feature.</div>
+  </div>
+
+  <!-- SECTION 1: THREE SURFACES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num teal">1</div>
+      <div>
+        <div class="section-title">Three surfaces, one flow</div>
+        <div class="section-sub">Who uses what</div>
+      </div>
+    </div>
+    <div class="card-row cols-3">
+      <div class="card teal">
+        <div class="card-title">Organizer portal</div>
+        <div class="card-body">The conversational listing UI. Rendered as a Next.js app served from CDN. Holds all interaction state — the three-panel shell (nav, chat, checklist), drawer editor, and progress tracking. The organizer's browser is the only client that touches this flow.</div>
+      </div>
+      <div class="card gray">
+        <div class="card-title">API layer</div>
+        <div class="card-body">A single FastAPI (Python) service. Receives all requests from the organizer portal. Orchestrates the LLM, scraper worker, database, and job queue. The frontend never calls external services directly — everything goes through this layer.</div>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Admin review surface</div>
+        <div class="card-body">A separate internal UI for eMedEvents staff. Shows the pending_review queue. Reviewers approve or flag submissions, add notes, and trigger notifications. Uses the same API as the organizer portal — different auth role, not a different system.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: STEP BY STEP FLOW -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num teal">2</div>
+      <div>
+        <div class="section-title">Step-by-step: what happens technically</div>
+        <div class="section-sub">From first description to submission confirmation</div>
+      </div>
+    </div>
+    <div class="flow">
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num teal">1</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Opening question — does the organizer have a URL?</div>
+          <div class="step-detail">The first message asks a single binary question: does the organizer already have an established website or URL for their activity? No description, no type selection. The answer determines which of two paths the flow takes. No API call at this stage — pure client state.</div>
+          <div class="tech-row"><span class="tech">Client only</span><span class="tech">React state</span><span class="tech">no API call</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num teal">2A</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Path A — URL provided: scrape + auto type detection</div>
+          <div class="step-detail">Before showing the URL input, the browser displays a scraping transparency notice: we only read publicly visible page content — the same information any visitor would see. Nothing behind a login, no private data. The organizer pastes their URL. The API first checks for an existing draft matching this URL and organizer (OQ-1 resume logic). If no draft found, it dispatches a Playwright scrape job. The scrape result is passed to the LLM which extracts structured fields <em>and</em> detects the activity type simultaneously — a single LLM call does both. The detected type and extracted fields are returned together. The browser shows a type confirm card: "Based on your page, this looks like an In-person conference — does that look right?" The left nav is not revealed until the organizer confirms the type.</div>
+          <div class="tech-row">
+            <span class="tech teal">POST /api/listings/scrape-url</span>
+            <span class="tech coral">LLM: type detection + field extraction in one call</span>
+            <span class="tech purple">SELECT existing draft by scraped_url + organizer_id</span>
+            <span class="tech">Playwright headless browser</span>
+            <span class="tech">SSE streaming to browser</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num amber">2B</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Path B — No URL: upsell, then free-text type detection</div>
+          <div class="step-detail">When the organizer has no URL, the flow presents a hosting upsell before continuing to listing. eMedEvents offers to build and host a dedicated event website. If the organizer is interested, their account email is pre-filled and confirmed — a lead is captured and routed internally. Whether interested or not, the flow transitions back to listing with a warm reassuring message. The organizer is then asked to describe their activity in their own words — no chip list, no forced categorisation. The description is sent to the LLM for type detection. If a type is identified with sufficient confidence, a confirm card is shown. If no clear type emerges, the flow defaults to In-person with an explanation that the type can be changed at any time from the dashboard.</div>
+          <div class="tech-row">
+            <span class="tech amber">Upsell lead → internal routing</span>
+            <span class="tech purple">Pre-fill email from organizer account</span>
+            <span class="tech teal">POST /api/detect-type</span>
+            <span class="tech coral">LLM: type detection from free-text description</span>
+            <span class="tech">Default: In-person if no type detected</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num teal">3</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Type confirmed — draft created in tbl_conferences</div>
+          <div class="step-detail">Once the organizer confirms the detected type, the API inserts a row into <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">tbl_conferences</code> with <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">status=3</code> (draft) and <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">conference_type</code> set to the detected type integer. The auto-increment id becomes the draft_id for all subsequent calls. The left nav is revealed and populated based on the confirmed type. For Path A, scraped field data is already in <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">tbl_listing_scrape_sessions</code> and the flow moves directly into category confirmation. For Path B (no URL), the flow moves into manual field entry. Both paths converge from this point forward.</div>
+          <div class="tech-row">
+            <span class="tech purple">INSERT INTO tbl_conferences — status=3, conference_type=N</span>
+            <span class="tech">Left nav revealed and populated</span>
+            <span class="tech">Path A → category confirm with pre-filled fields</span>
+            <span class="tech">Path B → manual field entry</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num teal">4</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Category-by-category confirmation (Path A) or field entry (Path B)</div>
+          <div class="step-detail">Path A: scraped fields are shown per category with confidence indicators. The organizer confirms or corrects each. Fields with high LLM confidence are pre-filled with a green dot. Low-confidence fields show an amber dot and an Add button — the organizer must actively enter these. Path B: the AI asks for each required field directly in the conversation. Each answer calls the field-level PATCH endpoint. Both paths write confirmed values to <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">tbl_conferences</code> and its related tables incrementally — the draft is updated on every category confirmation, not at the end.</div>
+          <div class="tech-row">
+            <span class="tech teal">PATCH /api/listings/{draft_id}</span>
+            <span class="tech purple">UPDATE tbl_conferences SET ... WHERE id={draft_id}</span>
+            <span class="tech purple">INSERT/UPDATE related tables as needed</span>
+            <span class="tech">per category, incremental</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num teal">5</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Drawer edits</div>
+          <div class="step-detail">When the organizer clicks Edit or Add on a specific field, the drawer opens client-side with no API call. On save, the browser calls the API with the field key and new value. The backend validates the value — type check, format check, required field check — and returns either success or a specific error the UI displays inline in the drawer. No full-category re-save; this is a surgical field-level update.</div>
+          <div class="tech-row">
+            <span class="tech teal">PATCH /api/listings/{draft_id}/fields</span>
+            <span class="tech">field-level validation in API</span>
+            <span class="tech">returns: validation errors if any</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num teal">6</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Submit for review</div>
+          <div class="step-detail">Browser calls the submit endpoint. The API runs a completeness check — all required columns for the detected conference_type must be non-null. If the check fails, the API returns which fields are missing and the browser highlights them in the conversation. If it passes, the API sets <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">status=4</code> (pending_admin_auth — your existing review state) on the tbl_conferences row, pushes a job to the SQS review queue, generates a reference number stored in <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">conf_notes</code>, and sends a confirmation email via SES. Reference number and estimated review time are returned to the browser.</div>
+          <div class="tech-row">
+            <span class="tech teal">POST /api/listings/{draft_id}/submit</span>
+            <span class="tech purple">UPDATE tbl_conferences SET status=4</span>
+            <span class="tech">SQS — review queue</span>
+            <span class="tech">SES — confirmation email</span>
+            <span class="tech">reference stored in conf_notes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num amber">7</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Review and decision (admin side)</div>
+          <div class="step-detail">The review job appears in the admin queue UI. A reviewer approves or flags the submission. On approval: <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">status=1</code> (active) — listing becomes visible in the marketplace, organizer receives a notification email. On flag: <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">status=3</code> (back to draft) — organizer receives an email with correction notes (stored in <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">conf_notes</code>) and a link to re-open their draft. After correcting, the organizer resubmits — status returns to 4 (pending_admin_auth) and re-enters the queue.</div>
+          <div class="tech-row">
+            <span class="tech teal">PATCH /api/listings/{id}/review (admin role)</span>
+            <span class="tech purple">UPDATE tbl_conferences SET status=1 (approve)</span>
+            <span class="tech purple">or status=3 + conf_notes (flag)</span>
+            <span class="tech">SES — organizer notification</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STATUS FLOW -->
+    <div class="note">
+      <strong>tbl_conferences status lifecycle (using your existing status integers):</strong>
+      <div class="status-flow" style="margin-top:10px;">
+        <span class="status-bubble draft">3 — draft</span>
+        <span class="status-arrow">→</span>
+        <span class="status-bubble pending">4 — pending_admin_auth</span>
+        <span class="status-arrow">→</span>
+        <span class="status-bubble active">1 — active</span>
+        <span class="status-arrow" style="margin:0 4px;font-size:11px;color:var(--text3);">or</span>
+        <span class="status-bubble flagged">3 — draft (flagged back)</span>
+        <span class="status-arrow">→</span>
+        <span class="status-bubble pending">4 — pending_admin_auth</span>
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:var(--text2);">Your existing status values 2 (inactive), 5 (deleted), 6 (bulk_upload), 7 (expired) are unchanged and unaffected by this flow. No new status values are needed — the conversational flow maps entirely onto your existing enum.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: DATA MODEL -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num purple">3</div>
+      <div>
+        <div class="section-title">Data model — mapping to your existing MySQL schema</div>
+        <div class="section-sub">tbl_conferences + related tables on your existing AWS RDS instance</div>
+      </div>
+    </div>
+
+    <div class="note amber" style="margin-bottom:16px;"><strong>No new primary table needed.</strong> The conversational flow writes directly into your existing <code style="font-family:var(--mono);font-size:11px;">tbl_conferences</code> table and its related tables. Your existing AWS RDS MySQL instance is reused as-is. The only additions are two new columns (scraped_url, submitted_at) and one new supplementary table for the scrape session cache — everything else maps to columns that already exist.</div>
+
+    <!-- COLUMN MAPPING TABLE -->
+    <div style="font-size:11px;font-family:var(--mono);font-weight:500;color:var(--text3);margin-bottom:8px;letter-spacing:.04em;">tbl_conferences — column mapping for the organizer flow</div>
+    <table class="field-table" style="margin-bottom:18px;">
+      <thead>
+        <tr><th>Existing column</th><th>Type</th><th>Used for in the new flow</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="fname">id</td><td class="ftype">int AI</td><td>Draft ID — returned to browser on draft creation, used in all API calls</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">conference_type</td><td class="ftype">int</td><td>Set from LLM type detection. 1=Live Conference, 2=Text-Based CME, 3=Webcasts, 4=Journal CME, 5=Publications, 6=Others. Note: your type integers need to be reconciled with the 7 types in the conversational flow (In-Person, Hybrid, Live Webinar, Webcast, Podcast, Text-Based CME, Journal CME).</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">status</td><td class="ftype">int</td><td>3=draft (initial), 4=pending_admin_auth (on submit), 1=active (on approval). No new values needed.</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">title</td><td class="ftype">varchar(255)</td><td>Event name — first field extracted from URL scrape or entered manually</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">startdate</td><td class="ftype">date</td><td>Start date from Event Dates category</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">enddate</td><td class="ftype">date</td><td>End date from Event Dates category</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">duration</td><td class="ftype">int</td><td>Duration in days — computed from start/end or entered directly</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">conference_fee</td><td class="ftype">float(9,2)</td><td>General admission ticket price from Tickets category</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">early_fee</td><td class="ftype">float(9,2)</td><td>Early bird price — the amber "not found" field in the Tickets category</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">currency_id</td><td class="ftype">int</td><td>Currency selection (USD default) from Tickets category</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">cme_points</td><td class="ftype">float(7,2)</td><td>CME/CE credits offered — from Accreditation &amp; Credits category</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">cme_heading</td><td class="ftype">varchar(50)</td><td>Credit type label (e.g. "AMA PRA Category 1")</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">Is_cme</td><td class="ftype">tinyint</td><td>Accredited/Non-accredited toggle — set from organizer selection</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">meta_description</td><td class="ftype">text</td><td>Overview &amp; Description field — LLM-extracted or organizer-entered</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">logo</td><td class="ftype">varchar(255)</td><td>Event listing banner — uploaded in Collaterals category</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">meta_data</td><td class="ftype">longtext</td><td>Additional structured data (social handles, post-event details)</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">conf_notes</td><td class="ftype">text</td><td>Reviewer correction notes (populated on flag, shown to organizer) + reference number on submit</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">created_by</td><td class="ftype">int</td><td>Organizer user ID — set on draft creation</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">created_date</td><td class="ftype">datetime</td><td>Auto-set on INSERT</td><td><span class="badge req">exists</span></td></tr>
+        <tr><td class="fname">modified_date</td><td class="ftype">datetime</td><td>Updated on every PATCH</td><td><span class="badge req">exists</span></td></tr>
+        <tr style="background:var(--teal-50);"><td class="fname" style="color:var(--teal-800);">scraped_url</td><td class="ftype" style="color:var(--teal-600);">varchar(500)</td><td style="color:var(--teal-600);">The URL the organizer provided for scraping. Stored for audit and re-scrape capability.</td><td><span class="badge req" style="background:var(--teal-100);border-color:var(--teal-100);color:var(--teal-800);">ADD</span></td></tr>
+        <tr style="background:var(--teal-50);"><td class="fname" style="color:var(--teal-800);">submitted_at</td><td class="ftype" style="color:var(--teal-600);">datetime NULL</td><td style="color:var(--teal-600);">Timestamp when organizer clicked Submit. Null for drafts. Used for review SLA tracking.</td><td><span class="badge req" style="background:var(--teal-100);border-color:var(--teal-100);color:var(--teal-800);">ADD</span></td></tr>
+      </tbody>
+    </table>
+
+    <!-- RELATED TABLES + SCRAPE CACHE -->
+    <div class="card-row cols-2">
+      <div>
+        <div style="font-size:11px;font-family:var(--mono);font-weight:500;color:var(--text3);margin-bottom:8px;letter-spacing:.04em;">Related tables (TBC — pending table list)</div>
+        <div class="card gray">
+          <div class="card-title">Fields split across related tables</div>
+          <div class="card-body" style="margin-bottom:8px;">The following fields from the organizer flow are not in tbl_conferences and are assumed to be in related tables. Exact table names to be confirmed once the related table list is shared.</div>
+          <table class="field-table">
+            <thead><tr><th>Field</th><th>Assumed location</th></tr></thead>
+            <tbody>
+              <tr><td class="fname">Venue name + address</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Accommodation details</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Target professions</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Target specialties &amp; topics</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Accreditation body</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Accreditation statement</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Event website URL</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Registration link</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Contact info (name, email)</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Speakers</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+              <tr><td class="fname">Sessions</td><td style="font-size:11px;color:var(--amber-600);">TBC</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-family:var(--mono);font-weight:500;color:var(--text3);margin-bottom:8px;letter-spacing:.04em;">New supplementary table — scrape session cache</div>
+        <div class="card teal" style="margin-bottom:10px;">
+          <div class="card-title">tbl_listing_scrape_sessions (new)</div>
+          <div class="card-body">Stores raw LLM extraction output temporarily during the organizer session. Separate from tbl_conferences because this data is transient — it is evicted once confirmed or after 2 hours, and never needs to be queried by the marketplace.<br><br>
+          <strong style="color:var(--teal-800);">Columns:</strong><br>
+          conference_id (FK → tbl_conferences.id)<br>
+          scraped_raw (JSON — full LLM field map with confidence)<br>
+          created_at (datetime)<br>
+          expires_at (datetime — 2hrs from creation)<br>
+          status (enum: pending / consumed / expired)
+          </div>
+        </div>
+        <div style="font-size:11px;font-family:var(--mono);font-weight:500;color:var(--text3);margin-bottom:8px;letter-spacing:.04em;">SQS review queue (existing or new)</div>
+        <div class="card gray">
+          <div class="card-title">review_jobs queue</div>
+          <div class="card-body">Each submitted listing produces one SQS message: conference_id · submitted_at · organizer_email · conference_type. The admin review service polls this queue. Messages are retained until a reviewer takes action — SQS guarantees delivery even if the admin service restarts. Check if you already have an SQS queue on your AWS account before creating a new one.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Why not a separate listings table?</strong> Writing directly into tbl_conferences with status=3 means your existing admin tools, reports, and CMS already work with the new drafts without modification. Keeping drafts in a separate table would require syncing, merging, and updating every downstream system that reads tbl_conferences. The two new columns (scraped_url, submitted_at) are a minor schema change — an ALTER TABLE with nullable columns that has zero impact on existing rows or queries.
+    </div>
+
+    <div class="note amber" style="margin-top:10px;">
+      <strong>Action required — conference_type reconciliation:</strong> Your existing conference_type integers (1=Live Conference, 2=Text-Based CME, 3=Webcasts, 4=Journal CME, 5=Publications, 6=Others) need to be mapped to the 7 types in the conversational flow. In-Person and Hybrid are not currently distinct types in your schema. This needs a decision: add new type integers, or map In-Person and Hybrid both to type 1 (Live Conference) with a sub-type flag using the existing conference_sub_types column?
+    </div>
+  </div>
+
+  <!-- SECTION 4: AI INTEGRATION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num coral">4</div>
+      <div>
+        <div class="section-title">AI integration — the two LLM calls</div>
+        <div class="section-sub">What the prompts do and how they are structured</div>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num coral">A</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+      <div class="step-title">Path A — Combined scrape + type detection prompt</div>
+          <div class="step-detail">When the organizer provides a URL, a single LLM call handles both type detection and field extraction simultaneously. System prompt defines the 7 activity types with their signals, plus the full field schema for all types. User message is the cleaned scraped HTML plus the URL. The model returns a JSON object with two top-level keys: <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">detected_type</code> (type string + confidence 0–1) and <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">fields</code> (map of field name → value + confidence). This is more efficient than two separate calls and avoids the latency of waiting for type detection before starting field extraction. If type confidence is below 0.75, the confirm card shows the top two candidates and asks the organizer to choose.</div>
+          <div class="tech-row">
+            <span class="tech coral">System: 7 type definitions + full field schema</span>
+            <span class="tech coral">User: cleaned HTML + URL</span>
+            <span class="tech">Response: detected_type + fields[] in one JSON object</span>
+            <span class="tech">Threshold: 0.75 confidence for type</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num coral">B</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Path B — Free-text type detection prompt</div>
+          <div class="step-detail">When the organizer has no URL, type detection runs on their free-text description of the activity. System prompt defines the 7 types with their signals. User message is the organizer's description in their own words. Response is JSON: type · confidence · reasoning. If confidence is below 0.75 the API returns the top two candidates and the frontend shows the type picker chips. If no type can be identified at all (organizer is still planning, no clear signals), the API returns <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">type: null</code> and the frontend defaults to In-person with an explanation that the type can be changed at any time from the dashboard. The reasoning field is logged for prompt improvement but never shown to the organizer.</div>
+          <div class="tech-row">
+            <span class="tech coral">System: 7 type definitions + signals</span>
+            <span class="tech coral">User: free-text description</span>
+            <span class="tech">Response: type · confidence · reasoning</span>
+            <span class="tech">null type → default to In-person</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num coral">C</div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Path B — Manual field entry (no URL)</div>
+          <div class="step-detail">When the organizer has no URL — whether they declined the upsell or simply don't have one — no scrape job is ever dispatched. After type is confirmed, the listing record is created with all fields null. The conversation flow asks for each required field directly via chat. Each answer calls the field-level PATCH endpoint. This is the same endpoint used for drawer edits — no special code path. The LLM is not involved in field collection in this path; the organizer's answers are taken at face value.</div>
+          <div class="tech-row">
+            <span class="tech">No scrape job</span>
+            <span class="tech teal">PATCH /api/listings/{draft_id}/fields</span>
+            <span class="tech">Same endpoint as drawer edit</span>
+            <span class="tech">No LLM call in this path</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note coral"><strong>Cost control:</strong> Each organizer session makes at most 2 LLM calls — one for type detection, one for field extraction. Type detection is fast and cheap (short prompt, short response). Field extraction is the expensive call (large HTML input). A per-organizer rate limit of 5 scrape attempts per session prevents abuse. All LLM calls are logged with input/output token counts for cost monitoring.</div>
+  </div>
+
+  <!-- SECTION 5: BUILD vs BUY -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num gray">5</div>
+      <div>
+        <div class="section-title">What you build vs what you buy</div>
+        <div class="section-sub">Technology decisions for a 1–3 person team</div>
+      </div>
+    </div>
+    <div class="bbrow">
+      <div class="bbcard build" style="background:var(--purple-50);border-color:var(--purple-100);">
+        <div class="bbcard-label" style="color:var(--purple-600);">You write this code</div>
+        <ul>
+          <li>Conversational UI — Next.js (React 18)</li>
+          <li>API service — Python / FastAPI</li>
+          <li>Scraper worker — Python + Playwright</li>
+          <li>Type detection prompt</li>
+          <li>Field extraction prompt (one per activity type)</li>
+          <li>Field validation logic</li>
+          <li>Admin review UI</li>
+          <li>SSE streaming from API to browser</li>
+        </ul>
+      </div>
+      <div class="bbcard configure" style="background:var(--bg2);border-color:var(--border2);">
+        <div class="bbcard-label">AWS managed — you configure, not operate</div>
+        <ul>
+          <li>RDS MySQL — existing instance, reused as-is</li>
+          <li>tbl_listing_scrape_sessions in MySQL — replaces need for Redis for this workflow</li>
+          <li>SQS — review job queue</li>
+          <li>SES — transactional email</li>
+          <li>S3 — file uploads (banners, brochures)</li>
+          <li>ECS Fargate — container hosting</li>
+          <li>Cognito — organizer + admin auth</li>
+          <li>CloudFront — CDN for frontend</li>
+        </ul>
+      </div>
+      <div class="bbcard call" style="background:var(--coral-50);border-color:var(--coral-100);">
+        <div class="bbcard-label" style="color:var(--coral-600);">External APIs — you call, they operate</div>
+        <ul>
+          <li>Anthropic API — type detection + field extraction</li>
+          <li>No other external dependency for this specific workflow</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note" style="margin-top:12px;"><strong>Why FastAPI not PHP?</strong> The two requirements that PHP handles poorly for this specific workflow: (1) the scrape result needs to stream back to the browser as categories resolve — PHP's synchronous request model requires workarounds for SSE; (2) the scraper worker is a long-lived async process, not an HTTP request handler — PHP was not designed for this. Python handles both naturally. FastAPI connects to MySQL via <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">aiomysql</code> or <code style="font-family:var(--mono);font-size:11px;background:var(--bg2);padding:1px 5px;border-radius:4px;">SQLAlchemy + PyMySQL</code> — your existing RDS MySQL instance is accessed directly, no migration required.</div>
+  </div>
+
+  <!-- SECTION 6: OPEN QUESTIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num amber">6</div>
+      <div>
+        <div class="section-title">Decisions log</div>
+        <div class="section-sub">Resolved decisions and open items still pending</div>
+      </div>
+    </div>
+    <div class="oq-list">
+
+      <!-- RESOLVED -->
+      <div style="font-size:9px;font-family:var(--mono);font-weight:500;color:var(--teal-600);letter-spacing:.08em;text-transform:uppercase;padding:4px 0 2px;">Resolved</div>
+
+      <div class="oq" style="background:var(--teal-50);border-color:var(--teal-100);">
+        <span class="oq-num" style="background:var(--teal-50);border-color:var(--teal-100);color:var(--teal-600);">OQ-1 ✓</span>
+        <div class="oq-text">
+          <strong>Resume flow — decided.</strong> The organizer always starts as if creating a new listing. There is no "resume" prompt on entry. The draft detection happens at the URL step: when the organizer pastes a URL, the API checks <code style="font-family:var(--mono);font-size:11px;background:var(--bg);padding:1px 5px;border-radius:4px;">tbl_conferences</code> for an existing draft (<code style="font-family:var(--mono);font-size:11px;background:var(--bg);padding:1px 5px;border-radius:4px;">status=3</code>) owned by this organizer with a matching <code style="font-family:var(--mono);font-size:11px;background:var(--bg);padding:1px 5px;border-radius:4px;">scraped_url</code> or matching title extracted from the URL. If a match is found, the flow surfaces the existing draft and pre-populates all already-confirmed fields, skipping those categories entirely — the organizer is taken directly to the first incomplete section. If no match, a new draft is created as normal.
+          <div style="margin-top:8px;background:var(--bg);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.55;">
+            <strong style="color:var(--text);">Technical implementation:</strong><br>
+            On <code style="font-family:var(--mono);font-size:11px;">POST /api/listings/scrape-url</code>, before dispatching the scrape job, the API runs:<br>
+            <code style="font-family:var(--mono);font-size:11px;">SELECT id, status FROM tbl_conferences WHERE created_by = {organizer_id} AND scraped_url = {url} AND status = 3 ORDER BY created_date DESC LIMIT 1</code><br>
+            If a row is returned → load that draft and its already-confirmed fields, return to browser with <code style="font-family:var(--mono);font-size:11px;">draft_found: true</code> and the sections already completed. The browser skips those sections in the conversation and advances the left nav dots to reflect completed state. If no row → proceed with new draft creation as normal.
+          </div>
+        </div>
+      </div>
+
+      <div class="oq" style="background:var(--teal-50);border-color:var(--teal-100);">
+        <span class="oq-num" style="background:var(--teal-50);border-color:var(--teal-100);color:var(--teal-600);">OQ-2 ✓</span>
+        <div class="oq-text">
+          <strong>Scrape failure fallback — decided.</strong> If the scraper cannot access the page (robots.txt block, bot detection, timeout, invalid URL), the flow drops silently to manual mode but the organizer is informed clearly. The message shown: <em>"We weren't able to auto-fill from that page — some sites block automated access. No problem, we'll walk you through each field together."</em> No data is lost, no error state. The conversation continues exactly as the no-URL path, with the AI asking for each required field in sequence. The organizer does not need to take any action beyond reading the message.
+          <div style="margin-top:8px;background:var(--bg);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.55;">
+            <strong style="color:var(--text);">Technical implementation:</strong><br>
+            The scraper worker catches any fetch failure (HTTP error, timeout, robots.txt disallow, Playwright exception) and returns a <code style="font-family:var(--mono);font-size:11px;">scrape_status: blocked</code> result to the API rather than throwing. The API sets the draft's <code style="font-family:var(--mono);font-size:11px;">scraped_url</code> to the submitted URL (for audit) but proceeds as if no URL was provided. The SSE stream sends a <code style="font-family:var(--mono);font-size:11px;">scrape_failed</code> event to the browser. The browser displays the friendly fallback message and transitions to manual field-by-field flow. No retry is attempted automatically — the organizer can paste a different URL if they wish.
+          </div>
+        </div>
+      </div>
+
+      <div class="oq" style="background:var(--teal-50);border-color:var(--teal-100);">
+        <span class="oq-num" style="background:var(--teal-50);border-color:var(--teal-100);color:var(--teal-600);">OQ-3 ✓</span>
+        <div class="oq-text">
+          <strong>File uploads — decided.</strong> File uploads (brochure, banner images) happen inside the conversational flow via the right-side drawer. When the organizer reaches the Collaterals &amp; Branding category, the AI presents an "Add Brochure" action. Clicking it opens the drawer with a file upload input. The file is uploaded directly to S3 from the browser (using a pre-signed URL issued by the API), and the S3 key is written back to the relevant column in <code style="font-family:var(--mono);font-size:11px;">tbl_conferences</code> or its related table on completion. No file data passes through the API server — the browser uploads directly to S3.
+          <div style="margin-top:8px;background:var(--bg);border-radius:6px;padding:8px 10px;font-size:11px;line-height:1.55;">
+            <strong style="color:var(--text);">Technical implementation:</strong><br>
+            1. Organizer clicks "Add Brochure" → drawer opens with file input.<br>
+            2. Browser calls <code style="font-family:var(--mono);font-size:11px;">GET /api/listings/{draft_id}/upload-url?type=brochure</code> → API returns a pre-signed S3 PUT URL valid for 10 minutes.<br>
+            3. Browser uploads file directly to S3 using the pre-signed URL.<br>
+            4. On upload success, browser calls <code style="font-family:var(--mono);font-size:11px;">PATCH /api/listings/{draft_id}/fields</code> with the S3 key → API writes it to the <code style="font-family:var(--mono);font-size:11px;">logo</code> or relevant column. Drawer closes and the conversation confirms the upload.
+          </div>
+        </div>
+      </div>
+
+      <!-- STILL OPEN -->
+      <div style="font-size:9px;font-family:var(--mono);font-weight:500;color:var(--amber-600);letter-spacing:.08em;text-transform:uppercase;padding:10px 0 2px;">Still open</div>
+      <div class="oq">
+        <span class="oq-num">OQ-4</span>
+        <div class="oq-text"><strong>Organizer identity at start of flow:</strong> Must the organizer be logged in before starting the conversational flow, or can they begin as a guest and create an account at submission? Guest-then-auth changes the data model (anonymous draft → owned draft on auth).</div>
+      </div>
+      <div class="oq">
+        <span class="oq-num">OQ-5</span>
+        <div class="oq-text"><strong>Review SLA:</strong> The confirmation card currently says "1–2 business days". What is the actual target, and is there an escalation path if it is breached? The admin queue UI needs to surface age of submissions.</div>
+      </div>
+      <div class="oq">
+        <span class="oq-num">OQ-6</span>
+        <div class="oq-text"><strong>Speaker and session entry in the conversational flow:</strong> Both are multi-item sub-flows (add multiple speakers, add multiple sessions). The current prototype defers these to "add later". Needs a design decision on whether multi-item entry happens inside the conversation or in a separate edit surface post-publish.</div>
+      </div>
+      <div class="oq">
+        <span class="oq-num">OQ-7</span>
+        <div class="oq-text"><strong>conference_type integer mapping:</strong> The conversational flow has 7 types (In-Person, Hybrid, Live Webinar, Webcast, Podcast, Text-Based CME, Journal CME). Your existing tbl_conferences has 6 type integers (1=Live Conference, 2=Text-Based CME, 3=Webcasts, 4=Journal CME, 5=Publications, 6=Others). In-Person and Hybrid are not separately represented. Decision needed: add type integers 7 and 8, or use conference_sub_types to distinguish In-Person/Hybrid under type 1?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">eMedEvents · Organizer Workflow Architecture v1.3 · April 2026 · Internal — not for distribution · Pending: related table list from organizer</div>
+
+</div>
+
+
+</body></html>

@@ -1,0 +1,92 @@
+====================================================================
+  PLATFORM WEEKLY KPI REPORT
+  Report week : 2026-04-26  →  2026-05-02  (week 202618)
+  Generated   : 2026-05-08
+  Data range  : 2025-05-11  to  2026-04-26  (52 complete weeks)
+====================================================================
+
+EXECUTIVE SUMMARY
+--------------------------------------------------------------------
+  Total users this week    :     32,941   WoW -26.2%
+  Sessions this week       :     37,219   WoW -26.0%
+  Engagement rate          :      51.6%   WoW +1.0pp   ✓ healthy
+  Avg session duration     :       128s
+  Returning visitors       :       7.9%  of weekly users
+  4-week avg users         :     41,081
+
+  ⓘ  Week 202619 (2026-05-03, 6 days so far: 18,526 users) is partial — excluded from all figures.
+
+TRAFFIC KPIs
+--------------------------------------------------------------------
+  Metric                       This Week    WoW Δ      4w Avg  12w Median
+  ------------------------------------------------------------------
+  Total Users                     32,941   -26.2%      41,081      60,588
+  New Users                       30,350   -26.9%      37,745      56,245
+  Returning Users                  2,591   -17.4%       3,336       4,278
+  Sessions                        37,219   -26.0%      46,149      67,173
+  Pageviews                       57,704   -23.5%      68,995      95,268
+
+ENGAGEMENT KPIs
+--------------------------------------------------------------------
+  Metric                       This Week    WoW Δ      4w Avg  12w Median
+  ------------------------------------------------------------------
+  Engagement Rate                  51.6%    +1.0pp       49.6%       42.1%   ✓
+  Avg Session Duration              128s    +3.1%        127s        106s
+  Sessions / User                   1.13    +0.0%        1.12        1.10
+  Returning Visitors %              7.9%    +0.9pp        8.1%        6.8%
+
+ANOMALY DETECTION  (full history, flagged at ±2σ)
+--------------------------------------------------------------------
+
+  ⚠  Week 202552  (2025-12-21)
+     → Engagement LOW   : 29.2%  (-2.2σ, baseline avg 49.0%)
+
+  ⚠  Week 202610  (2026-03-01)
+     → Users SPIKE : 86,286  (+2.1σ, baseline avg 46,761)
+     → Engagement LOW   : 29.6%  (-2.2σ, baseline avg 49.0%)
+     → Sessions LOW   : 73.0s  (-2.1σ, baseline avg 132.9s)
+
+  ⚠  Week 202611  (2026-03-08)
+     → Users SPIKE : 136,186  (+4.7σ, baseline avg 46,761)
+     → Engagement LOW   : 19.8%  (-3.3σ, baseline avg 49.0%)
+     → Sessions LOW   : 48.6s  (-3.0σ, baseline avg 132.9s)
+
+  ⚠  Week 202612  (2026-03-15)
+     → Users SPIKE : 96,169  (+2.6σ, baseline avg 46,761)
+     → Engagement LOW   : 27.2%  (-2.5σ, baseline avg 49.0%)
+     → Sessions LOW   : 62.4s  (-2.5σ, baseline avg 132.9s)
+
+INSIGHTS & RECOMMENDATIONS
+--------------------------------------------------------------------
+
+  1. ENGAGEMENT QUALITY DECLINING
+     Recent 4-week engagement (49.6%) is 5.3pp below the
+     early-period average (54.9%). Traffic growth is outpacing
+     audience quality. Audit acquisition channels: prioritise
+     organic search and email over broad paid campaigns which
+     bring low-intent visitors.
+
+  2. LOW AUDIENCE LOYALTY
+     Only 8.1% of weekly users return to the platform (industry
+     benchmark for content sites: 20–30%). The platform depends
+     almost entirely on new user acquisition. Recommended
+     actions: promote newsletter sign-ups on conference pages,
+     add push-notification opt-ins, and gate some content behind
+     free accounts to build a logged-in returning audience.
+
+  3. TRAFFIC RUNNING BELOW BASELINE
+     4-week average (41,081/wk) is -32% below the 12-week median
+     baseline (60,588/wk). Check whether this is expected
+     seasonal softening or a sign of reduced acquisition effort
+     or algorithm/SEO changes.
+
+  4. SEASONALITY
+     Based on 52 weeks of historical data: May–Jun is peak
+     conference-season traffic (40–50k+/wk). Jul–Aug softens
+     moderately (36–42k/wk). Dec–Jan sees a sharp holiday dip
+     with significantly lower engagement quality. Plan campaign
+     budgets and content launches around these windows.
+
+====================================================================
+  End of report
+====================================================================

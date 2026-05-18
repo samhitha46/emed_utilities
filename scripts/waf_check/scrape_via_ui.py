@@ -182,9 +182,9 @@ def main() -> None:
         # --- Step 1: Navigate to search results page ---
         # The homepage search box submits but stays on the homepage (JS-handled).
         # Navigate directly to the search URL which renders the actual results.
-        start_url = f"{SEARCH_URL}?keyword={args.keyword}"
+        start_url = f"{SEARCH_URL}?keyword={args.keyword}&page=1"
         print(f"Step 1: Navigating to search results — {start_url}")
-        page.goto(start_url, wait_until="networkidle", timeout=30000)
+        page.goto(start_url, wait_until="domcontentloaded", timeout=45000)
         print(f"  URL: {page.url}")
         log_lines.append(f"Search URL reached: {page.url}")
 
@@ -193,8 +193,8 @@ def main() -> None:
         print(f"  {'-' * 50}")
 
         for pg in range(1, args.pages + 1):
-            # Wait for content to render
-            page.wait_for_timeout(1500)
+            # Wait for JS-rendered cards to appear (longer on first load)
+            page.wait_for_timeout(3000 if pg == 1 else 1500)
 
             cards = extract_cards(page)
             all_conferences.extend(cards)
@@ -212,7 +212,7 @@ def main() -> None:
             if next_sel:
                 try:
                     page.click(next_sel)
-                    page.wait_for_load_state("networkidle", timeout=20000)
+                    page.wait_for_load_state("domcontentloaded", timeout=30000)
                 except Exception as e:
                     print(red(f"  Page {pg + 1}: could not click next — {e}"))
                     log_lines.append(f"Pagination stopped at page {pg}: {e}")
@@ -221,7 +221,7 @@ def main() -> None:
                 # Try URL-based pagination as fallback
                 next_url = f"{SEARCH_URL}?keyword={args.keyword}&page={pg + 1}"
                 print(red(f"  No next button found — navigating to {next_url}"))
-                page.goto(next_url, wait_until="networkidle", timeout=20000)
+                page.goto(next_url, wait_until="domcontentloaded", timeout=30000)
 
         context.close()
         browser.close()

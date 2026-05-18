@@ -221,18 +221,18 @@ def probe_speaker_bureau(session: requests.Session, max_pages: int) -> tuple[Pro
             page.on("response", on_response)
 
             print(f"  Loading {page_url}...")
-            page.goto(page_url, wait_until="networkidle", timeout=30000)
-            page.wait_for_timeout(2000)
+            page.goto(page_url, wait_until="domcontentloaded", timeout=45000)
+            page.wait_for_timeout(3000)
 
             # Click page 2 to trigger the real paginated API call
             print("  Clicking page 2 to trigger pagination API...")
             try:
                 page.click("a[aria-label='2'], .pagination a:text('2'), li:nth-child(3) a", timeout=5000)
-                page.wait_for_load_state("networkidle", timeout=15000)
+                page.wait_for_load_state("domcontentloaded", timeout=20000)
                 page.wait_for_timeout(2000)
             except Exception:
                 # Fallback: navigate directly to page 2
-                page.goto(f"{page_url}?page=2", wait_until="networkidle", timeout=20000)
+                page.goto(f"{page_url}?page=2", wait_until="domcontentloaded", timeout=30000)
 
             context.close()
             browser.close()

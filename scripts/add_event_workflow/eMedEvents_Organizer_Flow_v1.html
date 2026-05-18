@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eMedEvents — Add New Activity (Prototype v3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#ffffff;--bg2:#f8f7f4;--bg3:#f1efe8;
+  --text:#1C1C1A;--text2:#5F5E5A;--text3:#888780;
+  --border:rgba(0,0,0,0.12);--border2:rgba(0,0,0,0.22);
+  --teal-50:#E1F5EE;--teal-100:#9FE1CB;--teal-400:#1D9E75;--teal-600:#0F6E56;--teal-800:#085041;
+  --amber-50:#FAEEDA;--amber-800:#633806;
+  --radius:8px;--radius-lg:12px;
+}
+html,body{height:100%;font-family:'Sora',sans-serif;background:#e8e6e0;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+.page-wrap{width:100%;max-width:980px;padding:24px 16px;}
+.proto-label{font-size:11px;font-family:'JetBrains Mono',monospace;color:#888;text-align:center;margin-bottom:10px;letter-spacing:.06em;text-transform:uppercase;}
+.shell{display:flex;flex-direction:column;height:680px;border-radius:14px;border:1px solid rgba(0,0,0,0.14);overflow:hidden;background:var(--bg);box-shadow:0 4px 32px rgba(0,0,0,0.1);}
+
+/* TOPBAR */
+.topbar{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg2);flex-shrink:0;}
+.tlogo{display:flex;align-items:center;gap:8px;}
+.tmark{width:22px;height:22px;border-radius:5px;background:var(--teal-600);display:flex;align-items:center;justify-content:center;}
+.tmark svg{width:11px;height:11px;}
+.tbrand{font-size:13.5px;font-weight:600;color:var(--text);}
+.tdiv{width:1px;height:13px;background:var(--border);margin:0 9px;}
+.tstep{font-size:12px;color:var(--text2);}
+.tpct{font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.pbar{height:2px;background:var(--border);flex-shrink:0;}
+.pfill{height:100%;background:var(--teal-400);transition:width .5s ease;width:0%;}
+
+/* BODY */
+.body{flex:1;display:flex;overflow:hidden;position:relative;}
+
+/* LEFT NAV */
+.lnav{width:200px;flex-shrink:0;border-right:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;position:absolute;left:0;top:0;bottom:0;z-index:4;transform:translateX(-200px);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.lnav.open{transform:translateX(0);}
+.lnav-top{padding:11px 14px 10px;border-bottom:1px solid var(--border);}
+.llogo{display:flex;align-items:center;gap:7px;margin-bottom:7px;}
+.lmark{width:18px;height:18px;border-radius:3px;background:var(--teal-600);display:flex;align-items:center;justify-content:center;}
+.lmark svg{width:9px;height:9px;}
+.lbrand{font-size:12px;font-weight:600;color:var(--text);}
+.lpill{font-size:9.5px;padding:2px 8px;border-radius:10px;background:var(--teal-50);color:var(--teal-600);font-family:'JetBrains Mono',monospace;font-weight:500;display:inline-block;}
+.lgroups{flex:1;overflow-y:auto;padding:6px 0;}
+.lglabel{font-size:8.5px;font-weight:500;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;padding:8px 14px 4px;font-family:'JetBrains Mono',monospace;}
+.litem{display:flex;align-items:center;gap:7px;padding:6px 14px;position:relative;cursor:pointer;transition:background .1s;}
+.litem:hover{background:var(--bg);}
+.litem.active{background:var(--bg);}
+.litem.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--teal-400);border-radius:0 2px 2px 0;}
+.ldot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;transition:all .2s;}
+.ldot.done{background:var(--teal-400);border-color:var(--teal-400);color:#fff;}
+.ldot.cur{border-color:var(--teal-400);}
+.ldot.cur::after{content:'';width:5px;height:5px;background:var(--teal-400);border-radius:50%;display:block;}
+.lil{font-size:11px;color:var(--text2);flex:1;line-height:1.3;}
+.litem.active .lil{color:var(--text);font-weight:500;}
+.litem.done-item .lil{color:var(--text2);}
+.lbadge{font-size:8px;padding:1px 5px;border-radius:5px;font-family:'JetBrains Mono',monospace;}
+.lbadge.r{background:var(--teal-50);color:var(--teal-600);}
+.lbadge.o{background:var(--bg3);color:var(--text3);}
+
+/* EXISTING CONFERENCES SECTION */
+.lexist{border-top:1px solid var(--border);padding:10px 14px;flex-shrink:0;}
+.lexist-label{font-size:8.5px;font-weight:500;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:7px;}
+.lexist-item{display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.lexist-item:last-child{border-bottom:none;}
+.lexist-dot{width:6px;height:6px;border-radius:50%;background:var(--teal-400);flex-shrink:0;margin-top:4px;}
+.lexist-name{font-size:10.5px;color:var(--text);font-weight:500;line-height:1.3;}
+.lexist-date{font-size:9.5px;color:var(--text3);margin-top:1px;}
+.lexist-new{margin-top:6px;font-size:10px;color:var(--teal-600);font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:4px;}
+.lexist-new-dot{width:6px;height:6px;border-radius:50%;border:1.5px dashed var(--teal-400);flex-shrink:0;}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;transition:margin-left .35s cubic-bezier(.4,0,.2,1),margin-right .35s cubic-bezier(.4,0,.2,1);}
+.main.lshift{margin-left:200px;}
+.main.rshift{margin-right:272px;}
+
+.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;}
+.msg{display:flex;gap:8px;align-items:flex-start;animation:fu .2s ease;}
+@keyframes fu{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.av{width:23px;height:23px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;margin-top:1px;}
+.av.ai{background:var(--teal-50);color:var(--teal-600);border:1px solid var(--teal-100);}
+.av.us{background:#E6F1FB;color:#185FA5;border:1px solid #B5D4F4;}
+.bub{max-width:90%;font-size:12.5px;line-height:1.65;color:var(--text);}
+.bi{background:var(--bg2);border:1px solid var(--border);border-radius:3px 10px 10px 10px;padding:9px 13px;}
+.msg.usr{flex-direction:row-reverse;}
+.msg.usr .bi{background:var(--teal-50);border-color:var(--teal-100);border-radius:10px 3px 10px 10px;color:var(--teal-800);}
+
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.chip{font-size:11px;padding:5px 11px;border-radius:20px;border:1px solid var(--teal-100);color:var(--teal-600);background:var(--teal-50);cursor:pointer;transition:all .12s;font-weight:500;}
+.chip:hover{background:var(--teal-100);}
+.chip.dis{opacity:.4;pointer-events:none;}
+
+/* CONFIRM CARD */
+.conf-card{background:var(--bg);border:2px solid var(--teal-400);border-radius:var(--radius-lg);padding:12px 14px;}
+.stats{display:flex;gap:7px;margin-bottom:10px;}
+.stat{flex:1;background:var(--bg2);border-radius:var(--radius);padding:8px;text-align:center;}
+.stat-n{font-size:17px;font-weight:600;color:var(--teal-600);line-height:1;}
+.stat-l{font-size:9px;color:var(--text2);font-family:'JetBrains Mono',monospace;margin-top:2px;}
+
+/* CATEGORY BLOCK */
+.cblock{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:7px;}
+.chead{padding:7px 12px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.cname{font-size:12px;font-weight:500;color:var(--text);}
+.cst{font-size:9.5px;padding:2px 7px;border-radius:8px;font-family:'JetBrains Mono',monospace;}
+.cst.full{background:var(--teal-50);color:var(--teal-600);}
+.cst.part{background:var(--amber-50);color:var(--amber-800);}
+.cst.none{background:var(--bg2);color:var(--text3);}
+.frow{display:flex;align-items:center;padding:6px 12px;border-bottom:1px solid var(--border);gap:7px;}
+.frow:last-child{border-bottom:none;}
+.fdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.fdot.ok{background:var(--teal-400);}
+.fdot.wn{background:#BA7517;}
+.fdot.ms{background:var(--border2);}
+.flabel{font-size:11px;color:var(--text2);min-width:108px;flex-shrink:0;}
+.fval{font-size:12px;color:var(--text);font-weight:500;flex:1;line-height:1.3;}
+.fval.miss{color:var(--text3);font-style:italic;font-weight:400;}
+.fedit{font-size:10.5px;color:var(--teal-600);cursor:pointer;padding:2px 8px;border-radius:5px;border:1px solid var(--teal-100);white-space:nowrap;background:transparent;font-family:'Sora',sans-serif;}
+.fedit:hover{background:var(--teal-50);}
+
+/* BUTTONS */
+.arow{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap;}
+.btn-p{padding:7px 15px;border-radius:7px;background:var(--teal-600);color:#fff;border:none;font-size:12px;font-weight:500;cursor:pointer;font-family:'Sora',sans-serif;}
+.btn-p:hover{background:var(--teal-800);}
+.btn-s{padding:7px 12px;border-radius:7px;border:1px solid var(--border2);background:transparent;font-size:12px;color:var(--text2);cursor:pointer;font-family:'Sora',sans-serif;}
+.btn-s:hover{background:var(--bg2);}
+.btn-t{font-size:11px;color:var(--text3);cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:4px;border:none;background:transparent;font-family:'Sora',sans-serif;}
+
+/* THINKING */
+.think{display:flex;align-items:center;gap:7px;padding:2px 0;}
+.tdots{display:flex;gap:3px;}
+.tdots span{width:4px;height:4px;background:var(--teal-100);border-radius:50%;animation:bl 1.2s ease infinite;}
+.tdots span:nth-child(2){animation-delay:.2s;}
+.tdots span:nth-child(3){animation-delay:.4s;}
+@keyframes bl{0%,80%,100%{opacity:.25;transform:scale(.8);}40%{opacity:1;transform:scale(1);}}
+
+/* QUEUE CARD */
+.queue-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:4px;}
+.queue-head{padding:10px 13px;background:var(--amber-50);border-bottom:1px solid rgba(186,117,23,0.2);display:flex;align-items:center;gap:8px;}
+.queue-icon{width:28px;height:28px;border-radius:50%;background:#FAEEDA;border:1px solid #FAC775;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.queue-title{font-size:12.5px;font-weight:600;color:var(--amber-800);}
+.queue-sub{font-size:11px;color:#854F0B;margin-top:1px;}
+.queue-body{padding:12px 13px;}
+.queue-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+.qstep{display:flex;align-items:flex-start;gap:9px;}
+.qstep-num{width:18px;height:18px;border-radius:50%;background:var(--bg2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:var(--text2);flex-shrink:0;font-family:'JetBrains Mono',monospace;}
+.qstep-text{font-size:11.5px;color:var(--text2);line-height:1.4;padding-top:1px;}
+.qstep-text strong{color:var(--text);font-weight:500;}
+.queue-ref{font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;background:var(--bg2);padding:6px 10px;border-radius:6px;margin-bottom:10px;}
+.queue-actions{display:flex;gap:6px;}
+
+/* FOOTER */
+.footer{padding:10px 14px;border-top:1px solid var(--border);background:var(--bg2);flex-shrink:0;}
+.fwrap{display:flex;gap:7px;align-items:center;}
+.finp{flex:1;padding:8px 12px;border-radius:8px;border:1px solid var(--border2);background:var(--bg);font-size:13px;color:var(--text);font-family:'Sora',sans-serif;outline:none;}
+.finp:focus{border-color:var(--teal-400);box-shadow:0 0 0 2px rgba(29,158,117,.1);}
+.fsnd{width:33px;height:33px;border-radius:7px;background:var(--teal-600);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fsnd:hover{background:var(--teal-800);}
+.fsnd svg{width:13px;height:13px;}
+
+/* RIGHT PANEL */
+.rpanel{width:272px;flex-shrink:0;border-left:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;position:absolute;right:0;top:0;bottom:0;z-index:4;transform:translateX(272px);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.rpanel.open{transform:translateX(0);}
+.rph{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg);}
+.rph-t{font-size:12.5px;font-weight:500;color:var(--text);}
+.rph-x{width:22px;height:22px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:center;}
+.rpb{flex:1;overflow-y:auto;padding:13px;}
+.rpbanner{background:var(--teal-50);border:1px solid var(--teal-100);border-radius:var(--radius);padding:8px 11px;margin-bottom:11px;font-size:12px;font-weight:500;color:var(--teal-800);}
+.rpsec{margin-bottom:12px;}
+.rpsecl{font-size:8.5px;font-weight:500;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:7px;}
+.rpi{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
+.rpi:last-child{border-bottom:none;}
+.rpc{width:13px;height:13px;border-radius:3px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;}
+.rpin{font-size:11.5px;color:var(--text);font-weight:500;}
+.rpid{font-size:10px;color:var(--text2);margin-top:1px;line-height:1.35;}
+.rpnote{font-size:10.5px;color:var(--text3);background:var(--bg);border-radius:var(--radius);padding:8px 10px;margin-top:8px;line-height:1.5;border:1px solid var(--border);}
+
+/* DRAWER */
+.dov{position:absolute;inset:0;background:rgba(0,0,0,.22);z-index:10;opacity:0;pointer-events:none;transition:opacity .2s;}
+.dov.open{opacity:1;pointer-events:all;}
+.drawer{position:absolute;top:0;right:-300px;width:300px;height:100%;background:var(--bg);border-left:1px solid var(--border);z-index:11;display:flex;flex-direction:column;transition:right .22s ease;}
+.drawer.open{right:0;}
+.drh{padding:12px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg2);}
+.drht{font-size:12.5px;font-weight:500;color:var(--text);}
+.drx{width:22px;height:22px;border-radius:4px;border:1px solid var(--border2);background:transparent;cursor:pointer;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:center;}
+.drb{flex:1;overflow-y:auto;padding:15px;}
+.drf{margin-bottom:14px;}
+.drl{font-size:10.5px;color:var(--text2);margin-bottom:5px;font-family:'JetBrains Mono',monospace;}
+.drl .req{color:#D85A30;}
+.dri,.drta,.drsel{width:100%;padding:8px 11px;border-radius:6px;border:1px solid var(--border2);background:var(--bg);font-size:13px;color:var(--text);font-family:'Sora',sans-serif;outline:none;}
+.drta{resize:vertical;min-height:65px;}
+.dri:focus,.drta:focus,.drsel:focus{border-color:var(--teal-400);}
+.drf-foot{padding:11px 15px;border-top:1px solid var(--border);display:flex;gap:7px;}
+.drs{flex:1;padding:9px;border-radius:7px;background:var(--teal-600);color:#fff;border:none;font-size:12.5px;font-weight:500;cursor:pointer;font-family:'Sora',sans-serif;}
+.drc{padding:9px 13px;border-radius:7px;border:1px solid var(--border2);background:transparent;font-size:12.5px;color:var(--text2);cursor:pointer;font-family:'Sora',sans-serif;}
+
+/* URL BOX */
+.ubox{background:var(--bg);border:2px dashed var(--border2);border-radius:var(--radius);padding:12px;margin-top:8px;display:flex;flex-direction:column;gap:8px;}
+.urow{display:flex;gap:6px;}
+.uinp{flex:1;padding:7px 10px;border-radius:6px;border:1px solid var(--border2);background:var(--bg);font-size:12.5px;color:var(--text);font-family:'Sora',sans-serif;outline:none;}
+.uinp:focus{border-color:var(--teal-400);}
+.ubtn{padding:7px 13px;border-radius:6px;background:var(--teal-600);color:#fff;border:none;font-size:12px;font-weight:500;cursor:pointer;font-family:'Sora',sans-serif;white-space:nowrap;}
+.ubtn:hover{background:var(--teal-800);}
+.uskip{font-size:11px;color:var(--text3);text-align:center;cursor:pointer;text-decoration:underline;}
+
+/* PREVIEW CARD */
+.prev-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:4px;}
+.prev-head{padding:9px 13px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+
+/* SPEAKER AUTOCOMPLETE */
+.spk-ac-wrap{position:relative;}
+.spk-ac-inp{width:100%;padding:8px 11px;border-radius:6px;border:1px solid var(--border2);background:var(--bg);font-size:13px;color:var(--text);font-family:'Sora',sans-serif;outline:none;}
+.spk-ac-inp:focus{border-color:var(--teal-400);box-shadow:0 0 0 2px rgba(29,158,117,.1);}
+.spk-ac-drop{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--bg);border:1px solid var(--border2);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:20;max-height:190px;overflow-y:auto;display:none;}
+.spk-ac-drop.open{display:block;}
+.spk-ac-item{padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--border);}
+.spk-ac-item:last-child{border-bottom:none;}
+.spk-ac-item:hover,.spk-ac-item:active{background:var(--teal-50);}
+.spk-ac-name{font-size:12.5px;font-weight:500;color:var(--text);}
+.spk-ac-meta{font-size:10.5px;color:var(--text3);margin-top:1px;}
+.spk-ac-empty{padding:10px 12px;font-size:12px;color:var(--text3);font-style:italic;}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+  <div class="proto-label">eMedEvents · Organizer Listing Flow · Prototype v4 · April 2026 · For feedback only — not production</div>
+  <div class="shell">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="tlogo">
+        <div class="tmark"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 5.5V10.5L8 14L2 10.5V5.5L8 2Z" stroke="white" stroke-width="1.2" fill="none"/><path d="M8 5V11M5 6.5L11 9.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <span class="tbrand">eMedEvents</span>
+        <div class="tdiv"></div>
+        <span class="tstep" id="tstep">Add new activity</span>
+      </div>
+      <span class="tpct" id="tpct"></span>
+      <button onclick="resetFlow()" style="font-size:11px;font-family:'JetBrains Mono',monospace;padding:4px 11px;border-radius:20px;border:1px solid rgba(0,0,0,.18);background:transparent;color:#888;cursor:pointer;letter-spacing:.03em;" title="Restart from beginning">↺ reset</button>
+    </div>
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+
+    <!-- BODY -->
+    <div class="body">
+
+      <!-- LEFT NAV -->
+      <div class="lnav" id="lnav">
+        <div class="lnav-top">
+          <div class="llogo"><div class="lmark"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 5.5V10.5L8 14L2 10.5V5.5L8 2Z" stroke="white" stroke-width="1.2" fill="none"/><path d="M8 5V11M5 6.5L11 9.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div><span class="lbrand">eMedEvents</span></div>
+          <span class="lpill" id="lpill">In-person event</span>
+        </div>
+        <div class="lgroups" id="lgroups"></div>
+
+        <!-- EXISTING CONFERENCES -->
+        <div class="lexist" id="lexist">
+          <div class="lexist-label">Your active listings</div>
+          <div class="lexist-item">
+            <div class="lexist-dot"></div>
+            <div>
+              <div class="lexist-name">Cardiology Summit 2025</div>
+              <div class="lexist-date">Mar 4–6 · Chicago, IL</div>
+            </div>
+          </div>
+          <div class="lexist-item">
+            <div class="lexist-dot"></div>
+            <div>
+              <div class="lexist-name">CME Workshop — EP</div>
+              <div class="lexist-date">Apr 18 · Online</div>
+            </div>
+          </div>
+          <div class="lexist-item">
+            <div class="lexist-dot"></div>
+            <div>
+              <div class="lexist-name">Interventional Cardiology</div>
+              <div class="lexist-date">May 22–23 · Houston, TX</div>
+            </div>
+          </div>
+          <div class="lexist-new" id="new-listing-indicator" style="display:none;">
+            <div class="lexist-new-dot"></div>
+            <span>Midwest Cardiology 2025 — pending approval</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN CHAT -->
+      <div class="main" id="main">
+        <div class="msgs" id="msgs"></div>
+        <div class="footer">
+          <div class="fwrap">
+            <input class="finp" id="finp" type="text" placeholder="Describe your activity or answer above…" onkeydown="if(event.key==='Enter')freeText()"/>
+            <button class="fsnd" onclick="freeText()"><svg viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3 8l5-5 5 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="rpanel" id="rpanel">
+        <div class="rph"><span class="rph-t">What to keep ready</span><button class="rph-x" onclick="closePanel()">✕</button></div>
+        <div class="rpb" id="rpb"></div>
+      </div>
+
+      <!-- DRAWER -->
+      <div class="dov" id="dov" onclick="closeDrawer()"></div>
+      <div class="drawer" id="drawer">
+        <div class="drh"><span class="drht" id="drht">Edit field</span><button class="drx" onclick="closeDrawer()">✕</button></div>
+        <div class="drb" id="drb"></div>
+        <div class="drf-foot"><button class="drc" onclick="closeDrawer()">Cancel</button><button class="drs" onclick="saveDrawer()">Save changes</button></div>
+      </div>
+
+    </div><!-- /body -->
+  </div><!-- /shell -->
+</div>
+
+<script>
+var _urlPath = false;          // true when organizer came via the URL scrape path
+var _editingCatIdx = -1;       // index of the category currently open in the edit drawer
+var _accreditationType = null; // 'accredited' | 'non-accredited' | 'unknown'
+var _specialFeatures  = [];    // selected special feature labels
+var _contacts = [];            // [{first,last,email,phone,dept,designation}, …]
+var _additionalTickets = [];   // [{type, amount}, …]
+var _editingTicketTypes = false;
+var _speakers = [];            // [{first,last,email,specialty,source:'db'|'new'}, …]
+var _speakerDbFiltered = [];   // current filtered results for autocomplete
+var _collaterals = {brochure:null,banner:null}; // uploaded file names
+var _socialHandles = [];       // [{platform, handle}, …]
+var NAV=[
+  {l:'Event information',r:true},{l:'Contacts',r:true},
+  {l:'Accreditation & credits',r:true},{l:'Tickets & registration',r:true},
+  {l:'Organization',r:false},
+  {l:'Speakers',r:false},{l:'Sessions',r:false},
+  {l:'Collaterals & branding',r:false},{l:'Terms & disclaimers',r:false},
+  {l:'Preview & publish',r:false}
+];
+// Maps CATS index → NAV index (Contacts is a flow step, not a CATS entry)
+var CAT_TO_NAV=[0,2,3,4];
+var CATS=[
+  {name:'Event information',found:9,total:11,st:'part',
+   fields:[
+     {d:'ok',l:'Event title',v:'Midwest Cardiology Symposium 2025'},
+     {d:'ok',l:'Format',v:'In-person'},
+     {d:'ok',l:'Start date & time',v:'Jun 12, 2025 · 10:00 AM EST'},
+     {d:'ok',l:'End date & time',v:'Jun 14, 2025 · 5:00 PM EST'},
+     {d:'ok',l:'Venue',v:'Chicago Marriott Downtown, IL'},
+     {d:'ok',l:'Accommodation',v:'Chicago Marriott Downtown — room block available, code CMSYM25'},
+     {d:'ok',l:'Website',v:'midwestcardio2025.org'},
+     {d:'wn',l:'Registration link',v:null},
+     {d:'ok',l:'Overview & description',v:'A three-day intensive symposium bringing together interventional cardiologists, electrophysiologists, and general cardiology practitioners to explore the latest advances in cardiovascular medicine.'},
+     {d:'ok',l:'Target audience',v:'Cardiologists · Internists · Primary Care Physicians'},
+     {d:'wn',l:'Target specialty',v:null}
+   ],q:null},
+  {name:'Accreditation & credits',found:1,total:4,st:'part',
+   fields:[
+     {d:'ok',l:'Accreditation body',v:'ACCME'},
+     {d:'ms',l:'Credit type',v:null},
+     {d:'wn',l:'CME credits offered',v:null},
+     {d:'ms',l:'Accreditation statement',v:null}
+   ],q:null},
+  {name:'Tickets & registration',found:2,total:7,st:'part',
+   fields:[
+     {d:'ok',l:'Currency',v:'USD'},
+     {d:'ok',l:'Registration fees',v:'$450'},
+     {d:'ms',l:'Registration start date',v:null},
+     {d:'ms',l:'Registration end date',v:null},
+     {d:'ms',l:'Early bird pricing',v:null},
+     {d:'ms',l:'Group discount',v:null},
+     {d:'ms',l:'Additional ticket types',v:null}
+   ],q:null},
+  {name:'Organization',found:1,total:1,st:'full',
+   fields:[{d:'ok',l:'Organizer',v:'Kalenmark Medical Education'}],
+   q:null}
+];
+var DRAWERS={
+  accred:{t:'Edit accreditation body',fs:[{l:'Accreditation body',req:1,type:'select',opts:['ACCME','ANCC','AANP','AOA CCME','Other'],v:'ACCME'},{l:'Accredited event ID',req:0,type:'text',v:'',ph:'e.g. ACE-2025-1234'}]},
+  credits:{t:'Add CME/CE credits',fs:[{l:'Credit type',req:1,type:'select',opts:['AMA PRA Category 1','ANCC Contact Hours','AOA Category 1-A','Other'],v:''},{l:'Number of credits',req:1,type:'text',v:'',ph:'e.g. 8.5'},{l:'Expiry date',req:0,type:'text',v:'',ph:'MM/DD/YYYY'}]},
+  stmt:{t:'Accreditation statement',fs:[{l:'Statement text',req:0,type:'textarea',v:'',ph:'Paste accreditation statement…'}]},
+  curr:{t:'Edit currency',fs:[{l:'Currency',req:1,type:'select',opts:['USD','EUR','GBP','CAD','AUD'],v:'USD'}]},
+  ticket:{t:'Edit ticket',fs:[{l:'Ticket name',req:1,type:'text',v:'General admission',ph:''},{l:'Price (USD)',req:1,type:'text',v:'450',ph:'0.00'},{l:'Available until',req:0,type:'text',v:'',ph:'MM/DD/YYYY'}]},
+  early:{t:'Add early bird pricing',fs:[{l:'Ticket name',req:1,type:'text',v:'Early bird',ph:''},{l:'Price (USD)',req:1,type:'text',v:'',ph:'0.00'},{l:'Deadline',req:1,type:'text',v:'',ph:'MM/DD/YYYY'}]},
+  org:{t:'Edit organizer',fs:[{l:'Organization name',req:1,type:'text',v:'Kalenmark Medical Education',ph:''},{l:'Add co-organizer',req:0,type:'text',v:'',ph:'Search organization…'}]},
+  brochure:{t:'Upload event brochure',fs:[{l:'Brochure file (PDF, HTML, DOC)',req:0,type:'file',v:'',ph:''}]},
+  banner:{t:'Upload listing banner',fs:[{l:'Event listing banner (302×126px, max 2MB)',req:0,type:'file',v:'',ph:''}]}
+};
+
+function resetFlow(){
+  _urlPath = false;
+  _editingCatIdx = -1;
+  _accreditationType = null;
+  _specialFeatures = [];
+  _contacts = [];
+  _additionalTickets = [];
+  _editingTicketTypes = false;
+  _speakers = [];
+  _speakerDbFiltered = [];
+  _collaterals = {brochure:null,banner:null};
+  _socialHandles = [];
+  // Clear messages
+  G('msgs').innerHTML='';
+  // Hide left nav and right panel
+  G('lnav').classList.remove('open');
+  G('main').classList.remove('lshift');
+  G('main').classList.remove('rshift');
+  G('rpanel').classList.remove('open');
+  // Close drawer if open
+  G('dov').classList.remove('open');
+  G('drawer').classList.remove('open');
+  // Reset progress and topbar
+  setProg(0);
+  G('tstep').textContent='Add new activity';
+  G('tpct').textContent='';
+  // Reset nav
+  buildNav(-1);
+  // Hide the pending listing indicator
+  var ind=G('new-listing-indicator');if(ind)ind.style.display='none';
+  // Restart opening message
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:10px;">Hi Dr. Kumar! Let\'s get your activity listed. First things first —</div>'
+    +'<div style="font-size:13.5px;font-weight:500;color:var(--text);margin-bottom:10px;">Do you already have an established website or URL for the activity you\'re listing?</div>'
+    +'<div class="chips" id="url-chips">'
+    +'<span class="chip" onclick="hasUrl()">Yes, I have a URL</span>'
+    +'<span class="chip" onclick="noUrl()">No, I don\'t have one yet</span>'
+    +'</div>'
+  );
+}
+
+// Simulated logged-in organizer
+var ORGANIZER = {name:'Dr. Rajesh Kumar', email:'rajesh.kumar@kalenmark.org'};
+
+(function init(){
+  buildNav(-1);
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:10px;">Hi Dr. Kumar! Let\'s get your activity listed. First things first —</div>'
+    +'<div style="font-size:13.5px;font-weight:500;color:var(--text);margin-bottom:10px;">Do you already have an established website or URL for the activity you\'re listing?</div>'
+    +'<div class="chips" id="url-chips">'
+    +'<span class="chip" onclick="hasUrl()">Yes, I have a URL</span>'
+    +'<span class="chip" onclick="noUrl()">No, I don\'t have one yet</span>'
+    +'</div>'
+  );
+})();
+
+/* ── PATH A: Has URL ── */
+function hasUrl(){
+  dis('url-chips');addMsg('usr','Yes, I have a URL');
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="font-size:13px;margin-bottom:8px;">Paste your event URL below. I\'ll read your publicly available page to detect the activity type and pre-fill as many fields as I can — saving you most of the typing.</div>'
+      +'<div style="background:#FAEEDA;border:1px solid #FAC775;border-radius:7px;padding:8px 11px;margin-bottom:8px;font-size:11.5px;color:#633806;line-height:1.55;">'
+      +'<strong style="font-weight:500;">A quick note on privacy:</strong> We only read publicly visible content on your page — the same information any visitor would see. We do not access anything behind a login, stored passwords, private data, or any part of your site that is not publicly available. Your URL is used solely to speed up your listing.'
+      +'</div>'
+      +'<div class="ubox" id="ubox">'
+      +'<div style="font-size:10.5px;color:#888;font-family:\'JetBrains Mono\',monospace;">paste your event URL &nbsp;·&nbsp; <span style="color:#854F0B;">demo: include "blocked" for scrape failure, "resume" for draft found</span></div>'
+      +'<div class="urow"><input class="uinp" id="uinp" placeholder="https://yourevent.org" onkeydown="if(event.key===\'Enter\')doUrl()"/><button class="ubtn" onclick="doUrl()">Fetch &amp; detect</button></div>'
+      +'</div>'
+    );
+    setTimeout(function(){var u=G('uinp');if(u)u.focus();},60);
+  },400);
+}
+
+/* ── PATH B: No URL — upsell then manual ── */
+function noUrl(){
+  dis('url-chips');addMsg('usr','No, I don\'t have one yet');
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="font-size:13px;margin-bottom:10px;">No problem. Before we continue —</div>'
+      +'<div style="background:#E1F5EE;border:1.5px solid #9FE1CB;border-radius:10px;padding:13px 15px;">'
+      +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">'
+      +'<div style="width:32px;height:32px;border-radius:7px;background:#0F6E56;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🌐</div>'
+      +'<div><div style="font-size:13px;font-weight:600;color:#085041;">eMedEvents Web Hosting</div>'
+      +'<div style="font-size:11px;color:#0F6E56;">Professional event websites, built and hosted for you</div></div>'
+      +'</div>'
+      +'<div style="font-size:12px;color:#0F6E56;line-height:1.6;margin-bottom:10px;">We can build and host a dedicated website for your activity — including registration, CME credit tracking, and speaker pages. Our team handles everything. You get a professional URL to share with attendees.</div>'
+      +'<div style="font-size:12.5px;font-weight:500;color:#085041;margin-bottom:8px;">Would you be interested in learning more?</div>'
+      +'<div class="chips" id="upsell-chips">'
+      +'<span class="chip" onclick="upsellYes()">Yes, I\'m interested</span>'
+      +'<span class="chip" onclick="upsellNo()">Not right now</span>'
+      +'</div>'
+      +'</div>'
+    );
+  },500);
+}
+
+function upsellYes(){
+  dis('upsell-chips');addMsg('usr','Yes, I\'m interested');
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="font-size:13px;margin-bottom:10px;">Someone from our team will reach out to discuss options. What\'s the best email to contact you on?</div>'
+      +'<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;" id="email-box">'
+      +'<div style="font-size:10.5px;color:#888;font-family:\'JetBrains Mono\',monospace;margin-bottom:6px;">contact email — pre-filled from your account</div>'
+      +'<div style="display:flex;gap:7px;align-items:center;">'
+      +'<input class="uinp" id="email-inp" style="flex:1;" value="'+ORGANIZER.email+'" placeholder="your@email.com"/>'
+      +'<button class="ubtn" id="email-btn" onclick="confirmEmail()">Confirm</button>'
+      +'</div>'
+      +'<div style="font-size:11px;color:var(--text3);margin-top:5px;">This is your account email. Update it if you\'d prefer a different contact.</div>'
+      +'</div>'
+    );
+  },400);
+}
+
+function confirmEmail(){
+  var emailEl=G('email-inp');
+  var email=emailEl?emailEl.value.trim():ORGANIZER.email;
+  if(emailEl)emailEl.disabled=true;
+  var btn=G('email-btn');if(btn){btn.style.pointerEvents='none';btn.style.opacity='.5';}
+  addMsg('usr','Confirmed — '+email);
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="background:#E1F5EE;border:1px solid #9FE1CB;border-radius:8px;padding:10px 13px;margin-bottom:10px;">'
+      +'<div style="font-size:12.5px;font-weight:500;color:#085041;margin-bottom:2px;">✓ Got it — someone will be in touch</div>'
+      +'<div style="font-size:12px;color:#0F6E56;">We\'ll contact <strong>'+email+'</strong> within 1–2 business days to discuss hosting options.</div>'
+      +'</div>'
+      +'<div style="font-size:13px;color:var(--text);margin-bottom:4px;">Now let\'s get back to your listing — we\'re right on track. Since there\'s no URL yet I\'ll ask you a couple of questions to understand what you have in mind, and we\'ll set everything up together.</div>'
+    );
+    setTimeout(startManualTypeDetect,700);
+  },400);
+}
+
+function upsellNo(){
+  dis('upsell-chips');addMsg('usr','Not right now');
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="font-size:13px;color:var(--text);margin-bottom:4px;">Understood — no worries at all. Let\'s get straight back to your listing. Since there\'s no URL I\'ll ask you a couple of questions to understand what you\'re planning, and we\'ll build it out together.</div>'
+    );
+    setTimeout(startManualTypeDetect,600);
+  },400);
+}
+
+/* ── MANUAL TYPE DETECTION — free text description, no chip list ── */
+function startManualTypeDetect(){
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:8px;">Tell me a bit about the activity you\'re planning — even if it\'s just an early idea. What is it, and how will people participate?</div>'
+    +'<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;" id="desc-box">'
+    +'<textarea id="desc-inp" style="width:100%;border:none;background:transparent;font-size:13px;font-family:\'Sora\',sans-serif;color:var(--text);resize:none;outline:none;min-height:64px;" placeholder="e.g. A two-day gathering for cardiologists in Chicago with workshops and a keynote… or I\'m thinking of recording some video lectures on oncology…"></textarea>'
+    +'<div style="display:flex;justify-content:flex-end;margin-top:6px;">'
+    +'<button class="ubtn" onclick="detectTypeFromDesc()">Suggest activity type</button>'
+    +'</div>'
+    +'</div>'
+  );
+  setTimeout(function(){var d=G('desc-inp');if(d)d.focus();},60);
+}
+
+function detectTypeFromDesc(){
+  var inp=G('desc-inp');
+  var txt=inp?inp.value.trim():'';
+  if(!txt){inp&&inp.focus();return;}
+  // Disable input box
+  var box=G('desc-box');if(box){box.style.pointerEvents='none';box.style.opacity='.6';}
+  addMsg('usr',txt);
+
+  var tid=think('Working out what type of activity this is…');
+  setTimeout(function(){
+    rm(tid);
+    // Keyword detection
+    var t=txt.toLowerCase();
+    var detected=null;
+    if(t.match(/hybrid/)) detected={label:'Hybrid event',icon:'🔀'};
+    else if(t.match(/webinar|zoom|teams|virtual|online|live.stream|live stream/)) detected={label:'Live webinar',icon:'💻'};
+    else if(t.match(/webcast|record|video|replay|on.demand/)) detected={label:'Webcast',icon:'🎬'};
+    else if(t.match(/podcast|audio|episode|listen/)) detected={label:'Podcast',icon:'🎙'};
+    else if(t.match(/journal|article|doi|reading|monograph|paper/)) detected={label:'Journal CME',icon:'📰'};
+    else if(t.match(/text|self.pac|module|online course|e.learn/)) detected={label:'Text-based CME',icon:'📄'};
+    else if(t.match(/conference|in.person|venue|hotel|gathering|symposium|summit|workshop|meeting|attend|chicago|boston|dallas|new york/)) detected={label:'In-person conference',icon:'👥'};
+
+    if(detected){
+      // Match found — show confirm card
+      showTypeConfirmCard(detected.label,detected.icon,'manual');
+    } else {
+      // No match — default to in-person with explanation
+      addMsg('ai',null,
+        '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:11px 13px;">'
+        +'<div style="font-size:12.5px;font-weight:500;color:var(--text);margin-bottom:5px;">Looks like the activity type isn\'t fully decided yet — and that\'s completely fine.</div>'
+        +'<div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:10px;">We\'ll list this as an <strong style="color:#085041;">In-person conference</strong> for now — it\'s the most common starting point. Once you have a clearer direction, you can change the type at any time directly from your listings dashboard. Everything you enter today carries over when you update it.</div>'
+        +'<div style="display:flex;gap:7px;flex-wrap:wrap;">'
+        +'<button class="btn-p" onclick="confirmType()">Works for me — let\'s continue</button>'
+        +'<button class="btn-t" onclick="disActBtns();addMsg(\'usr\',\'Let me pick the type\');setTimeout(showTypePickerFallback,400);">Let me pick the type</button>'
+        +'</div>'
+        +'</div>'
+      );
+    }
+  },1300);
+}
+
+function showTypePickerFallback(){
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:8px;">Which of these is closest to what you have in mind?</div>'
+    +'<div class="chips" id="type-chips">'
+    +'<span class="chip" onclick="manualType(\'In-person conference\',\'👥\')">In-person conference</span>'
+    +'<span class="chip" onclick="manualType(\'Live webinar\',\'💻\')">Live webinar</span>'
+    +'<span class="chip" onclick="manualType(\'Hybrid event\',\'🔀\')">Hybrid event</span>'
+    +'<span class="chip" onclick="manualType(\'Webcast\',\'🎬\')">Webcast</span>'
+    +'<span class="chip" onclick="manualType(\'Podcast\',\'🎙\')">Podcast</span>'
+    +'<span class="chip" onclick="manualType(\'Text-based CME\',\'📄\')">Text-based CME</span>'
+    +'<span class="chip" onclick="manualType(\'Journal CME\',\'📰\')">Journal CME</span>'
+    +'</div>'
+  );
+}
+
+function manualType(label,icon){
+  dis('type-chips');addMsg('usr',label);
+  setTimeout(function(){showTypeConfirmCard(label,icon,'manual');},400);
+}
+
+/* ── TYPE CONFIRM CARD — used by both scrape and manual paths ── */
+function showTypeConfirmCard(label,icon,source){
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:9px;">'
+    +(source==='scrape'
+      ?'Based on your page, this looks like a <strong style="color:#085041;font-weight:600;">'+label+'</strong>. Does that look right?'
+      :'Based on what you described, this sounds like a <strong style="color:#085041;font-weight:600;">'+label+'</strong>. Does that look right?')
+    +'</div>'
+    +'<div class="conf-card">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">'
+    +'<div style="width:30px;height:30px;border-radius:7px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">'+icon+'</div>'
+    +'<div><div style="font-size:13.5px;font-weight:600;color:#085041;">'+label+'</div><div style="font-size:11px;color:#0F6E56;">9 sections · ~12 min to complete</div></div>'
+    +'</div>'
+    +'<div class="stats">'
+    +'<div class="stat"><div class="stat-n">12</div><div class="stat-l">min estimated</div></div>'
+    +'<div class="stat"><div class="stat-n">9</div><div class="stat-l">sections total</div></div>'
+    +'<div class="stat"><div class="stat-n">4</div><div class="stat-l">required</div></div>'
+    +'</div>'
+    +'<div style="display:flex;gap:7px;flex-wrap:wrap;">'
+    +'<button class="btn-p" onclick="confirmType()">Yes, let\'s go</button>'
+    +'<button class="btn-s" onclick="openChecklist()">See what to keep ready</button>'
+    +'<button class="btn-t" onclick="notRight()">Not right</button>'
+    +'</div></div>'
+  );
+}
+
+function qs(v){addMsg('usr',v);setTimeout(function(){showTypeConfirmCard('In-person conference','👥','manual');},600);}
+function freeText(){
+  var f=G('finp'),v=f.value.trim();if(!v)return;f.value='';addMsg('usr',v);
+  var low=v.toLowerCase().replace(/[!.,?]+$/,'').trim();
+  var isYes=/^(yes|yeah|yep|sure|ok|okay|yup|confirmed|confirm|done|proceed|continue|go|ready|correct|right|sounds good|looks good)$/.test(low);
+  var isNo=/^(no|nope|nah|not yet|skip|cancel|back|never mind|nevermind|stop)$/.test(low);
+  var isHelp=/^(help|what|how|\?|stuck|confused|lost|what do i do|what next|now what)$/.test(low);
+  setTimeout(function(){
+    if(isYes){
+      addMsg('ai',null,'<div style="font-size:12.5px;color:var(--text2);">Got it! Please use the <strong style="color:#085041;">action buttons</strong> in the conversation to confirm and move forward — they keep the workflow in sync.</div>');
+    } else if(isNo){
+      addMsg('ai',null,'<div style="font-size:12.5px;color:var(--text2);">Understood. Use the buttons above to navigate — for example <em>Skip</em>, <em>Not right</em>, or <em>Cancel</em> depending on the current step.</div>');
+    } else if(isHelp){
+      addMsg('ai',null,'<div style="font-size:12.5px;color:var(--text2);line-height:1.6;">The action buttons in the conversation guide the workflow. Use <strong style="color:#085041;">Confirm &amp; continue</strong> to move forward, or the <strong style="color:#085041;">Edit / Add</strong> buttons on any card to update a field. If you\'re unsure where you are, scroll up to find the active step.</div>');
+    } else {
+      addMsg('ai',null,'<div style="font-size:12.5px;color:var(--text2);">Thanks for that! To keep things on track, please use the <strong style="color:#085041;">buttons in the conversation</strong> — they\'ll guide you through each step of the workflow.</div>');
+    }
+  },300);
+}
+
+function openChecklist(){
+  var b=G('rpb');
+  b.innerHTML='<div class="rpbanner">👥 In-person event</div>';
+  function sec(lbl,items){
+    var h='<div class="rpsec"><div class="rpsecl">'+lbl+'</div>';
+    items.forEach(function(it){h+='<div class="rpi"><div class="rpc"></div><div><div class="rpin">'+it[0]+'</div><div class="rpid">'+it[1]+'</div></div></div>';});
+    return h+'</div>';
+  }
+  b.innerHTML+=sec('Required to publish',[
+    ['Event title','Full official name of the activity'],
+    ['Start & end date with time','Date, time and timezone for opening and closing'],
+    ['Venue name & address','Full venue name, city and state'],
+    ['Event website','Public URL for the activity'],
+    ['Registration link','Where HCPs sign up externally'],
+    ['Overview & description','2–3 sentence summary of the activity'],
+    ['Target audience','Professions this activity is designed for'],
+    ['Target specialty','Medical specialties covered'],
+    ['Organizer name','Primary organizing institution']
+  ]);
+  b.innerHTML+=sec('Accreditation',[
+    ['Accreditation status','Accredited or non-accredited activity'],
+    ['Accreditation body','ACCME, ANCC, AOA or other (if accredited)'],
+    ['CME/CE credit count','Number and type of credits offered'],
+    ['Accredited event ID','From your accreditation body (optional)'],
+    ['Accreditation statement','Full statement text (optional)']
+  ]);
+  b.innerHTML+=sec('In-person specific',[
+    ['Ticket price(s)','General admission, early bird, group rates'],
+    ['Accommodation details','Hotel name and room block code if available'],
+    ['Special features','MOC, Board Review, Cruise CME etc. if applicable']
+  ]);
+  b.innerHTML+=sec('Optional — enriches listing',[
+    ['Contact persons','Name, email, phone, designation (up to 5)'],
+    ['Speaker names & bios','Increases discoverability and trust'],
+    ['Session schedule','Individual session titles and times'],
+    ['Event banner (302×126px)','Shown on your listing page'],
+    ['Refund policy','Cancellation and refund terms']
+  ]);
+  b.innerHTML+='<div class="rpnote">You don\'t need everything upfront. Required fields unlock publishing — optional fields can be added anytime after.</div>';
+  G('rpanel').classList.add('open');
+  G('main').classList.add('rshift');
+}
+function closePanel(){G('rpanel').classList.remove('open');G('main').classList.remove('rshift');}
+
+function confirmType(){
+  disActBtns();addMsg('usr','Yes, let\'s go');closePanel();
+  setTimeout(function(){
+    G('lnav').classList.add('open');G('main').classList.add('lshift');
+    setProg(5);G('tstep').textContent='Event information';
+    setTimeout(function(){
+      if(_urlPath){
+        // URL path — we have scraped data, go straight to category confirm
+        addMsg('ai',null,'<div style="font-size:13px;">Your <strong style="color:#085041;">In-person event</strong> listing is set up. Here\'s what I extracted from your page — let\'s confirm it category by category:</div>');
+        setTimeout(function(){showCat(0);},400);
+      } else {
+        // Manual path — ask for each field
+        addMsg('ai',null,'<div style="font-size:13px;">Your <strong style="color:#085041;">In-person event</strong> listing is set up — 4 required sections, 4 optional. Since there\'s no URL, I\'ll ask for each field directly. Let\'s start with <strong style="color:#085041;">Event information</strong>:</div>');
+        setTimeout(function(){showCat(0,true);},400);
+      }
+    },500);
+  },400);
+}
+
+function askUrl(){
+  addMsg('ai',null,'<div style="font-size:13px;margin-bottom:7px;">Your <strong style="color:#085041;">In-person event</strong> listing is set up — 4 required sections, 4 optional. Let\'s start with <strong style="color:#085041;">Event information</strong>.</div>'
+    +'<div style="font-size:12.5px;color:#5F5E5A;margin-bottom:8px;">Do you have an event website? I\'ll pull the details automatically.</div>'
+    +'<div class="ubox" id="ubox">'
+    +'<div style="font-size:10.5px;color:#888;font-family:\'JetBrains Mono\',monospace;">paste your event URL · <span style="color:#854F0B;">tip: type "blocked" to demo scrape failure, "resume" to demo draft found</span></div>'
+    +'<div class="urow"><input class="uinp" id="uinp" placeholder="https://yourevent.org" onkeydown="if(event.key===\'Enter\')doUrl()"/><button class="ubtn" onclick="doUrl()">Fetch details</button></div>'
+    +'<div class="uskip" onclick="doSkip()">No URL — I\'ll enter details manually</div>'
+    +'</div>');
+  setTimeout(function(){var u=G('uinp');if(u)u.focus();},60);
+}
+
+function doUrl(){
+  var v=(G('uinp')||{}).value.trim()||'https://midwestcardio2025.org';
+  _urlPath = true;
+  disBox('ubox');addMsg('usr',v);
+
+  // Step 1 — check for existing draft
+  var tid=think('Checking for an existing draft for this URL…');
+  setTimeout(function(){
+    rm(tid);
+
+    // Simulate: 30% chance draft found, 20% scrape blocked, 50% normal scrape
+    var scenario = v.indexOf('blocked') > -1 ? 'blocked'
+                 : v.indexOf('resume') > -1 ? 'draft'
+                 : 'scrape'; // default for demo — always scrape unless URL contains keyword
+
+    if(scenario === 'draft'){
+      // OQ-1: Draft found — fast-track path
+      addMsg('ai',null,
+        '<div style="font-size:13px;margin-bottom:8px;">I found an existing draft for this URL from your previous session. I\'ve pre-filled everything you already confirmed — you\'re being taken directly to the first incomplete section.</div>'
+        +'<div style="background:#E1F5EE;border:1px solid #9FE1CB;border-radius:8px;padding:10px 13px;font-size:12px;color:#085041;">'
+        +'<div style="font-weight:500;margin-bottom:6px;">✓ Already confirmed in your previous session</div>'
+        +'<div style="display:flex;flex-direction:column;gap:3px;">'
+        +'<div>✓ Event information — complete</div>'
+        +'<div>✓ Accreditation &amp; credits — complete</div>'
+        +'<div style="color:#854F0B;font-weight:500;">→ Tickets &amp; registration — incomplete, continuing here</div>'
+        +'</div></div>'
+      );
+      setTimeout(function(){ showCat(2); },800); // jump to cat 2 (tickets)
+
+    } else if(scenario === 'blocked'){
+      // OQ-2: Scrape failed — friendly fallback to manual
+      addMsg('ai',null,
+        '<div style="background:#FAEEDA;border:1px solid #FAC775;border-radius:8px;padding:10px 13px;margin-bottom:8px;">'
+        +'<div style="font-size:12.5px;font-weight:500;color:#633806;margin-bottom:3px;">Auto-fill blocked</div>'
+        +'<div style="font-size:12px;color:#854F0B;line-height:1.55;">We weren\'t able to auto-fill from that page — some sites block automated access. No problem at all, we\'ll walk you through each field together.</div>'
+        +'</div>'
+        +'<div style="font-size:13px;color:#5F5E5A;">Let\'s start with <strong style="color:#085041;">Event information</strong>. What\'s the full name of your activity?</div>'
+      );
+      setTimeout(function(){ showCat(0,true); },600); // manual mode
+
+    } else {
+      // Normal path — scrape succeeded → show type detect confirm card
+      var tid2=think('Fetching and analysing your event page…');
+      setTimeout(function(){
+        rm(tid2);
+        var tid3=think('Detecting activity type from page content…');
+        setTimeout(function(){
+          rm(tid3);
+          showTypeConfirmCard('In-person conference','👥','scrape');
+        },800);
+      },1800);
+    }
+  },1000);
+}
+function doSkip(){
+  disBox('ubox');addMsg('usr','No URL — entering manually');
+  setTimeout(function(){
+    addMsg('ai',null,'<div style="font-size:13px;">No problem — I\'ll ask for each field directly. Starting with <strong style="color:#085041;">Event information</strong>:</div>');
+    setTimeout(function(){showCat(0,true);},400);
+  },400);
+}
+
+function buildCatBlockHtml(i,manual){
+  var cat=CATS[i];
+  var fl=manual?'0 / '+cat.total+' fields (manual entry)':cat.found+' / '+cat.total+' fields found';
+  var sc=manual?'none':cat.st;
+  var html='<div class="cblock"><div class="chead"><span class="cname">'+cat.name+'</span><span class="cst '+sc+'">'+fl+'</span></div>';
+  cat.fields.forEach(function(f){
+    var d=manual?'ms':f.d,v=manual?null:f.v;
+    var locked=f.l==='Format';
+    var editFn=f.l==='Additional ticket types'?'openTicketTypesDrawer()':'openCatEditDrawer('+i+')';
+    html+='<div class="frow"><div class="fdot '+d+'"></div><span class="flabel">'+f.l+'</span>'
+      +(v?'<span class="fval">'+v+'</span>':'<span class="fval miss">not found</span>')
+      +(!locked?'<button class="fedit" onclick="'+editFn+'">'+( v?'Edit':'Add')+'</button>':'')+'</div>';
+  });
+  html+='</div>';
+  if(cat.q){
+    html+='<div style="font-size:12.5px;color:#5F5E5A;margin-top:8px;">'+cat.q+'</div><div class="chips" id="ch'+i+'">';
+    cat.chips.forEach(function(c){html+='<span class="chip" onclick="chipAns('+i+',\''+c+'\')">'+c+'</span>';});
+    html+='</div>';
+  } else if(i===3){
+    html+='<div class="arow"><button class="btn-p" onclick="confirmCat(3)">Confirm &amp; continue</button><button class="btn-s" onclick="openCoOrgDrawer()">Add co-organizer</button></div>';
+  } else {
+    html+='<div class="arow"><button class="btn-p" onclick="confirmCat('+i+')">Confirm &amp; continue</button><button class="btn-s" onclick="openCatEditDrawer('+i+')">Edit a field</button></div>';
+  }
+  return html;
+}
+
+function showCat(i,manual){
+  var cat=CATS[i];if(!cat)return;
+  buildNav(CAT_TO_NAV[i]!==undefined?CAT_TO_NAV[i]:i);
+  setProg(10+i*18);G('tstep').textContent=cat.name;
+  addMsg('ai',null,'<div id="cat-card-'+i+'">'+buildCatBlockHtml(i,manual)+'</div>');
+}
+
+function chipAns(i,v){dis('ch'+i);addMsg('usr',v);setTimeout(function(){confirmCat(i);},500);}
+function confirmCat(i){
+  disActBtns();
+  // After Event information — ask Special Features → Contacts → Accreditation type
+  if(i===0){ setTimeout(showSpecialFeaturesQuestion,500); return; }
+  // After Tickets & registration — all 4 mandatory sections done
+  if(i===2){ setTimeout(showMandatoryGate,500); return; }
+  // After Organization — go straight to Speakers
+  if(i===3){ setTimeout(showSpeakers,500); return; }
+  var next=i+1;
+  if(next<CATS.length){
+    setTimeout(function(){
+      addMsg('ai',null,'<div style="font-size:13px;">Confirmed. Moving to <strong style="color:#085041;">'+CATS[next].name+'</strong>:</div>');
+      setTimeout(function(){showCat(next);},350);
+    },400);
+  } else { setTimeout(showGate,500); }
+}
+
+// ── Special Features ──────────────────────────────────────────────────────────
+var SF_LIST=['MOC (Maintenance of Certification)','Remedial Courses','Cruise CME','Exotic Location','Board Review Courses'];
+function showSpecialFeaturesQuestion(){
+  _specialFeatures=[];
+  var chips=SF_LIST.map(function(f,i){
+    return '<span class="chip" id="sf-'+i+'" onclick="toggleSF('+i+',this)" style="transition:all .15s;">'+f+'</span>';
+  }).join('');
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:8px;">Does this event include any of the following? Select all that apply, then click <strong>Continue</strong>.</div>'
+    +'<div class="chips" id="sf-chips">'+chips+'</div>'
+    +'<div class="arow" style="margin-top:10px;"><button class="btn-p" onclick="confirmSpecialFeatures()">Continue</button></div>'
+  );
+}
+function toggleSF(i,el){
+  var label=SF_LIST[i];
+  var idx=_specialFeatures.indexOf(label);
+  if(idx===-1){
+    _specialFeatures.push(label);
+    el.style.background='var(--teal-400)';el.style.color='#fff';el.style.borderColor='var(--teal-400)';
+  } else {
+    _specialFeatures.splice(idx,1);
+    el.style.background='';el.style.color='';el.style.borderColor='';
+  }
+}
+function confirmSpecialFeatures(){
+  disActBtns();
+  var label=_specialFeatures.length?_specialFeatures.join(', '):'None of these apply';
+  addMsg('usr',label);
+  setTimeout(showContactsCard,500);
+}
+
+// ── Accreditation type ────────────────────────────────────────────────────────
+function showAccreditationTypeQuestion(){
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:8px;">Is this an accredited CME/CE activity?</div>'
+    +'<div class="chips" id="accred-type-chips">'
+    +'<span class="chip" onclick="setAccredType(\'accredited\')">Yes — it is accredited</span>'
+    +'<span class="chip" onclick="setAccredType(\'non-accredited\')">No — it is not accredited</span>'
+    +'<span class="chip" onclick="setAccredType(\'unknown\')">Not sure yet</span>'
+    +'</div>'
+  );
+}
+function setAccredType(type){
+  dis('accred-type-chips');
+  _accreditationType=type;
+  if(type==='accredited'){
+    addMsg('usr','Yes — it is accredited');
+    setTimeout(showAccreditedIdQuestion,500);
+  } else if(type==='non-accredited'){
+    addMsg('usr','No — it is not accredited');
+    setTimeout(showAccreditationUpsell,500);
+  } else {
+    addMsg('usr','Not sure yet');
+    setTimeout(function(){proceedToAccreditationCat();},500);
+  }
+}
+
+// ── Accredited event ID (optional) ───────────────────────────────────────────
+function showAccreditedIdQuestion(){
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:8px;">Do you have an accredited event ID from your accreditation body? This is optional but helps us verify your listing faster.</div>'
+    +'<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:11px 13px;" id="accid-box">'
+    +'<div style="font-size:10.5px;color:#888;font-family:\'JetBrains Mono\',monospace;margin-bottom:6px;">accredited event ID (optional)</div>'
+    +'<div style="display:flex;gap:7px;">'
+    +'<input class="uinp" id="accid-inp" placeholder="e.g. ACE-2025-1234" style="flex:1;"/>'
+    +'<button class="ubtn" onclick="confirmAccreditedId()">Continue</button>'
+    +'</div>'
+    +'<div style="margin-top:5px;font-size:11px;color:var(--text3);">Leave blank if you don\'t have one — you can add it later.</div>'
+    +'</div>'
+  );
+}
+function confirmAccreditedId(){
+  var val=(G('accid-inp')||{}).value||'';
+  disBox('accid-box');
+  addMsg('usr',val.trim()||'No accredited event ID — I\'ll add it later');
+  // Store it back into the accreditation card field if present
+  if(val.trim() && CATS[1] && CATS[1].fields){
+    var idField=CATS[1].fields.find(function(f){return f.l==='Accredited event ID';});
+    if(idField){idField.v=val.trim();idField.d='ok';}
+  }
+  setTimeout(proceedToAccreditationCat,500);
+}
+
+// ── Accreditation upsell (non-accredited path) ────────────────────────────────
+function showAccreditationUpsell(){
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:10px;">Before we continue —</div>'
+    +'<div style="background:#E1F5EE;border:1.5px solid #9FE1CB;border-radius:10px;padding:13px 15px;">'
+    +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">'
+    +'<div style="width:32px;height:32px;border-radius:7px;background:#0F6E56;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🏅</div>'
+    +'<div><div style="font-size:13px;font-weight:600;color:#085041;">eMedEvents Accreditation Services</div>'
+    +'<div style="font-size:11px;color:#0F6E56;">Full CME/CE accreditation support for your activity</div></div>'
+    +'</div>'
+    +'<div style="font-size:12px;color:#0F6E56;line-height:1.6;margin-bottom:10px;">eMedEvents can help you achieve accreditation for your activity through our established relationships with accreditation bodies including ACCME, ANCC, and others. Our team guides you through the application process, documentation, and compliance — so you can focus on your content.</div>'
+    +'<div style="font-size:12.5px;font-weight:500;color:#085041;margin-bottom:8px;">Would you like to learn more about accreditation support?</div>'
+    +'<div class="chips" id="accred-upsell-chips">'
+    +'<span class="chip" onclick="accreditationUpsellYes()">Yes — I\'m interested</span>'
+    +'<span class="chip" onclick="accreditationUpsellNo()">Not right now</span>'
+    +'</div>'
+    +'</div>'
+  );
+}
+function accreditationUpsellYes(){
+  dis('accred-upsell-chips');addMsg('usr','Yes — I\'m interested');
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="font-size:13px;margin-bottom:10px;">Someone from our accreditation team will reach out. What\'s the best email to contact you on?</div>'
+      +'<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;" id="accred-email-box">'
+      +'<div style="font-size:10.5px;color:#888;font-family:\'JetBrains Mono\',monospace;margin-bottom:6px;">contact email — pre-filled from your account</div>'
+      +'<div style="display:flex;gap:7px;align-items:center;">'
+      +'<input class="uinp" id="accred-email-inp" style="flex:1;" value="'+ORGANIZER.email+'" placeholder="your@email.com"/>'
+      +'<button class="ubtn" id="accred-email-btn" onclick="confirmAccreditationEmail()">Confirm</button>'
+      +'</div>'
+      +'</div>'
+    );
+  },400);
+}
+function confirmAccreditationEmail(){
+  var email=(G('accred-email-inp')||{}).value||ORGANIZER.email;
+  disBox('accred-email-box');
+  addMsg('usr','Confirmed — '+email);
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="background:#E1F5EE;border:1px solid #9FE1CB;border-radius:8px;padding:10px 13px;margin-bottom:8px;">'
+      +'<div style="font-size:12.5px;font-weight:500;color:#085041;margin-bottom:2px;">✓ Got it — our accreditation team will be in touch</div>'
+      +'<div style="font-size:12px;color:#0F6E56;">We\'ll contact <strong>'+email+'</strong> within 1–2 business days.</div>'
+      +'</div>'
+      +'<div style="font-size:12.5px;color:var(--text2);">Let\'s continue setting up your listing. Since this is a non-accredited activity, the Accreditation section will be skipped.</div>'
+    );
+    setTimeout(function(){
+      // Skip accreditation cat — go straight to tickets
+      addMsg('ai',null,'<div style="font-size:13px;">Moving to <strong style="color:#085041;">Tickets &amp; registration</strong>:</div>');
+      setTimeout(function(){showCat(2);},350);
+    },700);
+  },400);
+}
+function accreditationUpsellNo(){
+  dis('accred-upsell-chips');addMsg('usr','Not right now');
+  setTimeout(function(){
+    addMsg('ai',null,'<div style="font-size:12.5px;color:var(--text2);">Understood. Since this is a non-accredited activity, the Accreditation section will be skipped.</div>');
+    setTimeout(function(){
+      addMsg('ai',null,'<div style="font-size:13px;">Moving to <strong style="color:#085041;">Tickets &amp; registration</strong>:</div>');
+      setTimeout(function(){showCat(2);},350);
+    },600);
+  },400);
+}
+function proceedToAccreditationCat(){
+  // Reset to canonical state in case the user looped through this before
+  CATS[1].fields=[
+    {d:'ok',l:'Accreditation body',v:'ACCME'},
+    {d:'ms',l:'Credit type',v:null},
+    {d:'wn',l:'CME credits offered',v:null},
+    {d:'ms',l:'Accreditation statement',v:null}
+  ];
+  CATS[1].total=4;CATS[1].found=1;CATS[1].st='part';
+  addMsg('ai',null,'<div style="font-size:13px;">Moving to <strong style="color:#085041;">Accreditation &amp; credits</strong>:</div>');
+  setTimeout(function(){showCat(1);},350);
+}
+
+// ── Contacts card (mandatory, shown after Special Features) ───────────────────
+function showContactsCard(){
+  _contacts=[];
+  buildNav(1);setProg(22);G('tstep').textContent='Contacts';
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:8px;">Add the contact persons for this event. HCPs reaching out about the event will see these details. At least one contact is required — you can add up to 5.</div>'
+    +'<div id="contacts-card">'+buildContactsCardHtml()+'</div>'
+  );
+}
+
+function buildContactsCardHtml(){
+  var statusLabel=_contacts.length+' / 5 added';
+  var statusCls=_contacts.length===0?'none':_contacts.length===5?'full':'part';
+  var html='<div class="cblock">'
+    +'<div class="chead"><span class="cname">Contacts</span><span class="cst '+statusCls+'">'+statusLabel+'</span></div>';
+
+  // Confirmed contacts as rows
+  _contacts.forEach(function(c,i){
+    html+='<div class="frow"><div class="fdot ok"></div>'
+      +'<span class="flabel">'+esc(c.first+' '+c.last)+'</span>'
+      +'<span class="fval">'+esc(c.email)+(c.desig?' · '+esc(c.desig):'')+'</span>'
+      +'<button class="fedit" onclick="removeContactCard('+i+')">Remove</button></div>';
+  });
+
+  // Inline add form (hidden when 5 contacts reached)
+  if(_contacts.length<5){
+    html+='<div style="padding:12px;border-top:1px solid var(--border);">'
+      +'<div style="font-size:10px;font-family:\'JetBrains Mono\',monospace;color:var(--text3);margin-bottom:10px;">'
+      +(_contacts.length?'add another contact':'add a contact')+'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">'
+      +'<div><div class="drl">First name <span class="req">*</span></div><input class="dri" id="cf-first" placeholder="First name"/></div>'
+      +'<div><div class="drl">Last name <span class="req">*</span></div><input class="dri" id="cf-last" placeholder="Last name"/></div>'
+      +'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">'
+      +'<div><div class="drl">Email <span class="req">*</span></div><input class="dri" id="cf-email" type="email" placeholder="email@org.com"/></div>'
+      +'<div><div class="drl">Phone</div><input class="dri" id="cf-phone" placeholder="+1 (555) 000-0000"/></div>'
+      +'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">'
+      +'<div><div class="drl">Department</div><input class="dri" id="cf-dept" placeholder="e.g. CME Office"/></div>'
+      +'<div><div class="drl">Designation</div><input class="dri" id="cf-desig" placeholder="e.g. Program Director"/></div>'
+      +'</div>'
+      +'<div id="contact-err" style="display:none;font-size:11.5px;color:#993C1D;margin-bottom:8px;"></div>'
+      +'<button class="btn-s" onclick="addContactCard()" style="width:100%;">+ Add contact</button>'
+      +'</div>';
+  }
+
+  html+='</div>';// close cblock
+
+  // Confirm & continue — active only when ≥1 contact added
+  var disabled=_contacts.length===0;
+  html+='<div class="arow">'
+    +'<button class="btn-p" onclick="confirmContactsCard()" '
+    +(disabled?'style="opacity:.4;cursor:default;" disabled':'')+'>'
+    +'Confirm &amp; continue'
+    +'</button>'
+    +(_contacts.length===0?'<span style="font-size:11px;color:var(--text3);align-self:center;">Add at least one contact to proceed</span>':'')
+    +'</div>';
+
+  return html;
+}
+
+function addContactCard(){
+  var first=(G('cf-first')||{}).value||'',last=(G('cf-last')||{}).value||'',email=(G('cf-email')||{}).value||'';
+  var errEl=G('contact-err');
+  if(!first.trim()||!last.trim()||!email.trim()){
+    if(errEl){errEl.textContent='First name, last name and email are required.';errEl.style.display='block';}
+    return;
+  }
+  if(errEl)errEl.style.display='none';
+  _contacts.push({
+    first:first.trim(),last:last.trim(),email:email.trim(),
+    phone:(G('cf-phone')||{}).value||'',
+    dept:(G('cf-dept')||{}).value||'',
+    desig:(G('cf-desig')||{}).value||''
+  });
+  var card=G('contacts-card');if(card)card.innerHTML=buildContactsCardHtml();
+}
+
+function removeContactCard(i){
+  _contacts.splice(i,1);
+  var card=G('contacts-card');if(card)card.innerHTML=buildContactsCardHtml();
+}
+
+function confirmContactsCard(){
+  if(_contacts.length===0)return;
+  disActBtns();
+  var label=_contacts.length+' contact'+(_contacts.length>1?'s':'')+' confirmed';
+  addMsg('usr',label);
+  setTimeout(showAccreditationTypeQuestion,500);
+}
+
+function showGate(){
+  buildNav(4);setProg(72);G('tstep').textContent='Optional sections';
+  addMsg('ai',null,'<div style="background:#f8f7f4;border:1px solid rgba(0,0,0,.12);border-radius:10px;padding:13px;">'
+    +'<div style="font-size:13px;font-weight:500;color:#1C1C1A;margin-bottom:4px;">Required sections complete</div>'
+    +'<div style="font-size:12.5px;color:#5F5E5A;line-height:1.55;margin-bottom:10px;">You can submit for review now, or keep going to add speakers, sessions, branding and terms — these make your listing more discoverable.</div>'
+    +'<div class="stats" style="margin-bottom:10px;">'
+    +'<div class="stat"><div class="stat-n">5</div><div class="stat-l">done</div></div>'
+    +'<div class="stat"><div class="stat-n">4</div><div class="stat-l">optional left</div></div>'
+    +'<div class="stat"><div class="stat-n">~5</div><div class="stat-l">min remaining</div></div>'
+    +'</div>'
+    +'<div class="chips" id="gch">'
+    +'<span class="chip" onclick="gateGo(\'keep\')">Keep going — add more details</span>'
+    +'<span class="chip" onclick="gateGo(\'skip\')">Skip to preview & submit</span>'
+    +'</div></div>');
+}
+
+// ── Mandatory completion gate (after Tickets & registration — 4 required done) ─
+function showMandatoryGate(){
+  buildNav(4);setProg(58);G('tstep').textContent='Mandatory sections complete';
+  addMsg('ai',null,
+    '<div style="background:#E1F5EE;border:1.5px solid #9FE1CB;border-radius:10px;padding:13px 15px;">'
+    +'<div style="display:flex;align-items:center;gap:9px;margin-bottom:10px;">'
+    +'<div style="width:34px;height:34px;border-radius:8px;background:#0F6E56;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">✅</div>'
+    +'<div><div style="font-size:13.5px;font-weight:600;color:#085041;">Mandatory sections complete!</div>'
+    +'<div style="font-size:11.5px;color:#0F6E56;margin-top:2px;">Your listing has everything needed to go live.</div></div>'
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;">'
+    +'<div style="background:#fff;border:1px solid #9FE1CB;border-radius:7px;padding:8px 11px;display:flex;align-items:center;gap:6px;"><span style="color:#0F6E56;font-weight:600;">✓</span><span style="font-size:11.5px;font-weight:500;color:#085041;">Event information</span></div>'
+    +'<div style="background:#fff;border:1px solid #9FE1CB;border-radius:7px;padding:8px 11px;display:flex;align-items:center;gap:6px;"><span style="color:#0F6E56;font-weight:600;">✓</span><span style="font-size:11.5px;font-weight:500;color:#085041;">Contacts</span></div>'
+    +'<div style="background:#fff;border:1px solid #9FE1CB;border-radius:7px;padding:8px 11px;display:flex;align-items:center;gap:6px;"><span style="color:#0F6E56;font-weight:600;">✓</span><span style="font-size:11.5px;font-weight:500;color:#085041;">Accreditation &amp; credits</span></div>'
+    +'<div style="background:#fff;border:1px solid #9FE1CB;border-radius:7px;padding:8px 11px;display:flex;align-items:center;gap:6px;"><span style="color:#0F6E56;font-weight:600;">✓</span><span style="font-size:11.5px;font-weight:500;color:#085041;">Tickets &amp; registration</span></div>'
+    +'</div>'
+    +'<div style="font-size:12px;color:#0F6E56;line-height:1.6;margin-bottom:10px;">You can submit for review right now, or keep going to add organization details, speakers, sessions, branding, and more — these make your listing more discoverable to HCPs.</div>'
+    +'<div style="font-size:12.5px;font-weight:500;color:#085041;margin-bottom:8px;">What would you like to do?</div>'
+    +'<div class="chips" id="mgate-chips">'
+    +'<span class="chip" onclick="mandatoryGateGo(\'publish\')">Review &amp; publish now</span>'
+    +'<span class="chip" onclick="mandatoryGateGo(\'continue\')">Continue adding details</span>'
+    +'</div>'
+    +'</div>'
+  );
+}
+function mandatoryGateGo(choice){
+  dis('mgate-chips');
+  if(choice==='publish'){
+    addMsg('usr','Review & publish now');
+    setTimeout(showPreview,500);
+  } else {
+    addMsg('usr','Continue adding details');
+    setTimeout(function(){
+      addMsg('ai',null,'<div style="font-size:13px;">Let\'s add <strong style="color:#085041;">Organization</strong> details:</div>');
+      setTimeout(function(){showCat(3);},350);
+    },400);
+  }
+}
+
+// ── Speaker database (random names — mimics API lookup) ───────────────────────
+var SPEAKER_DB=[
+  {first:'James',last:'Harrison',email:'j.harrison@clevelandclinic.org',specialty:'Interventional Cardiology'},
+  {first:'Priya',last:'Sharma',email:'p.sharma@mayo.edu',specialty:'Electrophysiology'},
+  {first:'Michael',last:'Chen',email:'m.chen@ucsf.edu',specialty:'General Cardiology'},
+  {first:'Sarah',last:'Williams',email:'s.williams@jhmi.edu',specialty:'Heart Failure'},
+  {first:'Robert',last:'Patel',email:'r.patel@columbia.edu',specialty:'Preventive Cardiology'},
+  {first:'Linda',last:'Torres',email:'l.torres@northwestern.edu',specialty:'Structural Heart Disease'},
+  {first:'David',last:'Kim',email:'d.kim@emory.edu',specialty:'Nuclear Cardiology'},
+  {first:'Maria',last:'Gonzalez',email:'m.gonzalez@utexas.edu',specialty:'Pediatric Cardiology'},
+  {first:'Thomas',last:'Brown',email:'t.brown@vanderbilt.edu',specialty:'Cardiac Imaging'},
+  {first:'Angela',last:'Nguyen',email:'a.nguyen@ufl.edu',specialty:'Cardiac Rehabilitation'},
+  {first:'Kevin',last:'Robinson',email:'k.robinson@wisc.edu',specialty:'Arrhythmia'},
+  {first:'Rachel',last:'Lee',email:'r.lee@stanfordhealthcare.org',specialty:'Congenital Heart Disease'},
+  {first:'Samuel',last:'Davis',email:'s.davis@pitt.edu',specialty:'Cardiac Surgery'},
+  {first:'Natalie',last:'White',email:'n.white@ucsd.edu',specialty:'Women\'s Heart Health'},
+  {first:'Brian',last:'Martinez',email:'b.martinez@bwh.harvard.edu',specialty:'Vascular Medicine'}
+];
+
+function showSpeakers(){
+  _speakers=[];
+  buildNav(5);setProg(78);G('tstep').textContent='Speakers';
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:8px;">Let\'s add <strong style="color:#085041;">Speakers</strong> for this event. Speaker profiles help HCPs understand who\'s presenting and improve your listing\'s discoverability.</div>'
+    +'<div id="speakers-card">'+buildSpeakersCardHtml()+'</div>'
+  );
+}
+
+function buildSpeakersCardHtml(){
+  var count=_speakers.length;
+  var statusCls=count===0?'none':'part';
+  var statusLabel=count+' speaker'+(count!==1?'s':'')+' added';
+
+  var html='<div class="cblock">'
+    +'<div class="chead"><span class="cname">Speakers</span><span class="cst '+statusCls+'">'+statusLabel+'</span></div>';
+
+  // Confirmed speaker rows
+  _speakers.forEach(function(s,i){
+    html+='<div class="frow"><div class="fdot ok"></div>'
+      +'<span class="flabel">'+esc(s.first+' '+s.last)+'</span>'
+      +'<span class="fval">'+esc(s.email)+(s.specialty?' · '+esc(s.specialty):'')+'</span>'
+      +'<button class="fedit" onclick="removeSpeakerCard('+i+')">Remove</button></div>';
+  });
+
+  // Typeahead search
+  html+='<div style="padding:12px;border-top:1px solid var(--border);">'
+    +'<div style="font-size:10px;font-family:\'JetBrains Mono\',monospace;color:var(--text3);margin-bottom:8px;">search speakers in our database</div>'
+    +'<div class="spk-ac-wrap">'
+    +'<input class="spk-ac-inp" id="spk-search" placeholder="Start typing a name…" autocomplete="off" '
+    +'oninput="speakerSearch()" onfocus="speakerSearch()" onblur="speakerBlur()"/>'
+    +'<div class="spk-ac-drop" id="spk-ac-drop"></div>'
+    +'</div>'
+    +'</div>';
+
+  // Manual entry form
+  html+='<div style="padding:0 12px 12px;">'
+    +'<div style="font-size:10px;font-family:\'JetBrains Mono\',monospace;color:var(--text3);margin-bottom:8px;">— or add a new speaker —</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">'
+    +'<div><div class="drl">First name <span class="req">*</span></div>'
+    +'<input class="dri" id="spk-first" placeholder="First name"/></div>'
+    +'<div><div class="drl">Last name <span class="req">*</span></div>'
+    +'<input class="dri" id="spk-last" placeholder="Last name"/></div>'
+    +'</div>'
+    +'<div style="margin-bottom:10px;"><div class="drl">Email <span class="req">*</span></div>'
+    +'<input class="dri" id="spk-email" type="email" placeholder="speaker@institution.edu" style="width:100%;"/></div>'
+    +'<div id="spk-err" style="display:none;font-size:11.5px;color:#993C1D;margin-bottom:8px;"></div>'
+    +'<button class="btn-s" onclick="addNewSpeakerCard()" style="width:100%;">+ Add speaker</button>'
+    +'</div>';
+
+  html+='</div>'; // close cblock
+
+  html+='<div class="arow">'
+    +'<button class="btn-p" onclick="confirmSpeakersCard()">Confirm &amp; proceed</button>'
+    +'<button class="btn-t" onclick="disActBtns();addMsg(\'usr\',\'Skip speakers for now\');setTimeout(showCollaterals,500);">Skip for now</button>'
+    +'</div>';
+
+  return html;
+}
+
+function speakerSearch(){
+  var q=((G('spk-search')||{}).value||'').trim().toLowerCase();
+  var drop=G('spk-ac-drop');
+  if(!drop)return;
+  var addedEmails=_speakers.map(function(s){return s.email;});
+  _speakerDbFiltered=SPEAKER_DB.filter(function(s){
+    if(addedEmails.indexOf(s.email)!==-1)return false;
+    if(!q)return true;
+    return (s.first+' '+s.last).toLowerCase().indexOf(q)!==-1;
+  }).slice(0,7);
+
+  if(_speakerDbFiltered.length===0){
+    drop.innerHTML='<div class="spk-ac-empty">'+(q?'No match — use the form below to add a new speaker':'No speakers available')+'</div>';
+  } else {
+    drop.innerHTML=_speakerDbFiltered.map(function(s,i){
+      return '<div class="spk-ac-item" onmousedown="addSpeakerFromDb('+i+')">'
+        +'<div class="spk-ac-name">'+esc(s.first)+' '+esc(s.last)+'</div>'
+        +'<div class="spk-ac-meta">'+esc(s.specialty)+' · '+esc(s.email)+'</div>'
+        +'</div>';
+    }).join('');
+  }
+  drop.classList.add('open');
+}
+
+function speakerBlur(){
+  setTimeout(function(){var d=G('spk-ac-drop');if(d)d.classList.remove('open');},160);
+}
+
+function addSpeakerFromDb(idx){
+  var s=_speakerDbFiltered[idx];if(!s)return;
+  _speakers.push({first:s.first,last:s.last,email:s.email,specialty:s.specialty,source:'db'});
+  var card=G('speakers-card');if(card)card.innerHTML=buildSpeakersCardHtml();
+  setTimeout(function(){var inp=G('spk-search');if(inp)inp.focus();},50);
+}
+
+function addNewSpeakerCard(){
+  var first=((G('spk-first')||{}).value||'').trim();
+  var last=((G('spk-last')||{}).value||'').trim();
+  var email=((G('spk-email')||{}).value||'').trim();
+  var errEl=G('spk-err');
+  if(!first||!last||!email){
+    if(errEl){errEl.textContent='First name, last name and email are required.';errEl.style.display='block';}
+    return;
+  }
+  if(errEl)errEl.style.display='none';
+  _speakers.push({first:first,last:last,email:email,specialty:'',source:'new'});
+  var card=G('speakers-card');if(card)card.innerHTML=buildSpeakersCardHtml();
+}
+
+function removeSpeakerCard(i){
+  _speakers.splice(i,1);
+  var card=G('speakers-card');if(card)card.innerHTML=buildSpeakersCardHtml();
+}
+
+function confirmSpeakersCard(){
+  disActBtns();
+  var label=_speakers.length
+    ?_speakers.length+' speaker'+(_speakers.length>1?'s':'')+' confirmed'
+    :'Speakers skipped';
+  addMsg('usr',label);
+  setTimeout(showCollaterals,500);
+}
+
+// ── Co-organizer drawer ───────────────────────────────────────────────────────
+function openCoOrgDrawer(){
+  G('drht').textContent='Add co-organizer';
+  // Change save button label to "Done"
+  var drs=document.querySelector('.drs');if(drs)drs.textContent='Done';
+  var b=G('drb');b.innerHTML='';
+
+  // List of existing co-organizers (all fields except primary Organizer)
+  var coOrgs=CATS[3].fields.filter(function(f){return f.l!=='Organizer';});
+  if(coOrgs.length){
+    var listWrap=document.createElement('div');
+    listWrap.style.cssText='display:flex;flex-direction:column;gap:6px;margin-bottom:14px;';
+    coOrgs.forEach(function(co,idx){
+      var row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 12px;';
+      row.innerHTML='<div><div style="font-size:12.5px;font-weight:500;color:var(--text);">'+esc(co.v)+'</div>'
+        +'<div style="font-size:11px;color:var(--text2);">'+esc(co.l)+'</div></div>'
+        +'<button onclick="removeCoOrg('+idx+')" style="font-size:11px;color:#993C1D;border:1px solid #F5C4B3;background:#FAECE7;padding:3px 9px;border-radius:5px;cursor:pointer;font-family:\'Sora\',sans-serif;">Remove</button>';
+      listWrap.appendChild(row);
+    });
+    b.appendChild(listWrap);
+  }
+
+  // Add form
+  var form=document.createElement('div');
+  form.style.cssText='background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;';
+  form.innerHTML='<div style="font-size:10px;font-family:\'JetBrains Mono\',monospace;color:var(--text3);margin-bottom:10px;">'
+    +(coOrgs.length?'add another co-organizer':'add a co-organizer')+'</div>'
+    +'<div class="drf"><div class="drl">Organization name <span class="req">*</span></div>'
+    +'<input class="dri" id="co-org-name" placeholder="e.g. American College of Cardiology"/></div>'
+    +'<div class="drf" style="margin-top:10px;"><div class="drl">Role</div>'
+    +'<select class="drsel" id="co-org-role">'
+    +'<option value="Co-organizer">Co-organizer</option>'
+    +'<option value="Supporting organization">Supporting organization</option>'
+    +'<option value="Academic partner">Academic partner</option>'
+    +'<option value="Industry sponsor">Industry sponsor</option>'
+    +'<option value="Other">Other</option>'
+    +'</select></div>'
+    +'<div id="co-org-err" style="display:none;font-size:11.5px;color:#993C1D;margin-top:8px;"></div>'
+    +'<button onclick="addCoOrg()" class="btn-s" style="margin-top:12px;width:100%;">+ Add co-organizer</button>';
+  b.appendChild(form);
+
+  G('dov').classList.add('open');G('drawer').classList.add('open');
+}
+
+function addCoOrg(){
+  var nameEl=G('co-org-name'),roleEl=G('co-org-role');
+  var errEl=G('co-org-err');
+  if(!nameEl||!nameEl.value.trim()){
+    if(errEl){errEl.textContent='Organization name is required.';errEl.style.display='block';}
+    if(nameEl)nameEl.focus();
+    return;
+  }
+  var name=nameEl.value.trim();
+  var role=roleEl?roleEl.value:'Co-organizer';
+  CATS[3].fields.push({d:'ok',l:role,v:name});
+  CATS[3].found=CATS[3].fields.filter(function(f){return f.v;}).length;
+  CATS[3].total=CATS[3].fields.length;
+  CATS[3].st='full';
+  var card=G('cat-card-3');if(card)card.innerHTML=buildCatBlockHtml(3,false);
+  openCoOrgDrawer(); // refresh drawer to show the new entry
+}
+
+function removeCoOrg(idx){
+  // idx is position among co-orgs only (fields where l!=='Organizer')
+  var coOrgCount=0;
+  var fields=CATS[3].fields;
+  for(var j=0;j<fields.length;j++){
+    if(fields[j].l!=='Organizer'){
+      if(coOrgCount===idx){fields.splice(j,1);break;}
+      coOrgCount++;
+    }
+  }
+  CATS[3].found=CATS[3].fields.filter(function(f){return f.v;}).length;
+  CATS[3].total=CATS[3].fields.length;
+  CATS[3].st=CATS[3].found===CATS[3].total?'full':CATS[3].found>0?'part':'none';
+  var card=G('cat-card-3');if(card)card.innerHTML=buildCatBlockHtml(3,false);
+  openCoOrgDrawer(); // refresh drawer
+}
+
+function gateGo(c){
+  dis('gch');
+  if(c==='keep'){
+    addMsg('usr','Keep going — add more details');
+    setTimeout(showSpeakers,500);
+  } else {
+    addMsg('usr','Skip to preview & submit');
+    setTimeout(showPreview,500);
+  }
+}
+
+function showCollaterals(){
+  _collaterals={brochure:null,banner:null};
+  _socialHandles=[];
+  buildNav(6);setProg(86);G('tstep').textContent='Collaterals & branding';
+  addMsg('ai',null,
+    '<div style="font-size:13px;margin-bottom:8px;">Now let\'s add <strong style="color:#085041;">Collaterals &amp; branding</strong>. A brochure gives HCPs the full picture, and a banner is displayed on your listing page.</div>'
+    +'<div id="collaterals-card">'+buildCollateralsCardHtml()+'</div>'
+    +'<div style="font-size:11.5px;color:#5F5E5A;margin-top:8px;padding:8px 10px;background:#FAEEDA;border-radius:6px;border:1px solid #FAC775;">Files upload directly to S3 — nothing passes through our servers.</div>'
+    +'<div class="arow" style="margin-top:10px;">'
+    +'<button class="btn-p" onclick="disActBtns();addMsg(\'usr\',\'Continue to preview\');setTimeout(showPreview,500);">Confirm &amp; continue</button>'
+    +'<button class="btn-t" onclick="disActBtns();addMsg(\'usr\',\'Skip collaterals\');setTimeout(showPreview,500);">Skip collaterals</button>'
+    +'</div>'
+  );
+}
+
+function buildCollateralsCardHtml(){
+  var bDot=_collaterals.brochure?'ok':'ms';
+  var nDot=_collaterals.banner?'ok':'ms';
+  var sDot=_socialHandles.length>0?'ok':'ms';
+  var sVal=_socialHandles.length>0
+    ?_socialHandles.map(function(h){return esc(h.platform)+': '+esc(h.handle);}).join(' · ')
+    :null;
+  return '<div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;">'
+    +'<div style="padding:7px 12px;background:var(--bg2);border-bottom:1px solid var(--border);font-size:12px;font-weight:500;color:var(--text);">Collaterals &amp; branding</div>'
+    +'<div class="frow"><div class="fdot '+bDot+'"></div>'
+    +'<span class="flabel">Event brochure</span>'
+    +(_collaterals.brochure?'<span class="fval">'+esc(_collaterals.brochure)+'</span>':'<span class="fval miss">not uploaded</span>')
+    +'<button class="fedit" onclick="openCollateralDrawer(\'brochure\')">'+(_collaterals.brochure?'Replace':'Add brochure')+'</button></div>'
+    +'<div class="frow"><div class="fdot '+nDot+'"></div>'
+    +'<span class="flabel">Listing banner</span>'
+    +(_collaterals.banner?'<span class="fval">'+esc(_collaterals.banner)+'</span>':'<span class="fval miss">not uploaded</span>')
+    +'<button class="fedit" onclick="openCollateralDrawer(\'banner\')">'+(_collaterals.banner?'Replace':'Add banner')+'</button></div>'
+    +'<div class="frow" style="border-bottom:none"><div class="fdot '+sDot+'"></div>'
+    +'<span class="flabel">Social handles</span>'
+    +(sVal?'<span class="fval" style="word-break:break-all;">'+sVal+'</span>':'<span class="fval miss">not added</span>')
+    +'<button class="fedit" onclick="openSocialHandlesDrawer()">'+(_socialHandles.length?'Edit':'Add')+'</button></div>'
+    +'</div>';
+}
+
+// ── Collateral file upload drawer ─────────────────────────────────────────────
+function openCollateralDrawer(type){
+  var cfg=type==='brochure'
+    ?{t:'Upload event brochure',hint:'PDF, HTML or DOC · max 10 MB'}
+    :{t:'Upload listing banner',hint:'PNG or JPG · 302×126 px · max 2 MB'};
+  G('drht').textContent=cfg.t;
+  var drs=document.querySelector('.drs');if(drs)drs.textContent='Done';
+  var b=G('drb');b.innerHTML='';
+
+  // Current file badge
+  if(_collaterals[type]){
+    var curr=document.createElement('div');
+    curr.style.cssText='background:var(--teal-50);border:1px solid var(--teal-100);border-radius:7px;padding:8px 12px;margin-bottom:12px;display:flex;align-items:center;gap:8px;';
+    curr.innerHTML='<span style="color:#0F6E56;font-size:14px;">✓</span>'
+      +'<div><div style="font-size:12.5px;font-weight:500;color:#085041;">'+esc(_collaterals[type])+'</div>'
+      +'<div style="font-size:11px;color:#0F6E56;">Currently uploaded — select a new file to replace</div></div>';
+    b.appendChild(curr);
+  }
+
+  // Drop zone
+  var zone=document.createElement('div');
+  zone.style.cssText='border:2px dashed rgba(0,0,0,.18);border-radius:8px;padding:18px;text-align:center;cursor:pointer;background:var(--bg2);';
+  zone.innerHTML='<div style="font-size:22px;margin-bottom:6px;">📎</div>'
+    +'<div style="font-size:12.5px;font-weight:500;color:var(--text);margin-bottom:3px;">Click to select file</div>'
+    +'<div style="font-size:11px;color:var(--text2);">or drag and drop here</div>'
+    +'<input type="file" style="display:none;" id="file-inp-'+type+'" onchange="handleCollateralFileSelect(this,\''+type+'\')">';
+  zone.onclick=function(){document.getElementById('file-inp-'+type).click();};
+  b.appendChild(zone);
+
+  var note=document.createElement('div');
+  note.style.cssText='font-size:10.5px;color:var(--text3);margin-top:7px;padding:6px 9px;background:var(--bg2);border-radius:5px;line-height:1.5;';
+  note.textContent=cfg.hint+' · Files upload directly to S3, nothing passes through the server.';
+  b.appendChild(note);
+
+  var prog=document.createElement('div');
+  prog.id='upload-prog-col-'+type;prog.style.display='none';
+  prog.style.cssText='margin-top:8px;font-size:12px;color:var(--teal-600);';
+  b.appendChild(prog);
+
+  G('dov').classList.add('open');G('drawer').classList.add('open');
+}
+
+function handleCollateralFileSelect(input,type){
+  var prog=document.getElementById('upload-prog-col-'+type);
+  if(!input.files||!input.files[0])return;
+  var fname=input.files[0].name;
+  prog.style.display='block';prog.textContent='Requesting upload URL…';
+  setTimeout(function(){
+    prog.textContent='Uploading '+fname+' to S3…';
+    setTimeout(function(){
+      prog.innerHTML='<span style="color:#0F6E56;">✓ Uploaded: '+fname+'</span>';
+      _collaterals[type]=fname;
+      var card=G('collaterals-card');if(card)card.innerHTML=buildCollateralsCardHtml();
+    },1200);
+  },600);
+}
+
+// ── Social handles drawer ─────────────────────────────────────────────────────
+var SOCIAL_PLATFORMS=['Twitter / X','LinkedIn','Facebook','Instagram','YouTube','Website / other'];
+
+function openSocialHandlesDrawer(){
+  G('drht').textContent='Social handles';
+  var drs=document.querySelector('.drs');if(drs)drs.textContent='Done';
+  refreshSocialDrawerBody();
+  G('dov').classList.add('open');G('drawer').classList.add('open');
+}
+
+function refreshSocialDrawerBody(){
+  var b=G('drb');if(!b)return;b.innerHTML='';
+
+  if(_socialHandles.length>0){
+    var list=document.createElement('div');
+    list.style.cssText='display:flex;flex-direction:column;gap:6px;margin-bottom:14px;';
+    _socialHandles.forEach(function(h,idx){
+      var row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 12px;';
+      row.innerHTML='<div><div style="font-size:12.5px;font-weight:500;color:var(--text);">'+esc(h.platform)+'</div>'
+        +'<div style="font-size:11px;color:var(--teal-600);word-break:break-all;">'+esc(h.handle)+'</div></div>'
+        +'<button onclick="removeSocialHandle('+idx+')" style="font-size:11px;color:#993C1D;border:1px solid #F5C4B3;background:#FAECE7;padding:3px 9px;border-radius:5px;cursor:pointer;font-family:\'Sora\',sans-serif;flex-shrink:0;margin-left:8px;">Remove</button>';
+      list.appendChild(row);
+    });
+    b.appendChild(list);
+  }
+
+  var form=document.createElement('div');
+  form.style.cssText='background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;';
+  form.innerHTML='<div style="font-size:10px;font-family:\'JetBrains Mono\',monospace;color:var(--text3);margin-bottom:10px;">'
+    +(_socialHandles.length?'add another handle':'add a social handle')+'</div>'
+    +'<div class="drf"><div class="drl">Platform</div>'
+    +'<select class="drsel" id="social-platform">'
+    +SOCIAL_PLATFORMS.map(function(p){return '<option value="'+p+'">'+p+'</option>';}).join('')
+    +'</select></div>'
+    +'<div class="drf" style="margin-top:8px;"><div class="drl">Handle / URL <span class="req">*</span></div>'
+    +'<input class="dri" id="social-handle" placeholder="e.g. @midwestcardio2025 or https://…"/></div>'
+    +'<div id="social-err" style="display:none;font-size:11.5px;color:#993C1D;margin-top:6px;"></div>'
+    +'<button onclick="addSocialHandle()" class="btn-s" style="margin-top:12px;width:100%;">+ Add handle</button>';
+  b.appendChild(form);
+}
+
+function addSocialHandle(){
+  var pEl=G('social-platform'),hEl=G('social-handle'),errEl=G('social-err');
+  if(!hEl||!hEl.value.trim()){
+    if(errEl){errEl.textContent='Handle or URL is required.';errEl.style.display='block';}
+    if(hEl)hEl.focus();return;
+  }
+  _socialHandles.push({platform:pEl?pEl.value:'Other',handle:hEl.value.trim()});
+  var card=G('collaterals-card');if(card)card.innerHTML=buildCollateralsCardHtml();
+  refreshSocialDrawerBody();
+}
+
+function removeSocialHandle(idx){
+  _socialHandles.splice(idx,1);
+  var card=G('collaterals-card');if(card)card.innerHTML=buildCollateralsCardHtml();
+  refreshSocialDrawerBody();
+}
+
+function showPreview(){
+  buildNav(8);setProg(95);G('tstep').textContent='Preview & submit';
+  addMsg('ai',null,'<div style="font-size:13px;margin-bottom:8px;">Here\'s your listing summary. Review it before submitting for approval.</div>'
+    +'<div class="prev-card">'
+    +'<div class="prev-head"><span style="font-size:12.5px;font-weight:500;">Midwest Cardiology Symposium 2025</span><span style="font-size:9.5px;padding:2px 7px;border-radius:8px;background:#E1F5EE;color:#0F6E56;font-family:\'JetBrains Mono\',monospace;">draft</span></div>'
+    +'<div style="padding:11px 13px;display:grid;grid-template-columns:1fr 1fr;gap:9px;font-size:12px;border-bottom:1px solid rgba(0,0,0,.1);">'
+    +'<div><div style="color:#888;font-size:10.5px;">Format</div><div style="font-weight:500;">In-person</div></div>'
+    +'<div><div style="color:#888;font-size:10.5px;">Dates</div><div style="font-weight:500;">Jun 12–14, 2025</div></div>'
+    +'<div><div style="color:#888;font-size:10.5px;">Venue</div><div style="font-weight:500;">Chicago Marriott, IL</div></div>'
+    +'<div><div style="color:#888;font-size:10.5px;">Accreditation</div><div style="font-weight:500;">ACCME</div></div>'
+    +'<div><div style="color:#888;font-size:10.5px;">Ticket price</div><div style="font-weight:500;">$450 general admission</div></div>'
+    +'<div><div style="color:#888;font-size:10.5px;">Organizer</div><div style="font-weight:500;">Kalenmark Medical Education</div></div>'
+    +'</div>'
+    +'<div style="padding:10px 13px;display:flex;gap:7px;" id="pub-acts">'
+    +'<button style="flex:1;padding:9px;border-radius:7px;background:#0F6E56;color:#fff;border:none;font-size:12.5px;font-weight:500;cursor:pointer;font-family:\'Sora\',sans-serif;" onclick="submitForReview()">Submit for review</button>'
+    +'<button style="padding:9px 13px;border-radius:7px;border:1px solid rgba(0,0,0,.18);background:transparent;font-size:12.5px;color:#5F5E5A;cursor:pointer;font-family:\'Sora\',sans-serif;">Go back & edit</button>'
+    +'</div></div>');
+}
+
+function submitForReview(){
+  disActBtns();addMsg('usr','Submit for review');
+  setProg(100);buildNav(9);G('tstep').textContent='Submitted';
+  setTimeout(function(){G('new-listing-indicator').style.display='flex';},600);
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div class="queue-card">'
+      +'<div class="queue-head">'
+      +'<div class="queue-icon">⏳</div>'
+      +'<div><div class="queue-title">Submitted for review</div><div class="queue-sub">Your listing is in the verification queue</div></div>'
+      +'</div>'
+      +'<div class="queue-body">'
+      +'<div class="queue-steps">'
+      +'<div class="qstep"><div class="qstep-num">1</div><div class="qstep-text"><strong>Content review</strong> — our team verifies event details, accreditation, and organizer credentials</div></div>'
+      +'<div class="qstep"><div class="qstep-num">2</div><div class="qstep-text"><strong>Approval</strong> — once verified, your listing goes live and becomes searchable by HCPs</div></div>'
+      +'<div class="qstep"><div class="qstep-num">3</div><div class="qstep-text"><strong>Notification</strong> — you\'ll receive an email when it\'s live, or if any corrections are needed</div></div>'
+      +'</div>'
+      +'<div class="queue-ref">Reference: EME-2025-MCS-04821</div>'
+      +'<div style="font-size:12px;color:#5F5E5A;">Typical review time is <strong style="color:#1C1C1A;">1–2 business days</strong>. You can edit your draft anytime before it is approved.</div>'
+      +'</div></div>'
+    );
+    setTimeout(showPartnerUpsell,1000);
+  },700);
+}
+
+// ── Partner upsell — shown after submission ───────────────────────────────────
+function showPartnerUpsell(){
+  addMsg('ai',null,
+    '<div style="font-size:13px;color:var(--text);margin-bottom:10px;">One last thing before we wrap up —</div>'
+    +'<div style="background:#E1F5EE;border:1.5px solid #9FE1CB;border-radius:10px;padding:14px 15px;">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">'
+    +'<div style="width:34px;height:34px;border-radius:8px;background:#0F6E56;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🤝</div>'
+    +'<div><div style="font-size:13px;font-weight:600;color:#085041;">Enable Registration with eMedEvents</div>'
+    +'<div style="font-size:11px;color:#0F6E56;margin-top:1px;">Turn your listing into a full registration experience</div></div>'
+    +'</div>'
+    +'<div style="font-size:12px;color:#0F6E56;line-height:1.7;margin-bottom:11px;">'
+    +'<strong style="color:#085041;font-weight:600;">Right now, your listing lets HCPs express interest</strong> — they can save your event and follow up with you directly. That\'s a great start.<br><br>'
+    +'As an <strong style="color:#085041;">eMedEvents Partner</strong>, you can go one step further: HCPs can register and pay for your event <em>directly on eMedEvents</em>. No redirect to an external site. No friction. Just a seamless purchase right where they found you.<br><br>'
+    +'Here\'s how it works:<br>'
+    +'<div style="display:flex;flex-direction:column;gap:5px;margin-top:6px;">'
+    +'<div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#0F6E56;font-weight:700;flex-shrink:0;">→</span><span>HCPs see a <strong style="color:#085041;">Register now</strong> button directly on your listing</span></div>'
+    +'<div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#0F6E56;font-weight:700;flex-shrink:0;">→</span><span>eMedEvents collects the registration fee and <strong style="color:#085041;">transfers 80% to you</strong> — we retain a 20% platform fee</span></div>'
+    +'<div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#0F6E56;font-weight:700;flex-shrink:0;">→</span><span>You get real-time registration data and attendee details in your dashboard</span></div>'
+    +'</div>'
+    +'</div>'
+    +'<div style="font-size:12.5px;font-weight:500;color:#085041;margin-bottom:9px;">Would you like to enable Registration for this activity?</div>'
+    +'<div class="chips" id="partner-chips">'
+    +'<span class="chip" onclick="partnerInterested()">Yes — enable registration</span>'
+    +'<span class="chip" onclick="partnerNotInterested()">Not right now</span>'
+    +'</div>'
+    +'</div>'
+  );
+}
+
+function partnerInterested(){
+  dis('partner-chips');addMsg('usr','Yes — enable registration');
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="font-size:13px;margin-bottom:8px;">To get started, we\'ll send you a <strong style="color:#085041;">Partner Agreement</strong> — a simple contract that covers the fee split, payout schedule, and how registration will work for your event. What\'s the best email to send it to?</div>'
+      +'<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;" id="partner-email-box">'
+      +'<div style="font-size:10.5px;color:#888;font-family:\'JetBrains Mono\',monospace;margin-bottom:6px;">contact email — pre-filled from your account</div>'
+      +'<div style="display:flex;gap:7px;align-items:center;">'
+      +'<input class="uinp" id="partner-email-inp" style="flex:1;" value="'+ORGANIZER.email+'" placeholder="your@email.com"/>'
+      +'<button class="ubtn" id="partner-email-btn" onclick="confirmPartnerEmail()">Send contract</button>'
+      +'</div>'
+      +'<div style="font-size:11px;color:var(--text3);margin-top:5px;">This is your account email. Update it if you\'d prefer a different contact.</div>'
+      +'</div>'
+    );
+  },400);
+}
+
+function confirmPartnerEmail(){
+  var emailEl=G('partner-email-inp');
+  var email=emailEl?emailEl.value.trim():ORGANIZER.email;
+  var btn=G('partner-email-btn');
+  if(emailEl)emailEl.disabled=true;
+  if(btn){btn.style.pointerEvents='none';btn.style.opacity='.5';}
+  addMsg('usr','Send to '+email);
+  setTimeout(function(){
+    addMsg('ai',null,
+      '<div style="background:#E1F5EE;border:1px solid #9FE1CB;border-radius:8px;padding:10px 13px;margin-bottom:10px;">'
+      +'<div style="font-size:12.5px;font-weight:500;color:#085041;margin-bottom:2px;">✓ Contract sent to '+esc(email)+'</div>'
+      +'<div style="font-size:12px;color:#0F6E56;">Check your inbox — the Partner Agreement will arrive within a few minutes.</div>'
+      +'</div>'
+      +'<div style="font-size:13px;color:var(--text);margin-bottom:8px;">Once you\'ve reviewed and signed it, here\'s how to activate registration:</div>'
+      +'<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:4px;">'
+      +'<div class="qstep" style="padding:10px 13px;border-bottom:1px solid var(--border);"><div class="qstep-num">1</div><div class="qstep-text">Sign the Partner Agreement and save the countersigned copy</div></div>'
+      +'<div class="qstep" style="padding:10px 13px;border-bottom:1px solid var(--border);"><div class="qstep-num">2</div><div class="qstep-text">Go to your <strong>Listings Dashboard</strong> and open this event</div></div>'
+      +'<div class="qstep" style="padding:10px 13px;border-bottom:1px solid var(--border);"><div class="qstep-num">3</div><div class="qstep-text">Click <strong>Enable Registration</strong> and upload the signed agreement</div></div>'
+      +'<div class="qstep" style="padding:10px 13px;"><div class="qstep-num">4</div><div class="qstep-text">Registration goes live once our team verifies the document — typically within 24 hours</div></div>'
+      +'</div>'
+    );
+    setTimeout(showCompletionCard,800);
+  },500);
+}
+
+function partnerNotInterested(){
+  dis('partner-chips');addMsg('usr','Not right now');
+  setTimeout(function(){
+    addMsg('ai',null,'<div style="font-size:12.5px;color:var(--text2);">No problem at all — you can enable Registration anytime from your Listings Dashboard. Your activity will go live with the <strong style="color:#085041;">Show Interest</strong> flow once approved.</div>');
+    setTimeout(showCompletionCard,600);
+  },400);
+}
+
+function showCompletionCard(){
+  addMsg('ai',null,
+    '<div style="background:#E1F5EE;border:1.5px solid #9FE1CB;border-radius:10px;padding:14px 15px;">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">'
+    +'<div style="width:34px;height:34px;border-radius:8px;background:#0F6E56;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎉</div>'
+    +'<div><div style="font-size:13.5px;font-weight:600;color:#085041;">You\'re all done!</div>'
+    +'<div style="font-size:11.5px;color:#0F6E56;margin-top:1px;">Your listing is submitted and in the review queue</div></div>'
+    +'</div>'
+    +'<div style="font-size:12px;color:#0F6E56;line-height:1.6;margin-bottom:12px;">We\'ll notify you at <strong>'+esc(ORGANIZER.email)+'</strong> as soon as your listing is approved and live. In the meantime you can check its status or make edits from your dashboard.</div>'
+    +'<div style="display:flex;gap:7px;flex-wrap:wrap;">'
+    +'<button style="flex:1;min-width:160px;padding:9px 14px;border-radius:7px;background:#0F6E56;color:#fff;border:none;font-size:12px;font-weight:500;cursor:pointer;font-family:\'Sora\',sans-serif;">View my listings dashboard</button>'
+    +'<button style="padding:9px 13px;border-radius:7px;border:1px solid rgba(0,0,0,.18);background:transparent;font-size:12px;color:#5F5E5A;cursor:pointer;font-family:\'Sora\',sans-serif;" onclick="resetFlow()">Add another activity</button>'
+    +'</div>'
+    +'</div>'
+  );
+}
+
+function notRight(){
+  disActBtns();addMsg('usr','Not right — let me pick');
+  setTimeout(function(){
+    addMsg('ai',null,'<div style="font-size:13px;margin-bottom:8px;">No problem — which of these is closest to what you have in mind?</div>'
+      +'<div class="chips" id="type-chips">'
+      +'<span class="chip" onclick="manualType(\'In-person conference\',\'👥\')">In-person conference</span>'
+      +'<span class="chip" onclick="manualType(\'Live webinar\',\'💻\')">Live webinar</span>'
+      +'<span class="chip" onclick="manualType(\'Hybrid event\',\'🔀\')">Hybrid event</span>'
+      +'<span class="chip" onclick="manualType(\'Webcast\',\'🎬\')">Webcast</span>'
+      +'<span class="chip" onclick="manualType(\'Podcast\',\'🎙\')">Podcast</span>'
+      +'<span class="chip" onclick="manualType(\'Text-based CME\',\'📄\')">Text-based CME</span>'
+      +'<span class="chip" onclick="manualType(\'Journal CME\',\'📰\')">Journal CME</span>'
+      +'</div>'
+    );
+  },400);
+}
+
+function buildNav(active){
+  var h='<div class="lglabel">Required to publish</div>';
+  for(var i=0;i<4;i++){
+    var s=NAV[i];var d=i<active?'done':i===active?'cur':'';var ac=i===active?'active':i<active?'done-item':'';
+    h+='<div class="litem '+ac+'"><div class="ldot '+d+'">'+(i<active?'✓':'')+'</div><span class="lil">'+s.l+'</span><span class="lbadge r">req</span></div>';
+  }
+  h+='<div class="lglabel" style="margin-top:4px;">Enriches listing</div>';
+  for(var i=4;i<9;i++){
+    var s=NAV[i];var d=i<active?'done':i===active?'cur':'';var ac=i===active?'active':i<active?'done-item':'';
+    h+='<div class="litem '+ac+'"><div class="ldot '+d+'">'+(i<active?'✓':'')+'</div><span class="lil">'+s.l+'</span><span class="lbadge o">opt</span></div>';
+  }
+  h+='<div class="lglabel" style="margin-top:4px;">Finish</div>';
+  var d=active>=9?'done':active===9?'cur':'';var ac=active>=10?'done-item':active===9?'active':'';
+  h+='<div class="litem '+ac+'"><div class="ldot '+d+'">'+(active>9?'✓':'')+'</div><span class="lil">Preview & submit</span></div>';
+  G('lgroups').innerHTML=h;
+}
+
+function openCatEditDrawer(catIdx){
+  var cat=CATS[catIdx];if(!cat)return;
+  _editingCatIdx=catIdx;
+  G('drht').textContent='Edit — '+cat.name;
+  var b=G('drb');b.innerHTML='';
+
+  cat.fields.forEach(function(f,fidx){
+    if(f.l==='Additional ticket types')return; // has its own dedicated drawer
+    var wrap=document.createElement('div');
+    wrap.className='drf';
+
+    if(f.l==='Format'){
+      wrap.innerHTML=
+        '<div class="drl">'+f.l+'</div>'
+        +'<div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">'
+        +'<div style="font-size:12.5px;font-weight:500;color:var(--text);margin-bottom:4px;">'+(f.v||'')+'</div>'
+        +'<div style="font-size:11.5px;color:var(--text2);line-height:1.5;margin-bottom:9px;">The activity format determines your listing structure and cannot be changed mid-flow. To use a different format you\'ll need to start over — your URL will be remembered if you paste it again.</div>'
+        +'<button onclick="closeDrawer();setTimeout(resetFlow,200);" style="font-size:11.5px;color:#993C1D;border:1px solid #F5C4B3;background:#FAECE7;padding:6px 13px;border-radius:6px;cursor:pointer;font-family:\'Sora\',sans-serif;font-weight:500;">↺ Start over with a different format</button>'
+        +'</div>';
+    } else {
+      var lbl=document.createElement('div');lbl.className='drl';lbl.textContent=f.l;
+      wrap.appendChild(lbl);
+      if(f.l==='Start date & time'||f.l==='End date & time'){
+        // Date part + time part on one row
+        var row=document.createElement('div');row.style.cssText='display:flex;gap:8px;';
+        var dateParts=f.v?f.v.split('·'):['',''];
+        var sd=document.createElement('input');sd.className='dri';sd.type='text';sd.placeholder='e.g. Jun 12, 2025';sd.style.flex='2';
+        sd.setAttribute('data-field-idx',fidx);sd.setAttribute('data-date-part','date');
+        sd.value=(dateParts[0]||'').trim();
+        var st=document.createElement('input');st.className='dri';st.type='text';st.placeholder='e.g. 10:00 AM EST';st.style.flex='1';
+        st.setAttribute('data-field-idx',fidx);st.setAttribute('data-date-part','time');
+        st.value=(dateParts[1]||'').trim();
+        row.appendChild(sd);row.appendChild(st);wrap.appendChild(row);
+      } else if(f.l==='Overview & description'||f.l==='Accreditation statement'){
+        var ta=document.createElement('textarea');ta.className='drta';
+        ta.placeholder=f.l==='Accreditation statement'?'Paste the full accreditation statement…':'Enter an overview of the event…';
+        ta.style.minHeight='90px';ta.value=f.v||'';ta.setAttribute('data-field-idx',fidx);
+        wrap.appendChild(ta);
+      } else if(f.l==='Currency'){
+        var selc=document.createElement('select');selc.className='drsel';selc.setAttribute('data-field-idx',fidx);
+        ['USD','EUR','GBP','CAD','AUD','INR','Other'].forEach(function(o){
+          var op=document.createElement('option');op.value=o;op.textContent=o;
+          if(o===f.v)op.selected=true;selc.appendChild(op);
+        });
+        wrap.appendChild(selc);
+      } else if(f.l==='Registration start date'||f.l==='Registration end date'){
+        var di=document.createElement('input');di.className='dri';di.type='text';
+        di.placeholder='e.g. May 1, 2025';di.value=f.v||'';di.setAttribute('data-field-idx',fidx);
+        wrap.appendChild(di);
+      } else if(f.l==='Accreditation body'){
+        var sel=document.createElement('select');sel.className='drsel';sel.setAttribute('data-field-idx',fidx);
+        ['ACCME','ANCC','AANP','AOA CCME','Other'].forEach(function(o){
+          var op=document.createElement('option');op.value=o;op.textContent=o;
+          if(o===f.v)op.selected=true;sel.appendChild(op);
+        });
+        wrap.appendChild(sel);
+      } else if(f.l==='Credit type'){
+        var sel2=document.createElement('select');sel2.className='drsel';sel2.setAttribute('data-field-idx',fidx);
+        ['','AMA PRA Category 1','ANCC Contact Hours','AOA Category 1-A','AAFP Prescribed Credits','Other'].forEach(function(o){
+          var op=document.createElement('option');op.value=o;op.textContent=o||'Select credit type…';
+          if(o===f.v)op.selected=true;sel2.appendChild(op);
+        });
+        wrap.appendChild(sel2);
+      } else {
+        var inp=document.createElement('input');inp.className='dri';inp.type='text';
+        inp.placeholder='Enter '+f.l.toLowerCase();inp.value=f.v||'';
+        inp.setAttribute('data-field-idx',fidx);
+        wrap.appendChild(inp);
+      }
+    }
+    b.appendChild(wrap);
+  });
+
+  G('dov').classList.add('open');G('drawer').classList.add('open');
+}
+
+// ── Additional ticket types drawer ───────────────────────────────────────────
+var TICKET_TYPES=['On-site registration fee','Late registration fee','Student rate','Resident / Fellow rate','International rate','Group rate (5+ attendees)','Virtual / hybrid attendance','VIP / Premium access','Other'];
+
+function openTicketTypesDrawer(){
+  _editingTicketTypes=true;
+  _editingCatIdx=2;
+  G('drht').textContent='Additional ticket types';
+  refreshTicketDrawerBody();
+  G('dov').classList.add('open');G('drawer').classList.add('open');
+}
+
+function refreshTicketDrawerBody(){
+  var b=G('drb');b.innerHTML='';
+
+  // Existing tickets list
+  if(_additionalTickets.length>0){
+    var listWrap=document.createElement('div');listWrap.style.cssText='display:flex;flex-direction:column;gap:6px;margin-bottom:14px;';
+    _additionalTickets.forEach(function(t,idx){
+      var row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 12px;';
+      row.innerHTML='<div><div style="font-size:12.5px;font-weight:500;color:var(--text);">'+t.type+'</div>'
+        +'<div style="font-size:11px;color:var(--teal-600);">$'+t.amount+'</div></div>'
+        +'<button onclick="removeTicketType('+idx+')" style="font-size:11px;color:#993C1D;border:1px solid #F5C4B3;background:#FAECE7;padding:3px 9px;border-radius:5px;cursor:pointer;font-family:\'Sora\',sans-serif;">Remove</button>';
+      listWrap.appendChild(row);
+    });
+    b.appendChild(listWrap);
+  }
+
+  // Add form
+  var form=document.createElement('div');
+  form.style.cssText='background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;';
+  form.innerHTML=
+    '<div style="font-size:11px;font-family:\'JetBrains Mono\',monospace;color:var(--text3);margin-bottom:10px;">'
+    +((_additionalTickets.length?'add another ticket type':'add a ticket type'))+'</div>'
+    +'<div class="drf"><div class="drl">Ticket type</div>'
+    +'<select class="drsel" id="new-ticket-type">'
+    +TICKET_TYPES.map(function(t){return '<option value="'+t+'">'+t+'</option>';}).join('')
+    +'</select></div>'
+    +'<div class="drf" style="margin-top:8px;"><div class="drl">Amount (USD) <span class="req">*</span></div>'
+    +'<input class="dri" id="new-ticket-amount" type="text" placeholder="0.00"/></div>'
+    +'<button onclick="addTicketType()" class="btn-s" style="margin-top:10px;width:100%;">+ Add ticket type</button>';
+  b.appendChild(form);
+
+  if(_additionalTickets.length===0){
+    var note=document.createElement('div');
+    note.style.cssText='font-size:11px;color:var(--text3);margin-top:10px;line-height:1.5;';
+    note.textContent='Use this for any pricing categories beyond your main registration fee — such as on-site rates, late fees, or student discounts.';
+    b.appendChild(note);
+  }
+}
+
+function addTicketType(){
+  var typeEl=G('new-ticket-type'),amtEl=G('new-ticket-amount');
+  if(!typeEl||!amtEl)return;
+  var type=typeEl.value,amt=amtEl.value.replace(/[^0-9.]/g,'').trim();
+  if(!amt){amtEl.style.borderColor='#D85A30';amtEl.focus();return;}
+  amtEl.style.borderColor='';
+  _additionalTickets.push({type:type,amount:amt});
+  refreshTicketDrawerBody();
+}
+
+function removeTicketType(i){
+  _additionalTickets.splice(i,1);
+  refreshTicketDrawerBody();
+}
+
+function openDrawer(k){
+  var cfg=DRAWERS[k];if(!cfg)return;
+  G('drht').textContent=cfg.t;var b=G('drb');b.innerHTML='';
+  cfg.fs.forEach(function(f){
+    var w=document.createElement('div');w.className='drf';w.style.display='block';w.style.marginBottom='14px';
+    var l=document.createElement('div');l.className='drl';l.innerHTML=f.l+(f.req?' <span class="req">*</span>':'');w.appendChild(l);
+    var el;
+    if(f.type==='file'){
+      // OQ-3: File upload via drawer — S3 pre-signed URL flow
+      var uploadWrap=document.createElement('div');
+      uploadWrap.style.cssText='border:2px dashed rgba(0,0,0,.18);border-radius:8px;padding:18px;text-align:center;cursor:pointer;background:var(--bg2);';
+      uploadWrap.innerHTML='<div style="font-size:22px;margin-bottom:6px;">📎</div>'
+        +'<div style="font-size:12.5px;font-weight:500;color:var(--text);margin-bottom:3px;">Click to select file</div>'
+        +'<div style="font-size:11px;color:var(--text2);">or drag and drop here</div>'
+        +'<input type="file" style="display:none;" id="file-inp-'+k+'" onchange="handleFileSelect(this,\''+k+'\')">';
+      uploadWrap.onclick=function(){document.getElementById('file-inp-'+k).click();};
+      w.appendChild(uploadWrap);
+      // S3 flow note
+      var note=document.createElement('div');
+      note.style.cssText='font-size:10.5px;color:var(--text3);margin-top:7px;padding:6px 9px;background:var(--bg2);border-radius:5px;line-height:1.5;';
+      note.innerHTML='Files upload directly to S3 — nothing passes through the server. Max 2MB. Accepted: PDF, HTML, DOC (brochure) or PNG/JPG (banner).';
+      w.appendChild(note);
+      // Upload progress placeholder
+      var prog=document.createElement('div');
+      prog.id='upload-prog-'+k;prog.style.display='none';
+      prog.style.cssText='margin-top:8px;font-size:12px;color:var(--teal-600);';
+      w.appendChild(prog);
+    } else if(f.type==='select'){
+      el=document.createElement('select');el.className='drsel';
+      f.opts.forEach(function(o){var op=document.createElement('option');op.value=o;op.textContent=o;if(o===f.v)op.selected=true;el.appendChild(op);});
+      w.appendChild(el);
+    } else if(f.type==='textarea'){
+      el=document.createElement('textarea');el.className='drta';el.placeholder=f.ph||'';el.value=f.v||'';
+      w.appendChild(el);
+    } else {
+      el=document.createElement('input');el.className='dri';el.type='text';el.placeholder=f.ph||'';el.value=f.v||'';
+      w.appendChild(el);
+    }
+    b.appendChild(w);
+  });
+  G('dov').classList.add('open');G('drawer').classList.add('open');
+}
+
+function handleFileSelect(input,k){
+  var prog=document.getElementById('upload-prog-'+k);
+  if(!input.files||!input.files[0])return;
+  var fname=input.files[0].name;
+  // Simulate S3 pre-signed URL upload flow
+  prog.style.display='block';prog.textContent='Requesting upload URL…';
+  setTimeout(function(){
+    prog.textContent='Uploading '+fname+' to S3…';
+    setTimeout(function(){
+      prog.innerHTML='<span style="color:#0F6E56;">✓ Uploaded: '+fname+'</span> — S3 key saved to listing';
+    },1200);
+  },600);
+}
+function closeDrawer(){
+  G('dov').classList.remove('open');G('drawer').classList.remove('open');
+  _editingCatIdx=-1;_editingTicketTypes=false;
+  var drs=document.querySelector('.drs');if(drs)drs.textContent='Save changes';
+}
+function saveDrawer(){
+  // Ticket types drawer has its own save logic
+  if(_editingTicketTypes){
+    var field=CATS[2].fields.find(function(f){return f.l==='Additional ticket types';});
+    if(field){
+      if(_additionalTickets.length>0){
+        field.v=_additionalTickets.map(function(t){return t.type+' ($'+t.amount+')';}).join(' · ');
+        field.d='ok';
+      } else {field.v=null;field.d='ms';}
+    }
+    CATS[2].found=CATS[2].fields.filter(function(f){return f.v;}).length;
+    CATS[2].st=CATS[2].found===CATS[2].total?'full':CATS[2].found>0?'part':'none';
+    var card=G('cat-card-2');if(card)card.innerHTML=buildCatBlockHtml(2,false);
+    _editingTicketTypes=false;_editingCatIdx=-1;
+    closeDrawer();return;
+  }
+  if(_editingCatIdx>=0){
+    var cat=CATS[_editingCatIdx];
+    var drb=G('drb');
+    // Single-value inputs, selects and textareas (exclude date-part split inputs)
+    drb.querySelectorAll('[data-field-idx]:not([data-date-part])').forEach(function(el){
+      var idx=parseInt(el.getAttribute('data-field-idx'));
+      var val=(el.tagName==='SELECT'?el.value:(el.value||'').trim());
+      if(val){cat.fields[idx].v=val;cat.fields[idx].d='ok';}
+    });
+    // Date+time inputs — combine as "date · time"
+    var dtDate={},dtTime={};
+    drb.querySelectorAll('[data-date-part="date"]').forEach(function(inp){dtDate[inp.getAttribute('data-field-idx')]=inp.value.trim();});
+    drb.querySelectorAll('[data-date-part="time"]').forEach(function(inp){dtTime[inp.getAttribute('data-field-idx')]=inp.value.trim();});
+    Object.keys(dtDate).forEach(function(idx){
+      var d=dtDate[idx],t=dtTime[idx]||'';
+      if(d||t){cat.fields[parseInt(idx)].v=d+(t?' · '+t:'');cat.fields[parseInt(idx)].d='ok';}
+    });
+    // Recount and re-render card in place
+    cat.found=cat.fields.filter(function(f){return f.v;}).length;
+    cat.st=cat.found===cat.total?'full':cat.found>0?'part':'none';
+    var card=G('cat-card-'+_editingCatIdx);
+    if(card)card.innerHTML=buildCatBlockHtml(_editingCatIdx,false);
+    _editingCatIdx=-1;
+  }
+  closeDrawer();
+}
+
+function G(id){return document.getElementById(id);}
+function addMsg(role,text,html){
+  var m=G('msgs'),d=document.createElement('div');d.className='msg '+role;
+  var inner=html||(text?esc(text):'');
+  d.innerHTML=role==='ai'
+    ?'<div class="av ai">AI</div><div class="bub"><div class="bi">'+inner+'</div></div>'
+    :'<div class="av us">YO</div><div class="bub"><div class="bi">'+inner+'</div></div>';
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function think(lbl){
+  var id='t'+Date.now(),d=document.createElement('div');d.className='msg ai';d.id=id;
+  d.innerHTML='<div class="av ai">AI</div><div class="bub"><div class="bi"><div class="think"><div class="tdots"><span></span><span></span><span></span></div><span style="font-size:12px;color:#5F5E5A;">'+lbl+'</span></div></div></div>';
+  G('msgs').appendChild(d);G('msgs').scrollTop=9999;return id;
+}
+function rm(id){var e=G(id);if(e)e.remove();}
+function dis(id){var el=G(id);if(el)el.querySelectorAll('.chip').forEach(function(c){c.classList.add('dis');});}
+function disActBtns(){G('msgs').querySelectorAll('.btn-p,.btn-s,.btn-t').forEach(function(b){b.style.pointerEvents='none';b.style.opacity='.5';});}
+function disBox(id){var b=G(id);if(b){b.style.pointerEvents='none';b.style.opacity='.6';}}
+function setProg(p){G('pfill').style.width=p+'%';G('tpct').textContent=p+'% complete';}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+</script>
+</body>
+</html>

@@ -1,15 +1,15 @@
 """
-One-time script: set status = 2 on conferences whose organizers are blocked.
+One-time script: set status = 5 (deleted) on conferences whose organizers are blocked.
 
 Input  : blocked_organizer_conferences.csv  (same directory as this script)
          Required column: conference_id  (first column)
 
 Action : UPDATE tbl_conferences
-         SET    status        = 2,
+         SET    status        = 5,   -- deleted
                 modified_by   = 64529,
                 modified_date = <today>
          WHERE  id = <conference_id>
-           AND  status != 2          -- skip rows already blocked
+           AND  status != 5          -- skip rows already deleted
 
 Safety features
 ---------------
@@ -44,7 +44,7 @@ from emed_utilities.db.connection import get_session
 SCRIPT_DIR   = Path(__file__).parent
 INPUT_CSV    = SCRIPT_DIR / "blocked_organizer_conferences.csv"
 MODIFIED_BY  = 64529
-NEW_STATUS   = 2
+NEW_STATUS   = 5  # deleted
 TODAY        = date.today()
 
 
@@ -198,7 +198,8 @@ def main() -> None:
     # ── Confirmation prompt ───────────────────────────────────────────────────
     print(f"\n{'!' * 65}")
     print(f"  You are about to UPDATE {len(to_update)} rows in PRODUCTION.")
-    print(f"  tbl_conferences  →  status=2, modified_by={MODIFIED_BY}, modified_date={TODAY}")
+    print(f"  tbl_conferences  →  status={NEW_STATUS}, modified_by={MODIFIED_BY},"
+          f" modified_date={TODAY}")
     print(f"{'!' * 65}")
     answer = input("\n  Type  YES  to proceed, anything else to abort: ").strip()
     if answer != "YES":

@@ -1,21 +1,24 @@
 """
 Reads a GA report CSV, enriches it with:
-  - Column F (URL)        : emed_url from tbl_conferences
-  - Column G (Users)      : Total users from GA4 for the date range in the CSV
-  - Column H (Pageviews)  : Pageviews from GA4 for the date range in the CSV
+  - eMed URL    : emed_url fetched from tbl_conferences (used to query GA4)
+  - Users       : Total users from GA4 for the date range in the CSV
+  - Page Views  : Pageviews from GA4 for the date range in the CSV
 
 Usage:
-    # Fill URL only (no GA4 query)
+    # Fill eMed URL only (no GA4 query)
     python scripts/conferences/enrich_ga_csv.py --input "path/to/report.csv"
 
-    # Fill URL + GA4 metrics
+    # Fill eMed URL + GA4 metrics
     python scripts/conferences/enrich_ga_csv.py --input "path/to/report.csv" --ga4
 
     # Save to a new file
     python scripts/conferences/enrich_ga_csv.py --input "path/to/report.csv" --ga4 --output "path/to/enriched.csv"
 
 The input CSV must have these columns:
-    Conference ID, Title, Organizer Name, Start Date, End Date, URL, Users, Pageviews
+    Conference ID, Conference Title, Organizer Name, Start Date, End Date, URL, Users, Page Views
+
+Output appends an "eMed URL" column (the DB slug used for GA4 lookups).
+The original URL column is preserved unchanged.
 """
 import argparse
 import csv
@@ -28,7 +31,7 @@ from emed_utilities.logging_config import get_logger
 
 log = get_logger(__name__)
 
-COLUMNS = ["Conference ID", "Title", "Organizer Name", "Start Date", "End Date", "URL", "Users", "Pageviews"]
+COLUMNS = ["Conference ID", "Conference Title", "Organizer Name", "Start Date", "End Date", "URL", "Users", "Page Views", "eMed URL"]
 
 
 def fetch_emed_urls(conference_ids: list[int]) -> dict[int, str]:
@@ -80,11 +83,9 @@ def main() -> None:
             conf_id = int(row["Conference ID"])
         except (ValueError, KeyError):
             continue
-        emed_url = url_map.get(conf_id, "")
-        if emed_url:
-            row["URL"] = emed_url
+        row["eMed URL"] = url_map.get(conf_id, "")
 
-    print(f"URL column filled.")
+    print(f"eMed URL column filled.")
 
     # --- Step 2: Fill Users + Pageviews from GA4 ---
     if args.ga4:
@@ -95,7 +96,7 @@ def main() -> None:
         start_date = _reformat_date(first_row.get("Start Date", ""))
         end_date   = _reformat_date(first_row.get("End Date", ""))
 
-        slugs = [row["URL"] for row in rows if row.get("URL")]
+        slugs = [row["eMed URL"] for row in rows if row.get("eMed URL")]
         print(f"Querying GA4 for {len(slugs)} page paths ({start_date} to {end_date})...")
 
         metrics = get_page_metrics(slugs, start_date, end_date)
@@ -103,20 +104,20 @@ def main() -> None:
 
         ga_filled = 0
         for row in rows:
-            slug = row.get("URL", "")
+            slug = row.get("eMed URL", "")
             if slug in metrics:
-                row["Users"]     = metrics[slug].users
-                row["Pageviews"] = metrics[slug].pageviews
+                row["Users"]      = metrics[slug].users
+                row["Page Views"] = metrics[slug].pageviews
                 ga_filled += 1
             else:
-                row["Users"]     = 0
-                row["Pageviews"] = 0
+                row["Users"]      = 0
+                row["Page Views"] = 0
 
         print(f"GA4 metrics filled for {ga_filled} conferences ({len(slugs) - ga_filled} had no traffic).")
 
     # --- Write output ---
     with open(output_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=COLUMNS)
+        writer = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -128,7 +129,7 @@ def _reformat_date(date_str: str) -> str:
     """Convert DD/MM/YYYY to YYYY-MM-DD for GA4 API."""
     try:
         from datetime import datetime
-        return datetime.strptime(date_str.strip(), "%d/%m/%Y").strftime("%Y-%m-%d")
+        return datetime.strptime(date_str.strip(), "%m/%d/%Y").strftime("%Y-%m-%d")
     except ValueError:
         return date_str.strip()
 
